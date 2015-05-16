@@ -39,7 +39,9 @@
 				<p:dataList id="displayThemes" value="#{orderListView.projects}" var="projects">
 					<h:outputText value="#{projects.displayName}" />
 				</p:dataList>
-				<p:commandButton value="Yes" id="ajax" update="growl" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" actionListener="#{orderListView.selectProjects}" onclick="themesDialog.hide()"/>
+				<p:commandButton value="Yes" id="ajax" update="growl" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" actionListener="#{orderListView.selectProjects}" onclick="themesDialog.hide()">
+				<f:setPropertyActionListener target="#{orderListView.projects}" value="#{orderListView.projects}"/>
+				</p:commandButton>
 				<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" onclick="themesDialog.hide()"/>
 			</p:confirmDialog>
 

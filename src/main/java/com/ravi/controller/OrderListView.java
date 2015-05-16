@@ -78,10 +78,11 @@ public class OrderListView {
         context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "List Reordered", null));
     }
 
-    public void selectProjects(ActionEvent actionEvent){
-       // System.out.println(event.getObject());
-        List<Project> list = new ArrayList<>();
+    public void selectProjects(ActionEvent actionEvent) {
+       for (Project project : projects){
+           System.out.println(project);
+       }
      //   list.add((Project)event.getObject());
-        System.out.println("-------- projects " + list.size());
+        System.out.println("-------- projects " );
     }
 }
