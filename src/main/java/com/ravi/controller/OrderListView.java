@@ -12,6 +12,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
+import javax.faces.event.ActionEvent;
 
 
 @ManagedBean
@@ -77,7 +78,7 @@ public class OrderListView {
         context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "List Reordered", null));
     }
 
-    public void selectProjects(){
+    public void selectProjects(ActionEvent actionEvent){
        // System.out.println(event.getObject());
         List<Project> list = new ArrayList<>();
      //   list.add((Project)event.getObject());
