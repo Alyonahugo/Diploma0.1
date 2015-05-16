@@ -39,8 +39,8 @@
 				<p:dataList id="displayThemes" value="#{orderListView.projects}" var="projects">
 					<h:outputText value="#{projects.displayName}" />
 				</p:dataList>
-				<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-				<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" onclick="themesDialog.hide()" />
+				<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" onclick="themesDialog.hide()"/>
 			</p:confirmDialog>
 
 
