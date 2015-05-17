@@ -3,6 +3,7 @@ package com.ravi.controller;
 /**
  * Created by User on 16.05.2015.
  */
+import java.io.Serializable;
 import java.util.*;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -26,7 +27,7 @@ import javax.faces.event.ActionEvent;
 
 @ManagedBean
 
-public class OrderListView {
+public class OrderListView implements Serializable {
 
     private static Logger LOG = Logger.getLogger(OrderListView.class.getName());
 
@@ -36,6 +37,9 @@ public class OrderListView {
 
     private List<String> cities;
     private List<Project> projects;
+
+
+    private Project selectedProject;
 
 @Autowired
 @Qualifier("calculator")
@@ -79,6 +83,15 @@ public class OrderListView {
     public void setProjects(List<Project> projects) {
         this.projects = projects;
     }
+
+    public Project getSelectedProject() {
+        return selectedProject;
+    }
+
+    public void setSelectedProject(Project selectedProject) {
+        this.selectedProject = selectedProject;
+    }
+
 
     public void onSelect(SelectEvent event) {
         FacesContext context = FacesContext.getCurrentInstance();

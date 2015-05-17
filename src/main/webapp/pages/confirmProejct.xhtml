@@ -8,9 +8,15 @@
 	</ui:define>
 	<ui:define name="content">
 		<h:form>
+
+			<p:contextMenu for="tbl">
+				<p:menuitem value="View" update="projectDetails" icon="ui-icon-search" oncomplete="PF('projectDetails').show()"/>
+				<p:menuitem value="Approve" update="tbl" icon="ui-icon-close" actionListener="#{orderListView.selectProjects}"/>
+			</p:contextMenu>
 			<p:dataTable id="tbl" var="project" value="#{orderListView.projects}"
 						 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-						 paginator="true" rows="10" style="margin-bottom:20px" sortMode="multiple">
+						 paginator="true" rows="10" style="margin-bottom:20px" sortMode="multiple"
+						 selection="#{orderListView.selectedProject}" selectionMode="single" rowKey="#{project}">
 
 				<f:facet name="header">
 					<h:outputText value="#{msg['headerConfirmProject']}"/>
@@ -44,7 +50,21 @@
 				</p:column>
 
 			</p:dataTable>
+			<p:dialog header="project Details" widgetVar="projectDetails" showEffect="fade" hideEffect="fade" resizable="true">
+				<p:outputPanel id="projectDetails" style="text-align:center;">
+					<p:panelGrid  columns="2" rendered="#{not empty orderListView.selectedProject}" columnClasses="label,value">
 
+						<h:outputText value="Id:" />
+						<h:outputText value="#{orderListView.selectedProject.id}" />
+
+						<h:outputText value="Name" />
+						<h:outputText value="#{orderListView.selectedProject.name}" />
+
+						<h:outputText value="Price" />
+						<h:outputText value="#{orderListView.selectedProject.displayName}" />
+					</p:panelGrid>
+				</p:outputPanel>
+			</p:dialog>
 
 		</h:form>
 	</ui:define>
