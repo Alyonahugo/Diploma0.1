@@ -12,6 +12,9 @@
 						 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
 						 paginator="true" rows="10" style="margin-bottom:20px" sortMode="multiple">
 
+				<f:facet name="header">
+					<h:outputText value="#{msg['headerConfirmProject']}"/>
+				</f:facet>
 				<p:column sortBy="#{project.id}">
 					<f:facet name="header">
 						<h:outputText value="Id" />
