@@ -10,30 +10,30 @@
 		<h:form>
 			<p:dataTable id="tbl" var="project" value="#{orderListView.projects}"
 						 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-						 paginator="true" rows="10" style="margin-bottom:20px">
+						 paginator="true" rows="10" style="margin-bottom:20px" sortMode="multiple">
 
-				<p:column>
+				<p:column sortBy="#{project.id}">
 					<f:facet name="header">
 						<h:outputText value="Id" />
 					</f:facet>
 					<h:outputText value="#{project.id}" />
 				</p:column>
 
-				<p:column>
+				<p:column  sortBy="#{project.name}">
 					<f:facet name="header">
 						<h:outputText value="#{msg['name']}"/>
 					</f:facet>
 					<h:outputText value="#{project.name}" />
 				</p:column>
 
-				<p:column>
+				<p:column sortBy="#{project.displayName}">
 					<f:facet name="header">
 						<h:outputText value="#{msg['displayName']}" />
 					</f:facet>
 					<h:outputText value="#{project.displayName}" />
 				</p:column>
 
-				<p:column>
+				<p:column >
 					<f:facet name="header">
 						<h:outputText value="#{msg['confimStatus']}" />
 					</f:facet>
