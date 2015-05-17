@@ -1,0 +1,24 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/templates/template.xhtml">
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+		<h3>DataModel</h3>
+		<p:accordionPanel value="#{winners.winnersList}" var="project">
+			<p:tab title="#{msg['place']} - #{winners.winnersList.indexOf(project)+1}">
+				<h:panelGrid columns="2" cellpadding="5">
+					<h:outputText value="Id:" style="font-weight: bold" />
+					<h:outputText value="#{project.id}" />
+
+					<h:outputText value="Name:" style="font-weight: bold" />
+					<h:outputText value="#{project.displayName}" />
+
+				</h:panelGrid>
+			</p:tab>
+		</p:accordionPanel>
+	</ui:define>
+</ui:composition>
