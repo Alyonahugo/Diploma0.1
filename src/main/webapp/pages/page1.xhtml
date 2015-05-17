@@ -11,7 +11,7 @@
 			<h:form>
 				<p:growl id="msgs" showDetail="true" />
 
-				<h3 style="margin-top: 0">Basic OrderList</h3>
+				<h3 style="margin-top: 0" > <h:outputText  value="#{msg['menu.vote']}" /></h3>
 
 				<p:orderList value="#{orderListView.projects}" var="project" itemLabel="#{project}" itemValue="#{project}" converter="themeConverter" controlsLocation="left">
 
