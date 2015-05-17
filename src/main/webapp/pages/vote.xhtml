@@ -13,14 +13,12 @@
 
 				<h3 style="margin-top: 0" > <h:outputText  value="#{msg['menu.decision']}" /></h3>
 
-				<p:orderList value="#{orderListView.projects}" var="project" itemLabel="#{project}" itemValue="#{project}" converter="themeConverter" controlsLocation="left">
+				<p:orderList value="#{orderListView.projects}" var="project" itemLabel="#{project}" itemValue="#{project}" converter="themeConverter" controlsLocation="left" rowIndexVar="rowIndex" >
 
 
-					<f:facet name="caption">Available</f:facet>
+					<f:facet name="caption">#{msg['candidates']}</f:facet>
 
-					<p:column style="width:25%">
-						<h:outputText styleClass="ui-theme ui-theme-#{project.name}" />
-					</p:column>
+					<p:column style="width:10%;"/>
 
 					<p:column style="width:75%;">
 						<h:outputText value="#{project.displayName}" />
@@ -36,6 +34,7 @@
 				<p:dialog global="true" hideEffect="explode" widgetVar="themesDialog"  header="#{msg['menu.confirmVote']}">
 					<p:dataList id="displayThemes" value="#{orderListView.projects}" var="projects" type="ordered" >
 						<h:outputText value="#{projects.displayName}" />
+
 					</p:dataList>
 					<h:outputText  value="#{msg['menu.confirm']}" />
 					<h:outputText value="&lt;br/&gt;" escape="false" />
