@@ -7,6 +7,7 @@ import schulze.calculator.Calculator;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import java.util.*;
 import java.util.logging.Logger;
 
@@ -37,15 +38,15 @@ private static Logger LOG = Logger.getLogger(OrderListView.class.getName());
     public void init() {
         winnersList = new ArrayList<Project>();
         winnersName = calculator.getSchulze().getWinners();
-
-        check();
     }
 
     private void check() {
+        winnersName = calculator.getSchulze().getWinners();
         candadates =  calculator.getSchulze().getRegisterdCandidates();
         Integer countCanddates = candadates.size();
         if (countCanddates < 1){
             status = StatusWinner.NO_CADIDATES;
+            LOG.info(status.toString());
             return;
         }
 
@@ -53,15 +54,24 @@ private static Logger LOG = Logger.getLogger(OrderListView.class.getName());
             status = StatusWinner.EXISTS_SIMILAR_WINNERS;
             update();
         }
+        LOG.info(status.toString());
         loadProjectByName();
     }
 
     private void update() {
-            winnersName = new LinkedHashSet<String>(10);
+        if(winnersName == null){
+            System.out.println("************");
+            winnersName = new TreeSet<String>();
+        }
 
         for (String candidate :  candadates){
             if (!winnersName.contains(candidate)){
-                winnersName.add(candidate);
+                try{
+                    winnersName.add(candidate);
+                }catch (ArrayIndexOutOfBoundsException e){
+                    status = StatusWinner.VOTES_NOT_EXIST;
+                    LOG.info(status.toString());
+                }
             }
         }
 
@@ -75,6 +85,8 @@ private static Logger LOG = Logger.getLogger(OrderListView.class.getName());
             for (Project project : allProjects){
                 if (project.getDisplayName().equals(candidate)){
                     winnersList.add(project);
+                    System.out.println("-----------------------");
+                    System.out.println(candidate);
                 }
             }
         }
@@ -82,6 +94,7 @@ private static Logger LOG = Logger.getLogger(OrderListView.class.getName());
 
 
     public List<Project> getWinnersList() {
+        check();
         return winnersList;
     }
 

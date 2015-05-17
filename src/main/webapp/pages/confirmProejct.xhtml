@@ -7,6 +7,42 @@
 	<ui:define name="metadata">
 	</ui:define>
 	<ui:define name="content">
-		This is page2 
+		<h:form>
+			<p:dataTable id="tbl" var="project" value="#{orderListView.projects}"
+						 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+						 paginator="true" rows="10" style="margin-bottom:20px">
+
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Id" />
+					</f:facet>
+					<h:outputText value="#{project.id}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="#{msg['name']}"/>
+					</f:facet>
+					<h:outputText value="#{project.name}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="#{msg['displayName']}" />
+					</f:facet>
+					<h:outputText value="#{project.displayName}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="#{msg['confimStatus']}" />
+					</f:facet>
+					<h:outputText value="#{msg['confirm']}" />
+				</p:column>
+
+			</p:dataTable>
+
+
+		</h:form>
 	</ui:define>
 </ui:composition>

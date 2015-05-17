@@ -16,6 +16,7 @@ import java.util.Arrays;
 public class Calculator {
 
     private final Schulze<String> schulze;
+    private static int count ;
 
     public Calculator() {
         schulze= new Schulze<String>();
@@ -29,6 +30,8 @@ public class Calculator {
 
     @PostConstruct
     public void init(){
+        count++;
+        System.out.println("/////////////////" +count);
         schulze.addAllCandidates(Arrays.asList("Cruze", "Dark-Hive", "Delta", "Dot-Luv", "Eggplant", "Excite-Bike", "Flick", "Glass-X"));
     }
 
