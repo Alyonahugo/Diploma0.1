@@ -28,8 +28,15 @@
     </repositories>
 
 	<dependencies>
-	
-		<!-- PrimeFaces -->
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+        </dependency>
+
+
+        <!-- PrimeFaces -->
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>

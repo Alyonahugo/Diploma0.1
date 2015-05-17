@@ -10,6 +10,10 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd
 http://www.springframework.org/schema/tx
 http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
+
+
+
+
     <context:component-scan base-package="com.ravi.spring"/>
     <context:annotation-config/>
     <context:spring-configured/>
@@ -45,5 +49,11 @@ http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
     <bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="SessionFactory"/>
     </bean>
+
+    <bean id="calculator" class="schulze.calculator.Calculator"/>
+
+    <bean id="orderListView" class="com.ravi.controller.OrderListView"/>
+
+
 
 </beans>

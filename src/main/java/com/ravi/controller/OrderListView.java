@@ -3,26 +3,44 @@ package com.ravi.controller;
 /**
  * Created by User on 16.05.2015.
  */
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+
+import org.junit.Assert;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import schulze.Ballot;
+import schulze.Schulze;
+import schulze.calculator.Calculator;
+
 import javax.faces.event.ActionEvent;
 
 
 @ManagedBean
+
 public class OrderListView {
+
+    private static Logger LOG = Logger.getLogger(OrderListView.class.getName());
+
 
     @ManagedProperty("#{themeService}")
     private ThemeService service;
 
     private List<String> cities;
     private List<Project> projects;
+
+@Autowired
+@Qualifier("calculator")
+    private Calculator calculator;
+    static int count = 0;
 
     @PostConstruct
     public void init() {
@@ -55,7 +73,6 @@ public class OrderListView {
     }
 
     public List<Project> getProjects() {
-        System.out.println("size " + projects.size());
         return projects;
     }
 
@@ -79,10 +96,41 @@ public class OrderListView {
     }
 
     public void selectProjects(ActionEvent actionEvent) {
+        StringBuilder resultOfVote = new StringBuilder();
+        StringBuilder resultOfVoteLog = new StringBuilder();
+        int i = 1;
        for (Project project : projects){
-           System.out.println(project);
+
+           resultOfVote.append(project.getDisplayName() + ",");
+           resultOfVoteLog.append("" + i +" - " +  project.getDisplayName() + ", ");
+           i++;
        }
-     //   list.add((Project)event.getObject());
-        System.out.println("-------- projects " );
+        resultOfVote.deleteCharAt(resultOfVote.length()-1);
+
+        LOG.info( "Result of one vote: " + resultOfVoteLog);
+
+        putBallotsDevite(calculator.getSchulze(), resultOfVote.toString(), 1);
+        count ++;
+        if (count % 5 == 0) {
+
+            System.out.println(calculator.getSchulze().getRegisterdCandidates() + "-------- schulze.getWinners() " + calculator.getSchulze().getWinners());
+        }
+    }
+
+    private void putBallotsDevite(Schulze<String> schulze, String rankedList, int number) {
+
+        String temp ;
+        for (int i = 0; i < number; i++) {
+            StringTokenizer st = new StringTokenizer(rankedList, ",");
+            int rank = 1;
+            final Ballot<String> ballot = new Ballot<String>();
+
+            while(st.hasMoreTokens()){
+                temp = st.nextToken();
+                ballot.vote(temp, rank++);
+                System.out.println(temp);
+            }
+            schulze.registerBallot(ballot);
+        }
     }
 }
