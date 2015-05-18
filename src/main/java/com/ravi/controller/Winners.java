@@ -2,12 +2,11 @@ package com.ravi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import schulze.StatusWinner;
+import com.ravi.enumaration.StatusWinner;
 import schulze.calculator.Calculator;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import java.util.*;
 import java.util.logging.Logger;
 

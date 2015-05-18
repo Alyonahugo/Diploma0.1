@@ -1,4 +1,4 @@
-package schulze;
+package com.ravi.enumaration;
 
 /**
  * Created by User on 17.05.2015.

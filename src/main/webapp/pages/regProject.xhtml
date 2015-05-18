@@ -7,6 +7,45 @@
 	<ui:define name="metadata">
 	</ui:define>
 	<ui:define name="content">
-		This is page2 
+		<h:form>
+			<p:panel header="#{msg['createProject']}">
+
+
+				<h:panelGrid columns="4" cellpadding="5">
+					<h:outputLabel for="name" value="#{msg['name']}" />
+					<p:inputText id="name" value="#{projectBean.name}" label="#{msg['name']}"  />
+					<h:outputText/>
+					<h:outputText value="#{projectBean.name}" />
+
+					<h:outputLabel for="age" value="#{msg['meta']}" />
+					<p:inputText id="age" value="#{projectBean.meta}" label="#{msg['meta']}" />
+					<p:message for="age" display="icon"/>
+					<h:outputText value="#{projectBean.meta}" />
+
+					<h:outputLabel for="amount" value="#{msg['description']}" />
+					<p:inputText id="amount" value="#{projectBean.description}" label="#{msg['description']}"/>
+					<p:message for="amount" display="icon" />
+					<h:outputText value="#{projectBean.description}" />
+
+					<h:outputLabel for="amount2" value="#{msg['sphere']}" />
+					<p:inputText id="amount2" value="#{projectBean.scope}" label="#{msg['sphere']}"  />
+					<p:message for="amount2" display="icon" />
+					<h:outputText/>
+
+					<h:outputLabel for="pattern" value="#{msg['manager']}" />
+					<p:inputText id="pattern" value="#{projectBean.manager}" label="#{msg['manager']}" />
+					<p:message for="pattern" display="icon" />
+					<h:outputText/>
+
+					<h:outputLabel for="checked" value="#{msg['team']}" />
+					<p:inputText id="checked" value="#{projectBean.team}" />
+					<p:message for="checked" display="icon"/>
+					<h:outputText/>
+
+				</h:panelGrid>
+
+				<p:commandButton value="#{msg['save']}" ajax="false" icon="ui-icon-check" validateClient="true" actionListener="#{dfView.viewCarsCustomized}"/>
+			</p:panel>
+		</h:form>
 	</ui:define>
 </ui:composition>
