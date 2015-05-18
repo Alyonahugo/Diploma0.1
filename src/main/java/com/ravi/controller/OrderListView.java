@@ -13,6 +13,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
+import com.ravi.spring.model.Forum;
 import org.junit.Assert;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
@@ -38,6 +39,15 @@ public class OrderListView implements Serializable {
     private List<String> cities;
     private List<Project> projects;
 
+    public List<Forum> getForums() {
+        return forums;
+    }
+
+    public void setForums(List<Forum> forums) {
+        this.forums = forums;
+    }
+
+    private List<Forum> forums;
 
     private Project selectedProject;
 
@@ -57,6 +67,17 @@ public class OrderListView implements Serializable {
         projects.add(new Project(15, "Excite-Bike", "excite-bike"));
         projects.add(new Project(16, "Flick", "flick"));
         projects.add(new Project(17, "Glass-X", "glass-x"));
+
+        forums= new ArrayList<Forum>();
+        //sectionName, String author, Integer count
+        forums.add(new Forum("Discution about English portal", "Olena_Polshchuk", 10));
+        forums.add(new Forum("Bord games vs Kinect", "Olga_Kovalenko", 20));
+        forums.add(new Forum("Dance lessons at company", "Kateryna_Madzara", 8));
+        forums.add(new Forum("Interactive growth up", "Nazar_Sheremeta", 11));
+        forums.add(new Forum("Bicycle for company", "Yaroslav_Mazay", 3));
+        forums.add(new Forum("Online trening web site", "Mihayl_Lysevich", 3));
+        forums.add(new Forum("Podorozhnyk not only for drivers", "Olga_Pletechuk", 3));
+        forums.add(new Forum("Rest room for all employee", "Yuilia-Ahramovich", 33));
 
     }
 
