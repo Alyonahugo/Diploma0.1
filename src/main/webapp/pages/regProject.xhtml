@@ -3,49 +3,68 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="/templates/template.xhtml">
+				xmlns:b="http://bootsfaces.net/ui"
+				template="/templates/template.xhtml">
 	<ui:define name="metadata">
 	</ui:define>
+
 	<ui:define name="content">
+
+
 		<h:form>
-			<p:panel header="#{msg['createProject']}">
+			<div>
+				My project
+			</div>
+			<div class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+				<div class="container">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse"
+								data-target=".navbar-collapse">
+							<span class="sr-only">Toggle navigation</span> <span
+								class="icon-bar"></span> <span class="icon-bar"></span> <span
+								class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="#">MyFacebook</a>
+					</div>
+					<div class="collapse navbar-collapse">
+						<ul class="nav navbar-nav">
+							<li><a href="#">Home</a></li>
+							<li><a href="#">Posts</a></li>
+							<li><a href="#">Login</a></li>
+							<li><a href="#">Registrierung</a></li>
+							<li>
 
-
-				<h:panelGrid columns="4" cellpadding="5">
-					<h:outputLabel for="name" value="#{msg['name']}" />
-					<p:inputText id="name" value="#{projectBean.name}" label="#{msg['name']}"  />
-					<h:outputText/>
-					<h:outputText value="#{projectBean.name}" />
-
-					<h:outputLabel for="age" value="#{msg['meta']}" />
-					<p:inputText id="age" value="#{projectBean.meta}" label="#{msg['meta']}" />
-					<p:message for="age" display="icon"/>
-					<h:outputText value="#{projectBean.meta}" />
-
-					<h:outputLabel for="amount" value="#{msg['description']}" />
-					<p:inputText id="amount" value="#{projectBean.description}" label="#{msg['description']}"/>
-					<p:message for="amount" display="icon" />
-					<h:outputText value="#{projectBean.description}" />
-
-					<h:outputLabel for="amount2" value="#{msg['sphere']}" />
-					<p:inputText id="amount2" value="#{projectBean.scope}" label="#{msg['sphere']}"  />
-					<p:message for="amount2" display="icon" />
-					<h:outputText/>
-
-					<h:outputLabel for="pattern" value="#{msg['manager']}" />
-					<p:inputText id="pattern" value="#{projectBean.manager}" label="#{msg['manager']}" />
-					<p:message for="pattern" display="icon" />
-					<h:outputText/>
-
-					<h:outputLabel for="checked" value="#{msg['team']}" />
-					<p:inputText id="checked" value="#{projectBean.team}" />
-					<p:message for="checked" display="icon"/>
-					<h:outputText/>
-
-				</h:panelGrid>
-
-				<p:commandButton value="#{msg['save']}" ajax="false" icon="ui-icon-check" validateClient="true" actionListener="#{dfView.viewCarsCustomized}"/>
-			</p:panel>
+							</li>
+						</ul>
+					</div>
+					<!--/.nav-collapse -->
+				</div>
+			</div>
 		</h:form>
+
+		<!-- Piwik -->
+		<script type="text/javascript">
+			var _paq = _paq || [];
+			_paq.push([ 'trackPageView' ]);
+			_paq.push([ 'enableLinkTracking' ]);
+			(function() {
+				var u = "//www.atapuerca.de/piwik/";
+				_paq.push([ 'setTrackerUrl', u + 'piwik.php' ]);
+				_paq.push([ 'setSiteId', 4 ]);
+				var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+				g.type = 'text/javascript';
+				g.async = true;
+				g.defer = true;
+				g.src = u + 'piwik.js';
+				s.parentNode.insertBefore(g, s);
+			})();
+		</script>
+		<noscript>
+			<p>
+				<img src="//www.atapuerca.de/piwik/piwik.php?idsite=4" style="border: 0;" alt="" />
+			</p>
+		</noscript>
+
 	</ui:define>
+
 </ui:composition>
