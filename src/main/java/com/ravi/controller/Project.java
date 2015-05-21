@@ -1,6 +1,7 @@
 package com.ravi.controller;
 
 import com.ravi.enumaration.Scope;
+import com.ravi.enumaration.Sphere;
 import com.ravi.enumaration.Status;
 
 import javax.faces.bean.ManagedBean;
@@ -16,7 +17,7 @@ public class Project {
     private String name;
     private String meta;
     private String description;
-    private Scope scope;
+    private Sphere sphere;
     private String manager;
     private String team;
     private String author;
@@ -39,13 +40,15 @@ public class Project {
         this.description = description;
     }
 
-    public Scope getScope() {
-        return scope;
+
+    public Sphere getSphere() {
+        return sphere;
     }
 
-    public void setScope(Scope scope) {
-        this.scope = scope;
+    public void setSphere(Sphere sphere) {
+        this.sphere = sphere;
     }
+
 
     public String getManager() {
         return manager;

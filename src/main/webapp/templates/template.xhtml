@@ -43,10 +43,11 @@
 				<p:layoutUnit position="north" size="88" id="north" >
 					<ui:include src="header.xhtml" />
 				</p:layoutUnit>
-		
-				<p:layoutUnit position="west" id="west" resizable="false" header="#{msg['menu.title']}" style="height:580px;overflow:hidden;top: 94px;" size="225">
+
+				<p:layoutUnit position="west" size="0" style="width:0px; display:none; top: 94px;" id="west"/>
+				<!--<p:layoutUnit position="west" id="west" resizable="false" header="#{msg['menu.title']}" style="height:580px;overflow:hidden;top: 94px; width: 8px;">
 					<ui:include src="menu.xhtml" />
-				</p:layoutUnit>
+				</p:layoutUnit>-->
 				
 				<p:layoutUnit	styleClass="layoutUnitCenter" 	position="center" style="top: 94px;">
 					<h:form id="mainForm">

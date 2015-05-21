@@ -6,33 +6,6 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core">
 
-
-	<h:form>
-
-		<p:outputPanel id="menuPanel" layout="block">
-				<p:menu autoSubmenuDisplay="true" style="width:213px;height:483px;border:none;font-size:small;padding:0px;"
-					ajax="false" type="sliding" backLabel="#{msg['menu.back']}">
-					<p:submenu label="Pages" icon="ui-icon ui-icon-refresh">
-						<p:menuitem value="#{msg['menu.regProject']}"
-									url="/pages/regProject.xhtml"/>
-						<p:menuitem value="#{msg['menu.confirmProejct']}"
-									url="/pages/confirmProejct.xhtml" />
-						<p:menuitem value="#{msg['menu.vote']}"
-							url="/pages/vote.xhtml" />
-						<p:menuitem value="#{msg['menu.result']}"
-									url="/pages/result.xhtml" />
-
-
-					</p:submenu>
-					<p:submenu label="More Pages" icon="ui-icon ui-icon-refresh">
-						<p:menuitem value="#{msg['menu.forum']}"
-							url="/pages/forum.xhtml" />
-					</p:submenu>
-		
-				</p:menu>
-		</p:outputPanel>
-
-	</h:form>
 </ui:composition>
 
 
