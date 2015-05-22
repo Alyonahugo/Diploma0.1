@@ -15,11 +15,12 @@ import com.ravi.spring.service.CustomerService;
  * @author rdarbham
  *
  */
+/*
 @Service("CustomerService")
-@Transactional(readOnly = true)
+@Transactional(readOnly = true)*/
 public class CustomerServiceImpl implements CustomerService {
 	   // CustomerDAO is injected...
-    @Autowired
+  //  @Autowired
     CustomerDAO customerDAO;
  
     /**

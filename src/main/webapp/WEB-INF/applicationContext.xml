@@ -19,18 +19,20 @@ http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
     <context:spring-configured/>
 
     <!-- Data Source Declaration -->
-	 <bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+
+
+    <bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/simple" />
-		<property name="username" value="root" />
-		<property name="password" value="root" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
 	</bean>
     <!-- Session Factory Declaration -->
     <bean id="SessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="myDataSource" />
         <property name="annotatedClasses">
             <list>
-                <value>com.ravi.spring.model.Customer</value>
+                <value>com.ravi.spring.model.Project</value>
             </list>
         </property>
 		<property name="hibernateProperties">
@@ -55,8 +57,16 @@ http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
     <bean id="orderListView" class="com.ravi.controller.OrderListView"/>
     <bean id="winners" class="com.ravi.controller.Winners"/>
 
-    <bean id="projectBean" class="com.ravi.controller.Project"/>
+    <bean id="project" class="com.ravi.spring.model.Project"/>
 
+    <bean id="projectBean" class="com.ravi.controller.ProjectBean"/>
+
+    <bean
+            class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location">
+            <value>resources/properties/database.properties</value>
+        </property>
+    </bean>
 
 
 

@@ -3,6 +3,8 @@ package com.ravi.controller;
 /**
  * Created by User on 16.05.2015.
  */
+import com.ravi.spring.model.Project;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;

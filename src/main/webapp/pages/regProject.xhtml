@@ -12,36 +12,32 @@
 			<p:panel header="#{msg['createProject']}">
 
 
-				<h:panelGrid columns="4" cellpadding="5">
+				<h:panelGrid columns="2" cellpadding="5">
 					<h:outputLabel for="name" value="#{msg['name']}*" style="width:100px"/>
-					<p:inputText id="name" value="#{projectBean.name}" label="#{msg['name']}"  style=" padding: 10px; width:400px" required="true"/>
-					<h:outputText/>
-					<h:outputText value="#{projectBean.name}" />
+					<p:inputText id="name" value="#{project.name}" label="#{msg['name']}"  style=" padding: 10px; width:400px"/>
 
-					<h:outputText value="&#160;" /><h:outputText value="&#160;" /><h:outputText value="&#160;" /><h:outputText value="&#160;" />
+
+					<h:outputText value="&#160;" /><h:outputText value="&#160;" />
 
 					<h:outputLabel for="age" value="#{msg['meta']}*" />
-					<p:inputText id="age" value="#{projectBean.meta}" label="#{msg['meta']}"  style=" padding: 10px; width:400px" required="true" />
-					<h:outputText/>
-					<h:outputText value="#{projectBean.meta}" />
+					<p:inputText id="age" value="#{project.meta}" label="#{msg['meta']}"  style=" padding: 10px; width:400px"/>
 
-					<h:outputText value="&#160;" /><h:outputText value="&#160;" /><h:outputText value="&#160;" /><h:outputText value="&#160;" />
+
+					<h:outputText value="&#160;" /><h:outputText value="&#160;" />
 
 					<h:outputLabel for="amount" value="#{msg['description']}*" />
 
-					<p:inputTextarea rows="5" cols="30" id="amount" counter="display" maxlength="250" counterTemplate="{0} #{msg['charactersRemaining']}."  value="#{projectBean.description}" label="#{msg['description']}"  autoResize="false"  style=" padding: 10px; width:400px " required="true" />
+					<p:inputTextarea rows="5" cols="30" id="amount" counter="display" maxlength="250" counterTemplate="{0} #{msg['charactersRemaining']}."  value="#{project.description}" label="#{msg['description']}"  autoResize="false"  style=" padding: 10px; width:400px " />
 
 
-					<h:outputText/>
-					<h:outputText value="#{projectBean.description}" />
-
-					<h:outputText value="&#160;" /><h:outputText id="display" /><h:outputText value="&#160;" /><h:outputText value="&#160;" />
+					<h:outputText value="&#160;" /><h:outputText id="display" />
+					<h:outputText value="&#160;" /><h:outputText value="&#160;" />
 
 					<h:outputLabel for="amount2" value="#{msg['sphere']}" />
 
 
 
-					<p:selectOneMenu id="amount2"  value="#{projectBean.sphere}*" label="#{msg['sphere']}"  style="width:400px" required="true">
+					<p:selectOneMenu id="amount2"  value="#{project.sphere}" label="#{msg['sphere']}"  style="width:400px">
 
 						<f:selectItems value="#{enumValuesProvider.spheres}"
 									   var="sphere"
@@ -50,28 +46,25 @@
 
 
 					</p:selectOneMenu>
-					<h:outputText/>
-					<h:outputText/>
 
-					<h:outputText value="&#160;" /><h:outputText value="&#160;" /><h:outputText value="&#160;" /><h:outputText value="&#160;" />
+					<h:outputText value="&#160;" /><h:outputText value="&#160;" />
 
 					<h:outputLabel for="pattern" value="#{msg['manager']}*" />
-					<p:inputText id="pattern" value="#{projectBean.manager}" label="#{msg['manager']}"  style=" padding: 10px; width:400px" required="true" />
-					<h:outputText/>
-					<h:outputText/>
+					<p:inputText id="pattern" value="#{project.manager}" label="#{msg['manager']}"  style=" padding: 10px; width:400px" />
 
-					<h:outputText value="&#160;" /><h:outputText value="&#160;" /><h:outputText value="&#160;" /><h:outputText value="&#160;" />
+
+					<h:outputText value="&#160;" /><h:outputText value="&#160;" />
 
 					<h:outputLabel for="checked" value="#{msg['team']}" />
-					<p:inputText id="checked" value="#{projectBean.team}"   style=" padding: 10px; width:400px"/>
-					<h:outputText/>
-					<h:outputText/>
+					<p:inputText id="checked" value="#{project.team}"   style=" padding: 10px; width:400px"/>
 
-					<h:outputText value="&#160;" /><h:outputText value="&#160;" /><h:outputText value="&#160;" /><h:outputText value="&#160;" />
+
+					<h:outputText value="&#160;" /><h:outputText value="&#160;" />
 
 				</h:panelGrid>
 
-				<p:commandButton value="#{msg['save']}" ajax="false" icon="ui-icon-check" validateClient="true" actionListener="#{dfView.viewCarsCustomized}"/>
+				<p:commandButton value="#{msg['save']}" ajax="false" icon="ui-icon-check" validateClient="true" action="#{projectBean.addProject(project)}">
+				</p:commandButton>
 			</p:panel>
 		</h:form>
 	</ui:define>

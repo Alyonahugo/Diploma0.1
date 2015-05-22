@@ -9,9 +9,9 @@ import org.springframework.stereotype.Repository;
 import com.ravi.spring.dao.CustomerDAO;
 import com.ravi.spring.model.Customer;
 
-@Repository
+//@Repository
 public class CustomerDAOImpl implements CustomerDAO {
-	@Autowired
+	//@Autowired
 	private SessionFactory sessionFactory;
 
 	/**

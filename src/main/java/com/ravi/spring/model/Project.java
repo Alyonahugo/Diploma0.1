@@ -1,24 +1,52 @@
-package com.ravi.controller;
+package com.ravi.spring.model;
 
 import com.ravi.enumaration.Scope;
 import com.ravi.enumaration.Sphere;
 import com.ravi.enumaration.Status;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
+import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by User on 16.05.2015.
  */
-@ManagedBean(name="projectBean")
-public class Project {
+@ManagedBean(name="project")
 
+@Entity
+@Table(name = "project")
+public class Project implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
+
     private String displayName;
+
+    @Basic(optional = false)
+    @Column(name = "name")
     private String name;
+
+    @Basic(optional = false)
+    @Column(name = "meta")
     private String meta;
+
+    @Basic(optional = false)
+    @Column(name = "description")
     private String description;
+
+    @Basic(optional = false)
+    @Column(name = "sphere")
     private Sphere sphere;
+
+    @Basic(optional = false)
+    @Column(name = "manager")
     private String manager;
+
+
     private String team;
     private String author;
     private Status status;
@@ -125,5 +153,21 @@ public class Project {
     @Override
     public String toString() {
         return name;
+    }
+
+    public String showDetails(){
+        return "Project{" +
+                "id=" + id +
+                ", displayName='" + displayName + '\'' +
+                ", name='" + name + '\'' +
+                ", meta='" + meta + '\'' +
+                ", description='" + description + '\'' +
+                ", sphere=" + sphere +
+                ", manager='" + manager + '\'' +
+                ", team='" + team + '\'' +
+                ", author='" + author + '\'' +
+                ", status=" + status +
+                ", place=" + place +
+                '}';
     }
 }

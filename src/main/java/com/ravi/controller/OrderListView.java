@@ -10,11 +10,10 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import com.ravi.spring.model.Forum;
-import org.junit.Assert;
+import com.ravi.spring.model.Project;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 import org.springframework.beans.factory.annotation.Autowired;
