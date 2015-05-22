@@ -4,9 +4,11 @@ import com.ravi.spring.model.Project;
 import com.ravi.spring.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import java.awt.event.ActionEvent;
 import java.io.Serializable;
 import java.util.logging.Logger;
@@ -39,6 +41,7 @@ public class ProjectBean implements Serializable {
     public void addProject(Project project){
        LOG.info(project.showDetails());
         projectService.addProject(project);
+
     }
 
 }

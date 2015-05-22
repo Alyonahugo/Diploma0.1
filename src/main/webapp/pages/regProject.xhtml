@@ -9,6 +9,9 @@
 	<ui:define name="content">
 
 		<h:form>
+
+			<p:growl id="message" showDetail="true" />
+
 			<p:panel header="#{msg['createProject']}">
 
 
@@ -60,11 +63,14 @@
 
 
 					<h:outputText value="&#160;" /><h:outputText value="&#160;" />
+					<h:outputText value="&#160;" />
 
-					<p:commandButton value="Reset" type="reset" />
-					<p:commandButton value="#{msg['save']}" ajax="false" icon="ui-icon-check" validateClient="true" action="#{projectBean.addProject(project)}">
+
+					<p:commandButton value="#{msg['save']}" ajax="false" icon="ui-icon-check" validateClient="true" action="#{projectBean.addProject(project)}" style="left: 312px;" >
 					</p:commandButton>
+
 				</h:panelGrid>
+
 
 
 			</p:panel>
