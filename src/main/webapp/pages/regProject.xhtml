@@ -67,18 +67,11 @@
 
 
 					<p:commandButton value="#{msg['save']}" ajax="false" icon="ui-icon-check" validateClient="true"
-									 action="#{projectBean.addProject(project)}" style="left: 312px;"   onclick="PF('dlg2').show();">
+									 action="#{projectBean.addProject(project)}" style="left: 312px;"  >
 					</p:commandButton>
 
 				</h:panelGrid>
-
-
-
 			</p:panel>
-
-			<p:dialog header="Modal Dialog" widgetVar="dlg2" modal="true" height="100">
-				<h:outputText value="This is a Modal Dialog." />
-			</p:dialog>
 		</h:form>
 	</ui:define>
 </ui:composition>

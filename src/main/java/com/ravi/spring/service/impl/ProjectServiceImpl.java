@@ -36,4 +36,16 @@ public class ProjectServiceImpl implements ProjectService {
         System.out.println("at service");
         return projectDAO.getProjects();
     }
+
+    @Override
+    public void updateProject(Project project) {
+        projectDAO.updateProject(project);
+    }
+
+    @Override
+    public void updateProjectS(List<Project> projects) {
+        for(Project project : projects){
+            projectDAO.updateProject(project);
+        }
+    }
 }

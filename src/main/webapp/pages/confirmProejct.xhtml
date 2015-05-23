@@ -15,8 +15,9 @@
 			</p:contextMenu>
 			<p:dataTable id="tbl" var="proj" value="#{projectBean.projects}"
 						 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-						 paginator="true" rows="3" style="margin-bottom:20px" sortMode="multiple"
-						 selection="#{orderListView.selectedProject}" selectionMode="single" rowKey="#{proj}">
+						 paginator="true" rows="10" style="margin-bottom:20px" sortMode="multiple"
+						 selection="#{orderListView.selectedProject}" selectionMode="single" rowKey="#{proj}"
+						 editable="true" editMode="cell" >
 
 				<f:facet name="header">
 					<h:outputText value="#{msg['headerConfirmProject']}"/>
@@ -39,15 +40,27 @@
 					<f:facet name="header">
 						<h:outputText value="#{msg['displayName']}" />
 					</f:facet>
-					<h:outputText value="#{proj.description}" />
+					<h:outputText value="#{proj.displayName}" />
 				</p:column>
 
-				<p:column >
-					<f:facet name="header">
-						<h:outputText value="#{msg['confimStatus']}" />
-					</f:facet>
-					<h:outputText value="#{msg['confirm']}" />
+
+				<p:column headerText="#{msg['confimStatus']}">
+					<p:cellEditor>
+						<f:facet name="output"><h:outputText value="#{proj.status}" /></f:facet>
+						<f:facet name="input">
+							<h:selectOneMenu value="#{proj.status}" style="width:100%">
+
+								<f:selectItems value="#{enumValuesProvider.statuses}"
+											   var="status"
+											   itemValue="#{status}"
+											   itemLabel="#{status}"
+										/>
+							</h:selectOneMenu>
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
+
+
 
 			</p:dataTable>
 			<p:dialog header="project Details" widgetVar="projectDetails" showEffect="fade" hideEffect="fade" resizable="true">

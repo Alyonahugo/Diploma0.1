@@ -5,6 +5,7 @@ package com.ravi.controller;
  */
 
 import com.ravi.enumaration.Sphere;
+import com.ravi.enumaration.Status;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -20,4 +21,8 @@ public class EnumValuesProvider implements Serializable {
     public Sphere[] getSpheres(){
         return Sphere.values();
         }
+
+    public Status[] getStatuses(){
+        return Status.values();
+    }
 }

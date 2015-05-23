@@ -13,4 +13,8 @@ public interface ProjectService {
 
     public List<Project> getProjects();
 
+    public void updateProject(Project project);
+
+    public void updateProjectS(List<Project> projects);
+
 }

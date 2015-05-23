@@ -19,7 +19,9 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 /**
@@ -47,7 +49,11 @@ public class ProjectBean implements Serializable {
     }
 
     public List<Project> getProjects() {
-        System.out.println("-----------------------------------" + projects.size());
+
+        for(Project pr : projects){
+            System.out.println(pr.showDetails());
+        }
+        projectService.updateProjectS(projects);
         return projects;
     }
 
@@ -68,10 +74,11 @@ public class ProjectBean implements Serializable {
     }
 
     public void addProject(Project project){
-        project.setStatus(Status.NOT_APPROVED);
+       project.setStatus(Status.NOT_APPROVED);
        LOG.info(project.showDetails());
         projectService.addProject(project);
         init();
+
     }
 
     @PostConstruct
