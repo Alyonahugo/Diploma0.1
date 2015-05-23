@@ -13,7 +13,7 @@ import java.io.Serializable;
 /**
  * Created by User on 16.05.2015.
  */
-@ManagedBean(name="project")
+
 
 @Entity
 @Table(name = "project")

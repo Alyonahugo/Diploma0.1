@@ -8,12 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.faces.bean.ApplicationScoped;
+import javax.faces.bean.ManagedBean;
+import java.util.List;
+
 /**
  * Created by User on 18.05.2015.
  */
 
 @Service("projectService")
 @Transactional
+@ManagedBean(name = "projectService")
+@ApplicationScoped
 public class ProjectServiceImpl implements ProjectService {
 
     @Autowired
@@ -23,5 +29,11 @@ public class ProjectServiceImpl implements ProjectService {
     public void addProject(Project project) {
         projectDAO.addProject(project);
 
+    }
+
+    @Override
+    public List<Project> getProjects() {
+        System.out.println("at service");
+        return projectDAO.getProjects();
     }
 }
