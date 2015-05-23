@@ -13,33 +13,33 @@
 				<p:menuitem value="View" update="projectDetails" icon="ui-icon-search" oncomplete="PF('projectDetails').show()"/>
 				<p:menuitem value="Approve" update="tbl" icon="ui-icon-close" actionListener="#{orderListView.selectProjects}"/>
 			</p:contextMenu>
-			<p:dataTable id="tbl" var="project" value="#{orderListView.projects}"
+			<p:dataTable id="tbl" var="proj" value="#{orderListView.projects}"
 						 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-						 paginator="true" rows="10" style="margin-bottom:20px" sortMode="multiple"
-						 selection="#{orderListView.selectedProject}" selectionMode="single" rowKey="#{project}">
+						 paginator="true" rows="3" style="margin-bottom:20px" sortMode="multiple"
+						 selection="#{orderListView.selectedProject}" selectionMode="single" rowKey="#{proj}">
 
 				<f:facet name="header">
 					<h:outputText value="#{msg['headerConfirmProject']}"/>
 				</f:facet>
-				<p:column sortBy="#{project.id}">
+				<p:column sortBy="#{proj.id}">
 					<f:facet name="header">
 						<h:outputText value="Id" />
 					</f:facet>
-					<h:outputText value="#{project.id}" />
+					<h:outputText value="#{proj.id}" />
 				</p:column>
 
-				<p:column  sortBy="#{project.name}">
+				<p:column  sortBy="#{proj.name}">
 					<f:facet name="header">
 						<h:outputText value="#{msg['name']}"/>
 					</f:facet>
 					<h:outputText value="#{project.name}" />
 				</p:column>
 
-				<p:column sortBy="#{project.displayName}">
+				<p:column sortBy="#{proj.displayName}">
 					<f:facet name="header">
 						<h:outputText value="#{msg['displayName']}" />
 					</f:facet>
-					<h:outputText value="#{project.displayName}" />
+					<h:outputText value="#{proj.displayName}" />
 				</p:column>
 
 				<p:column >
