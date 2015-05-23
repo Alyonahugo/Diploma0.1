@@ -1,5 +1,6 @@
 package com.ravi.spring.service.impl;
 
+import com.ravi.enumaration.Status;
 import com.ravi.spring.dao.CustomerDAO;
 import com.ravi.spring.dao.ProjectDAO;
 import com.ravi.spring.model.Project;
@@ -47,5 +48,11 @@ public class ProjectServiceImpl implements ProjectService {
         for(Project project : projects){
             projectDAO.updateProject(project);
         }
+    }
+
+    @Override
+    public List<Project> getApprovedProjects() {
+
+        return projectDAO.getProjectsByStatus(Status.APPROVED);
     }
 }

@@ -11,7 +11,6 @@
 
 			<p:contextMenu for="tbl">
 				<p:menuitem value="View" update="projectDetails" icon="ui-icon-search" oncomplete="PF('projectDetails').show()"/>
-				<p:menuitem value="Approve" update="tbl" icon="ui-icon-close" actionListener="#{orderListView.selectProjects}"/>
 			</p:contextMenu>
 			<p:dataTable id="tbl" var="proj" value="#{projectBean.projects}"
 						 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
@@ -36,11 +35,11 @@
 					<h:outputText value="#{proj.name}" />
 				</p:column>
 
-				<p:column sortBy="#{proj.displayName}">
+				<p:column sortBy="#{proj.description}">
 					<f:facet name="header">
-						<h:outputText value="#{msg['displayName']}" />
+						<h:outputText value="#{msg['description']}" />
 					</f:facet>
-					<h:outputText value="#{proj.displayName}" />
+					<h:outputText value="#{proj.description}" />
 				</p:column>
 
 
@@ -73,8 +72,8 @@
 						<h:outputText value="Name" />
 						<h:outputText value="#{orderListView.selectedProject.name}" />
 
-						<h:outputText value="Price" />
-						<h:outputText value="#{orderListView.selectedProject.displayName}" />
+						<h:outputText value="description" />
+						<h:outputText value="#{orderListView.selectedProject.description}" />
 					</p:panelGrid>
 				</p:outputPanel>
 			</p:dialog>

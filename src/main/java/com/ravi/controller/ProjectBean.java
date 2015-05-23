@@ -35,6 +35,8 @@ public class ProjectBean implements Serializable {
     private static Logger LOG = Logger.getLogger(ProjectBean.class.getName());
 
     private List<Project> projects;
+    private List<Project> approvedProjects;
+
     private Project project;
     private LazyDataModel<Project> lazyModel;
 
@@ -73,6 +75,14 @@ public class ProjectBean implements Serializable {
         this.lazyModel = lazyModel;
     }
 
+    public List<Project> getApprovedProjects() {
+        return approvedProjects;
+    }
+
+    public void setApprovedProjects(List<Project> approvedProjects) {
+        this.approvedProjects = approvedProjects;
+    }
+
     public void addProject(Project project){
        project.setStatus(Status.NOT_APPROVED);
        LOG.info(project.showDetails());
@@ -85,6 +95,8 @@ public class ProjectBean implements Serializable {
     public void init() {
         System.out.println("start");
         projects = projectService.getProjects();
+        approvedProjects = projectService.getApprovedProjects();
+
         lazyModel = new LazyProjectDataModel(projects);
         System.out.println("finish");
     }

@@ -58,14 +58,14 @@ public class OrderListView implements Serializable {
     @PostConstruct
     public void init() {
         projects = new ArrayList<Project>();
-        projects.add(new Project(10, "Cruze", "cruze"));
-        projects.add(new Project(11, "Dark-Hive", "dark-hive"));
-        projects.add(new Project(12, "Delta", "delta"));
-        projects.add(new Project(13, "Dot-Luv", "dot-luv"));
-        projects.add(new Project(14, "Eggplant", "eggplant"));
-        projects.add(new Project(15, "Excite-Bike", "excite-bike"));
-        projects.add(new Project(16, "Flick", "flick"));
-        projects.add(new Project(17, "Glass-X", "glass-x"));
+        projects.add(new Project(10, "Cruze"));
+        projects.add(new Project(11, "Dark-Hive"));
+        projects.add(new Project(12, "Delta"));
+        projects.add(new Project(13, "Dot-Luv"));
+        projects.add(new Project(14, "Eggplant"));
+        projects.add(new Project(15, "Excite-Bike"));
+        projects.add(new Project(16, "Flick"));
+        projects.add(new Project(17, "Glass-X"));
 
         forums= new ArrayList<Forum>();
         //sectionName, String author, Integer count
@@ -134,8 +134,8 @@ public class OrderListView implements Serializable {
         int i = 1;
        for (Project project : projects){
 
-           resultOfVote.append(project.getDisplayName() + ",");
-           resultOfVoteLog.append("" + i +" - " +  project.getDisplayName() + ", ");
+           resultOfVote.append(project.getName() + ",");
+           resultOfVoteLog.append("" + i +" - " +  project.getName() + ", ");
            i++;
        }
         resultOfVote.deleteCharAt(resultOfVote.length()-1);

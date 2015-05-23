@@ -83,7 +83,7 @@ private static Logger LOG = Logger.getLogger(OrderListView.class.getName());
         List<Project> allProjects = orderListView.getProjects();
         for (String candidate :  winnersName) {
             for (Project project : allProjects){
-                if (project.getDisplayName().equals(candidate)){
+                if (project.getName().equals(candidate)){
                     winnersList.add(project);
                     System.out.println("-----------------------");
                     System.out.println(candidate);

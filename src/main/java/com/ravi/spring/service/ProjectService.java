@@ -17,4 +17,6 @@ public interface ProjectService {
 
     public void updateProjectS(List<Project> projects);
 
+    public List<Project> getApprovedProjects();
+
 }

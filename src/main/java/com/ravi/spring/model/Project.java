@@ -24,7 +24,6 @@ public class Project implements Serializable {
     @Column(name = "id")
     private int id;
 
-    private String displayName;
 
     @Basic(optional = false)
     @Column(name = "name")
@@ -49,7 +48,11 @@ public class Project implements Serializable {
 
     private String team;
     private String author;
+
+    @Basic(optional = false)
+    @Column(name = "status")
     private Status status;
+
     private Integer place;
 
     public String getMeta() {
@@ -119,9 +122,9 @@ public class Project implements Serializable {
 
     public Project() {}
 
-    public Project(int id, String displayName, String name) {
+    public Project(int id, String name) {
         this.id = id;
-        this.displayName = displayName;
+
         this.name = name;
     }
 
@@ -133,13 +136,7 @@ public class Project implements Serializable {
         this.id = id;
     }
 
-    public String getDisplayName() {
-        return displayName;
-    }
 
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
-    }
 
     public String getName() {
         return name;
@@ -157,7 +154,6 @@ public class Project implements Serializable {
     public String showDetails(){
         return "Project{" +
                 "id=" + id +
-                ", displayName='" + displayName + '\'' +
                 ", name='" + name + '\'' +
                 ", meta='" + meta + '\'' +
                 ", description='" + description + '\'' +
