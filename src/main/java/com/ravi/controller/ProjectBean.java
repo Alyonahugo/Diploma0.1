@@ -76,6 +76,7 @@ public class ProjectBean implements Serializable {
     }
 
     public List<Project> getApprovedProjects() {
+        approvedProjects = projectService.getApprovedProjects();
         return approvedProjects;
     }
 
@@ -87,7 +88,7 @@ public class ProjectBean implements Serializable {
        project.setStatus(Status.NOT_APPROVED);
        LOG.info(project.showDetails());
         projectService.addProject(project);
-        init();
+        projects = projectService.getProjects();
 
     }
 
