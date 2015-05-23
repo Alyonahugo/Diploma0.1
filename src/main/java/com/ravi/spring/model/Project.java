@@ -68,7 +68,6 @@ public class Project implements Serializable {
         this.description = description;
     }
 
-
     public Sphere getSphere() {
         return sphere;
     }
