@@ -51,7 +51,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public List<Project> getApprovedProjects() {
+    public   synchronized  List<Project> getApprovedProjects() {
 
         return projectDAO.getProjectsByStatus(Status.APPROVED);
     }

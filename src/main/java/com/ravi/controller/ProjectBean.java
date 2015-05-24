@@ -57,6 +57,7 @@ public class ProjectBean implements Serializable {
             System.out.println(pr.showDetails());
         }
         projectService.updateProjectS(projects);
+
         return projects;
     }
 
@@ -99,9 +100,6 @@ public class ProjectBean implements Serializable {
         projects = projectService.getProjects();
         approvedProjects = projectService.getApprovedProjects();
 
-      //  lazyModel = new LazyProjectDataModel(projects);
-
-        initDashboard();
         System.out.println("finish");
     }
 
@@ -136,13 +134,6 @@ public class ProjectBean implements Serializable {
     private DashboardModel model;
 
 
-    public void initDashboard() {
-        model = new DefaultDashboardModel();
-        DashboardColumn column1 = new DefaultDashboardColumn();
-        column1.addWidget("sports");
-        column1.addWidget("finance");
-        model.addColumn(column1);
-    }
 
     public void handleReorder(DashboardReorderEvent event) {
         FacesMessage message = new FacesMessage();

@@ -9,6 +9,8 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by User on 16.05.2015.
@@ -21,7 +23,7 @@ public class Project implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "proj_id")
     private int id;
 
 
@@ -54,6 +56,20 @@ public class Project implements Serializable {
     private Status status;
 
     private Integer place;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "project")
+    private Set<Mark> stockDailyRecords = new HashSet<Mark>(0);
+
+
+
+    public Set<Mark> getStockDailyRecords() {
+        return stockDailyRecords;
+    }
+
+    public void setStockDailyRecords(Set<Mark> stockDailyRecords) {
+        this.stockDailyRecords = stockDailyRecords;
+    }
+
 
     public String getMeta() {
         return meta;
@@ -164,5 +180,40 @@ public class Project implements Serializable {
                 ", status=" + status +
                 ", place=" + place +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Project project = (Project) o;
+
+        if (id != project.id) return false;
+        if (name != null ? !name.equals(project.name) : project.name != null) return false;
+        if (meta != null ? !meta.equals(project.meta) : project.meta != null) return false;
+        if (description != null ? !description.equals(project.description) : project.description != null) return false;
+        if (sphere != project.sphere) return false;
+        if (manager != null ? !manager.equals(project.manager) : project.manager != null) return false;
+        if (team != null ? !team.equals(project.team) : project.team != null) return false;
+        if (author != null ? !author.equals(project.author) : project.author != null) return false;
+        if (status != project.status) return false;
+        return !(place != null ? !place.equals(project.place) : project.place != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (meta != null ? meta.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (sphere != null ? sphere.hashCode() : 0);
+        result = 31 * result + (manager != null ? manager.hashCode() : 0);
+        result = 31 * result + (team != null ? team.hashCode() : 0);
+        result = 31 * result + (author != null ? author.hashCode() : 0);
+        result = 31 * result + (status != null ? status.hashCode() : 0);
+        result = 31 * result + (place != null ? place.hashCode() : 0);
+        return result;
     }
 }
