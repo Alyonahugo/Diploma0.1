@@ -9,46 +9,18 @@
 
 	<ui:define name="content">
 		<h:body>
-			<h:form>
-				<p:growl id="msgs" showDetail="true" />
+			<p:growl id="msgs1" showDetail="true" />
 
-				<h3 style="margin-top: 0" > <h:outputText  value="#{msg['menu.decision']}" /></h3>
+			<h:outputText value="#{msg['menu.decision']}" style="text-align: center"/>
+			<p:dashboard id="dynamic_dashboard" binding="#{dashboardBacker.dashboard}" style="padding: 0 33%"  resizeListener="#{dashboardBacker.handleResize}">
+				<p:ajax event="reorder" listener="#{dashboardBacker.handleReorder}" update="msgs1" />
 
-				<p:orderList value="#{projectBean.approvedProjects}" var="proj" itemLabel="#{proj}" itemValue="#{proj}" converter="themeConverter" controlsLocation="left" rowIndexVar="rowIndex" >
-
-
-					<f:facet name="caption">#{msg['candidates']}</f:facet>
-
-					<p:column style="width:10%;"/>
-
-					<p:column style="width:75%;">
-						<h:outputText value="#{proj.name}" />
-					</p:column>
-				</p:orderList>
-
-				<p:commandButton value="Submit" update="displayThemes" oncomplete="PF('themesDialog').show()" style="margin-top:5px" />
-
-
-				<p:growl id="message" showDetail="true" />
-				<p:growl id="growl" life="2000" />
-
-				<p:dialog global="true" hideEffect="explode" widgetVar="themesDialog"  header="#{msg['menu.confirmVote']}">
-					<p:dataList id="displayThemes" value="#{orderListView.projects}" var="projects" type="ordered" >
-						<h:outputText value="#{projects.name}" />
-
-					</p:dataList>
-					<h:outputText  value="#{msg['menu.confirm']}" />
-					<h:outputText value="&lt;br/&gt;" escape="false" />
-					<p:commandButton value="#{msg['yes']}" id="ajax" update="growl" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" actionListener="#{orderListView.selectProjects}" onclick="themesDialog.hide()">
-						<f:setPropertyActionListener target="#{orderListView.projects}" value="#{orderListView.projects}"/>
-					</p:commandButton>
-					<p:commandButton value="#{msg['cancel']}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" onclick="themesDialog.hide()"/>
-				</p:dialog>
+					</p:dashboard>
+			<p:commandButton value="Non-Ajax Submit" id="nonAjax" actionListener="#{dashboardBacker.save}"  />
 
 
 
 
-			</h:form>
 		</h:body>
 	</ui:define>
 </ui:composition>

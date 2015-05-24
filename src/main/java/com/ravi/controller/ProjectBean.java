@@ -4,10 +4,10 @@ import com.ravi.lazy.LazyProjectDataModel;
 import com.ravi.enumaration.Status;
 import com.ravi.spring.model.Project;
 import com.ravi.spring.service.ProjectService;
+import org.primefaces.component.layout.LayoutUnit;
 import org.primefaces.context.RequestContext;
-import org.primefaces.event.CellEditEvent;
-import org.primefaces.event.RowEditEvent;
-import org.primefaces.model.LazyDataModel;
+import org.primefaces.event.*;
+import org.primefaces.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
@@ -16,6 +16,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import java.io.Serializable;
@@ -98,7 +99,9 @@ public class ProjectBean implements Serializable {
         projects = projectService.getProjects();
         approvedProjects = projectService.getApprovedProjects();
 
-        lazyModel = new LazyProjectDataModel(projects);
+      //  lazyModel = new LazyProjectDataModel(projects);
+
+        initDashboard();
         System.out.println("finish");
     }
 
@@ -128,5 +131,50 @@ public class ProjectBean implements Serializable {
         for (Project project : projects){
             System.out.println(project.getMeta());
         }
+    }
+
+    private DashboardModel model;
+
+
+    public void initDashboard() {
+        model = new DefaultDashboardModel();
+        DashboardColumn column1 = new DefaultDashboardColumn();
+        column1.addWidget("sports");
+        column1.addWidget("finance");
+        model.addColumn(column1);
+    }
+
+    public void handleReorder(DashboardReorderEvent event) {
+        FacesMessage message = new FacesMessage();
+        message.setSeverity(FacesMessage.SEVERITY_INFO);
+        message.setSummary("Reordered: " + event.getWidgetId());
+        message.setDetail("Item index: " + (event.getItemIndex() + 1) + ", Column index: " + event.getColumnIndex() + ", Sender index: " + event.getSenderColumnIndex());
+
+        addMessage(message);
+    }
+
+    public void handleClose(CloseEvent event) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Panel Closed", "Closed panel id:'" + event.getComponent().getId() + "'");
+
+        addMessage(message);
+    }
+
+    public void handleToggle(ToggleEvent event) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, event.getComponent().getId() + " toggled", "Status:" + event.getVisibility().name());
+
+        addMessage(message);
+    }
+
+    public void handleResize(ResizeEvent event) {
+        UIComponent resizedUnit = event.getComponent(); //now get all the info related to resizedUnit
+        System.out.println(" " +UIComponent.CURRENT_COMPONENT);
+    }
+
+    private void addMessage(FacesMessage message) {
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+
+    public DashboardModel getModel() {
+        return model;
     }
 }
