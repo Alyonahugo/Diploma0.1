@@ -13,7 +13,7 @@ import java.util.List;
  */
 
 @Repository
-public class MarkServiceImpl implements MarkDAO {
+public class MarkDAOImpl implements MarkDAO {
 
 
     @Autowired

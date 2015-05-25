@@ -20,14 +20,31 @@ public class Mark {
     private int mark;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "vote_id", nullable = false)
+    private Vote vote;
+
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "proj_id", nullable = false)
     private Project project;
 
-    public Mark(Project project, int i) {
 
+    public Mark() {
+    }
+
+    public Mark(Project project, int i, Vote vote) {
+        this.vote = vote;
         this.project = project;
         mark = i;
+    }
+
+    public Vote getVote() {
+        return vote;
+    }
+
+    public void setVote(Vote vote) {
+        this.vote = vote;
     }
 
 

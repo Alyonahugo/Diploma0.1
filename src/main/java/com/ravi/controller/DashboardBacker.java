@@ -2,8 +2,10 @@ package com.ravi.controller;
 
 import com.ravi.spring.model.Mark;
 import com.ravi.spring.model.Project;
+import com.ravi.spring.model.Vote;
 import com.ravi.spring.service.MarkService;
 import com.ravi.spring.service.ProjectService;
+import com.ravi.spring.service.VoteService;
 import org.primefaces.component.dashboard.Dashboard;
 import org.primefaces.component.panel.Panel;
 import org.primefaces.event.CloseEvent;
@@ -51,6 +53,10 @@ private int countOfPanels;
     @Autowired
     MarkService markService;
 
+    @ManagedProperty(value="#{VoteService}")
+    @Autowired
+    VoteService voteService;
+
     private  Set<Project> approvedProj = new HashSet<Project>();
     private Map<String, Project> mapAppProj = new HashMap<String, Project>();
     private Set<Project> tempApprovedProjects = new HashSet<Project>();
@@ -94,6 +100,16 @@ public void setColumnCount(int columnCount) {
     public void setProjectService(ProjectService projectService) {
         this.projectService = projectService;
     }
+
+
+    public VoteService getVoteService() {
+        return voteService;
+    }
+
+    public void setVoteService(VoteService voteService) {
+        this.voteService = voteService;
+    }
+
 
     public void handleReorder(DashboardReorderEvent event) {
         FacesMessage message = new FacesMessage();
@@ -170,10 +186,10 @@ public void setColumnCount(int columnCount) {
         int items = approvedProj.size();
         createMapAppProj();
         System.out.println("i am working");
+        Vote vote = new Vote();
+        voteService.addVote(vote);
         for( int i = 0; i < items; i++ ) {
-            Mark mark = new Mark(mapAppProj.get(model.getColumn(0).getWidgets().get(i)), i+1);
-
-
+            Mark mark = new Mark(mapAppProj.get(model.getColumn(0).getWidgets().get(i)), i+1, vote);
             System.out.println(" dashboard " + mark);
             markService.addMark(mark);
 

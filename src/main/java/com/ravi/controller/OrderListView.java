@@ -129,7 +129,7 @@ public class OrderListView implements Serializable {
     }
 
     public void selectProjects(ActionEvent actionEvent) {
-        StringBuilder resultOfVote = new StringBuilder();
+      /*  StringBuilder resultOfVote = new StringBuilder();
         StringBuilder resultOfVoteLog = new StringBuilder();
         int i = 1;
        for (Project project : projects){
@@ -147,7 +147,7 @@ public class OrderListView implements Serializable {
         if (count % 5 == 0) {
 
             System.out.println(calculator.getSchulze().getRegisterdCandidates() + "-------- schulze.getWinners() " + calculator.getSchulze().getWinners());
-        }
+        }*/
     }
 
     private void putBallotsDevite(Schulze<String> schulze, String rankedList, int number) {
