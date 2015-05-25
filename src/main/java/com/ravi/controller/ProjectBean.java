@@ -4,8 +4,6 @@ import com.ravi.lazy.LazyProjectDataModel;
 import com.ravi.enumaration.Status;
 import com.ravi.spring.model.Project;
 import com.ravi.spring.service.ProjectService;
-import org.primefaces.component.layout.LayoutUnit;
-import org.primefaces.context.RequestContext;
 import org.primefaces.event.*;
 import org.primefaces.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +13,11 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Logger;
 
 /**
