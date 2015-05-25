@@ -22,8 +22,8 @@ public class CarService {
 
     static {
         colors = new String[10];
-        colors[0] = "Black";
-        colors[1] = "White";
+        colors[0] = "Black23423423423422222222222222222222222222222222222222222222222222222222222222222222222222222222";
+        colors[1] = "White22222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222";
         colors[2] = "Green";
         colors[3] = "Red";
         colors[4] = "Blue";
@@ -34,7 +34,7 @@ public class CarService {
         colors[9] = "Maroon";
 
         brands = new String[10];
-        brands[0] = "BMW";
+        brands[0] = "BMW00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
         brands[1] = "Mercedes";
         brands[2] = "Volvo";
         brands[3] = "Audi";
