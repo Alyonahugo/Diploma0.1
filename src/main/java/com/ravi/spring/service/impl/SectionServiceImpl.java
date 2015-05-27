@@ -40,7 +40,7 @@ public class SectionServiceImpl implements SectionService {
 
     @Override
     public List<Section> getSections() {
-        return null;
+        return sectionDAO.getSections();
     }
 
     @Override

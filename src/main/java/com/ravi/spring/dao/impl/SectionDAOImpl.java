@@ -37,7 +37,7 @@ public class SectionDAOImpl implements SectionDAO {
 
     @Override
     public List<Section> getSections() {
-        return null;
+        return sessionFactory.getCurrentSession().createQuery("from Section").list();
     }
 
     @Override
