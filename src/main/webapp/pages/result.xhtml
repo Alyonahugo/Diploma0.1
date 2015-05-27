@@ -8,6 +8,9 @@
 	</ui:define>
 	<ui:define name="content">
 		<h3>DataModel</h3>
+
+		<p:commandButton value="#{msg['vote']}" id="nonAjax" actionListener="#{dashboardBacker.save}"  />
+
 		<p:accordionPanel value="#{winners.winnersList}" var="proj">
 			<p:tab title="#{msg['place']} - #{winners.winnersList.indexOf(proj)+1} -  #{proj.name}">
 				<h:panelGrid columns="2" cellpadding="5">

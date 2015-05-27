@@ -1,12 +1,8 @@
 package com.ravi.spring.model;
 
-import com.ravi.enumaration.Scope;
 import com.ravi.enumaration.Sphere;
 import com.ravi.enumaration.Status;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.ViewScoped;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -47,7 +43,6 @@ public class Project implements Serializable {
     @Column(name = "manager")
     private String manager;
 
-
     private String team;
     private String author;
 
@@ -58,16 +53,21 @@ public class Project implements Serializable {
     private Integer place;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "project")
-    private Set<Mark> stockDailyRecords = new HashSet<Mark>(0);
+    private Set<Mark> markRecords = new HashSet<Mark>(0);
 
 
 
-    public Set<Mark> getStockDailyRecords() {
-        return stockDailyRecords;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "empp_id", nullable = false)
+    private Employee employee;
+
+
+    public Set<Mark> getMarkRecords() {
+        return markRecords;
     }
 
-    public void setStockDailyRecords(Set<Mark> stockDailyRecords) {
-        this.stockDailyRecords = stockDailyRecords;
+    public void setMarkRecords(Set<Mark> markRecords) {
+        this.markRecords = markRecords;
     }
 
 
@@ -160,6 +160,15 @@ public class Project implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     @Override
