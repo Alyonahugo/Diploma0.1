@@ -20,12 +20,13 @@ public class Topic {
 
     @Basic(optional = false)
     @Column(name = "name")
+
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "topic")
+   @OneToMany(fetch = FetchType.LAZY, mappedBy = "topic")
     private Set<Comment> commentRecords = new HashSet<Comment>(0);
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sec_id", nullable = false)
     private Section section;
 

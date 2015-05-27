@@ -1,6 +1,5 @@
-package com.ravi.spring.service;
+package com.ravi.spring.dao;
 
-import com.ravi.spring.model.Project;
 import com.ravi.spring.model.Section;
 
 import java.util.List;
@@ -8,7 +7,8 @@ import java.util.List;
 /**
  * Created by User on 27.05.2015.
  */
-public interface SectionService {
+public interface SectionDAO {
+
     public void addSection(Section section);
 
     public List<Section> getSections();
@@ -18,5 +18,4 @@ public interface SectionService {
     public void updateSections(List<Section> sections);
 
     public List<Section> getApprovedSections();
-
 }

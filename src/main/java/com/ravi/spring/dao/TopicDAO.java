@@ -1,5 +1,6 @@
-package com.ravi.spring.service;
+package com.ravi.spring.dao;
 
+import com.ravi.spring.model.Section;
 import com.ravi.spring.model.Topic;
 
 import java.util.List;
@@ -7,7 +8,8 @@ import java.util.List;
 /**
  * Created by User on 27.05.2015.
  */
-public interface TopicService {
+public interface TopicDAO {
+
 
     public void addTopic(Topic topic);
 
@@ -18,5 +20,6 @@ public interface TopicService {
     public void updateTopics(List<Topic> topics);
 
     public List<Topic> getApprovedTopics();
+
 
 }

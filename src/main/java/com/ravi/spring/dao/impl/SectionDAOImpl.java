@@ -1,41 +1,38 @@
-package com.ravi.spring.service.impl;
+package com.ravi.spring.dao.impl;
 
-import com.ravi.spring.dao.ProjectDAO;
 import com.ravi.spring.dao.SectionDAO;
 import com.ravi.spring.model.Section;
 import com.ravi.spring.service.SectionService;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Repository;
 
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
 import java.util.List;
 
 /**
  * Created by User on 27.05.2015.
  */
 
-@Service("sectionService")
-@Transactional
-@ManagedBean(name = "sectionService")
-@ApplicationScoped
-public class SectionServiceImpl implements SectionService {
+
+@Repository
+public class SectionDAOImpl implements SectionDAO {
 
     @Autowired
-    private SectionDAO sectionDAO;
+    private SessionFactory sessionFactory;
 
-    public SectionDAO getSectionDAO() {
-        return sectionDAO;
+
+
+    public SessionFactory getSessionFactory() {
+        return sessionFactory;
     }
 
-    public void setSectionDAO(SectionDAO sectionDAO) {
-        this.sectionDAO = sectionDAO;
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 
     @Override
     public void addSection(Section section) {
-        sectionDAO.addSection(section);
+        sessionFactory.getCurrentSession().save(section);
     }
 
     @Override

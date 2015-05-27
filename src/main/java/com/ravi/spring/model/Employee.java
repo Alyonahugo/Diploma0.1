@@ -23,10 +23,10 @@ public class Employee {
     @Column(name = "name")
     private String name;
 
-  /*  @OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
-    private Set<Comment> commentRecords = new HashSet<Comment>(0);*/
+   @OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
+    private Set<Comment> commentRecords = new HashSet<Comment>(0);
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "employee")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
     private Set<Project> projectSet = new LinkedHashSet<Project>(0);
 
 
@@ -45,7 +45,7 @@ public class Employee {
     public void setName(String name) {
         this.name = name;
     }
-/*
+
     public Set<Comment> getCommentRecords() {
         return commentRecords;
     }
@@ -53,7 +53,7 @@ public class Employee {
     public void setCommentRecords(Set<Comment> commentRecords) {
         this.commentRecords = commentRecords;
     }
-*/
+
 
     public Set<Project> getProjectSet() {
         return projectSet;

@@ -27,12 +27,14 @@ public class ForumView implements Serializable {
     @ManagedProperty(value="#{commentService}")
     private CommentService commentService;
 
-    @PostConstruct
+
+  //  @PostConstruct
     public void init() {
         comments = commentService.getComments();
     }
 
     public List<Comment> getComments() {
+        init();
         return comments;
     }
 

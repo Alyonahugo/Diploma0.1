@@ -47,6 +47,7 @@ http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 				 <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
 				 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.enable_lazy_load_no_trans">true</prop>
 			</props>
 		</property>
     </bean>
@@ -76,7 +77,15 @@ http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
     <bean id="markService" class="com.ravi.spring.service.impl.MarkServiceImpl"/>
 
     <bean id="voteService" class="com.ravi.spring.service.impl.VoteServiceImpl"/>
+
+    <bean id="employeeService" class="com.ravi.spring.service.impl.EmployeeServiceImpl"/>
+
+
     <bean id="commentService" class="com.ravi.spring.service.impl.CommentServiceImpl"/>
+
+    <bean id="topicService" class="com.ravi.spring.service.impl.TopicServiceImpl"/>
+
+    <bean id="sectionService" class="com.ravi.spring.service.impl.SectionServiceImpl"/>
 
     <bean
             class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">

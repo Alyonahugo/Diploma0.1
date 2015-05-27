@@ -20,6 +20,7 @@ public class Section {
 
     @Basic(optional = false)
     @Column(name = "name")
+
     private String name;
 
 
