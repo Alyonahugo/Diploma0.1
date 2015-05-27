@@ -1,6 +1,8 @@
 package com.ravi.controller;
 
 import com.ravi.spring.model.Car;
+import com.ravi.spring.model.Comment;
+import com.ravi.spring.service.CommentService;
 import com.ravi.spring.service.impl.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,22 +21,30 @@ import java.util.List;
 @ViewScoped
 public class ForumView implements Serializable {
 
-    private List<Car> cars;
+    private List<Comment> comments;
 
     @Autowired
-    @ManagedProperty(value="#{carService}")
-    private CarService carService;
+    @ManagedProperty(value="#{commentService}")
+    private CommentService commentService;
 
     @PostConstruct
     public void init() {
-        cars = carService.createCars(100);
+        comments = commentService.getComments();
     }
 
-    public List<Car> getCars() {
-        return cars;
+    public List<Comment> getComments() {
+        return comments;
     }
 
-    public void setCarService(CarService service) {
-        this.carService= service;
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public CommentService getCommentService() {
+        return commentService;
+    }
+
+    public void setCommentService(CommentService commentService) {
+        this.commentService = commentService;
     }
 }

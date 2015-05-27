@@ -7,9 +7,11 @@ import com.ravi.spring.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import java.util.List;
 
 /**
@@ -19,6 +21,7 @@ import java.util.List;
 @Service("commentService")
 @Transactional
 @ManagedBean(name = "commentService")
+@ViewScoped
 public class CommentServiceImpl implements CommentService {
 
     @Autowired
