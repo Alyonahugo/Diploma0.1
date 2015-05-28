@@ -17,7 +17,13 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
 /**
@@ -30,6 +36,10 @@ public class ProjectBean implements Serializable {
 
     private static Logger LOG = Logger.getLogger(ProjectBean.class.getName());
 
+
+    private ResourceBundle rb = ResourceBundle.getBundle("data_settings", Locale.ENGLISH);
+
+
     private List<Project> projects;
     private List<Project> approvedProjects;
 
@@ -37,11 +47,19 @@ public class ProjectBean implements Serializable {
     private LazyDataModel<Project> lazyModel;
 
     private boolean checkDate;
+    private boolean before;
+    private boolean after;
 
 
     @ManagedProperty(value="#{ProjectService}")
     @Autowired
     ProjectService projectService;
+
+    @ManagedProperty(value="#{calendarView}")
+    @Autowired
+    CalendarView calendarView;
+
+
 
     public Project getProject() {
         System.out.println(project);
@@ -104,9 +122,59 @@ public class ProjectBean implements Serializable {
         System.out.println("start");
         projects = projectService.getProjects();
         approvedProjects = projectService.getApprovedProjects();
-        checkDate = false;
+        checkDate();
         System.out.println("finish");
     }
+
+    private void checkDate(){
+        LOG.info(" GET CURENT DATE " + calendarView.getDate1());
+        LOG.info("resource bundle " + rb.getString("startRegDate"));
+
+        Date currentDate = calendarView.getDate1();
+
+        String startRegDateStr = rb.getString("startRegDate");
+        DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        Date startRegDate = null;
+        try {
+            startRegDate = format.parse(startRegDateStr);
+        } catch (ParseException e) {
+
+        }
+
+        String endRegDateStr = rb.getString("endRegDate");
+        Date endRegDate = null;
+        try {
+            endRegDate = format.parse(endRegDateStr);
+        } catch (ParseException e) {
+
+        }
+
+        if (currentDate.before(startRegDate)){
+            before = true;
+            after = false;
+            checkDate  = false;
+
+        }
+
+        else {
+              if (currentDate.before(endRegDate) || currentDate.equals(endRegDate)){
+            before = false;
+            after = false;
+            checkDate = true;
+
+
+              }
+            else{
+
+                after = true;
+                checkDate = false;
+                before = false;
+            }
+        }
+        LOG.info("AFTER " + after + " befor " + before + " checkdate " + checkDate );
+
+    }
+
 
     public void onRowEdit(RowEditEvent event) {
         FacesMessage msg = new FacesMessage("Car Edited", new Integer(((Project) event.getObject()).getId()).toString());
@@ -174,4 +242,32 @@ public class ProjectBean implements Serializable {
         return model;
     }
 
+    public boolean isAfter() {
+        return after;
+    }
+
+    public void setAfter(boolean after) {
+        this.after = after;
+    }
+
+    public boolean isBefore() {
+        checkDate();
+        return before;
+    }
+
+    public void setBefore(boolean before) {
+        this.before = before;
+    }
+
+    public void setModel(DashboardModel model) {
+        this.model = model;
+    }
+
+    public CalendarView getCalendarView() {
+        return calendarView;
+    }
+
+    public void setCalendarView(CalendarView calendarView) {
+        this.calendarView = calendarView;
+    }
 }

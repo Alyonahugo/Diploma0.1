@@ -10,6 +10,10 @@
 
     <application>
         <resource-bundle>
+            <base-name>data_settings</base-name>
+            <var>rb</var>
+        </resource-bundle>
+        <resource-bundle>
             <base-name>messages</base-name>
             <var>msg</var>
         </resource-bundle>
