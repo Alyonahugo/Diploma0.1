@@ -11,8 +11,9 @@
 		<h:form id="form">
 
 			<p:growl id="message" showDetail="true" />
+			<p:outputLabel rendered="#{!projectBean.checkDate}" value="registration is not open"/>
 
-			<p:panel header="#{msg['createProject']}" id="panel">
+			<p:panel header="#{msg['createProject']}" id="panel" rendered="#{projectBean.checkDate}">
 
 
 				<h:panelGrid columns="2" cellpadding="7" id = "panelGrd">

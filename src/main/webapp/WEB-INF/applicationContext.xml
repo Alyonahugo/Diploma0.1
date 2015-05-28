@@ -72,6 +72,7 @@ http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
 
     <bean id="projectBean" class="com.ravi.controller.ProjectBean"/>
+    <bean id="calendarView" class="com.ravi.controller.CalendarView"/>
 
     <bean id="dashboardBacker" class="com.ravi.controller.DashboardBacker"/>
 

@@ -36,6 +36,8 @@ public class ProjectBean implements Serializable {
     private Project project;
     private LazyDataModel<Project> lazyModel;
 
+    private boolean checkDate;
+
 
     @ManagedProperty(value="#{ProjectService}")
     @Autowired
@@ -81,6 +83,14 @@ public class ProjectBean implements Serializable {
         this.approvedProjects = approvedProjects;
     }
 
+    public boolean isCheckDate() {
+        return checkDate;
+    }
+
+    public void setCheckDate(boolean checkDate) {
+        this.checkDate = checkDate;
+    }
+
     public void addProject(Project project){
        project.setStatus(Status.NOT_APPROVED);
        LOG.info(project.showDetails());
@@ -94,7 +104,7 @@ public class ProjectBean implements Serializable {
         System.out.println("start");
         projects = projectService.getProjects();
         approvedProjects = projectService.getApprovedProjects();
-
+        checkDate = false;
         System.out.println("finish");
     }
 
@@ -153,7 +163,7 @@ public class ProjectBean implements Serializable {
 
     public void handleResize(ResizeEvent event) {
         UIComponent resizedUnit = event.getComponent(); //now get all the info related to resizedUnit
-        System.out.println(" " +UIComponent.CURRENT_COMPONENT);
+        System.out.println(" " + UIComponent.CURRENT_COMPONENT);
     }
 
     private void addMessage(FacesMessage message) {
@@ -163,4 +173,5 @@ public class ProjectBean implements Serializable {
     public DashboardModel getModel() {
         return model;
     }
+
 }
