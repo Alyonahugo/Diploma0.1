@@ -7,7 +7,11 @@
 	<ui:define name="metadata">
 	</ui:define>
 	<ui:define name="content">
-		<h:form>
+		<h:form id="form">
+
+
+			<p:growl id="msgs" showDetail="true" />
+
 
 			<p:contextMenu for="tbl">
 				<p:menuitem value="View" update="projectDetails" icon="ui-icon-search" oncomplete="PF('projectDetails').show()"/>
@@ -15,8 +19,11 @@
 			<p:dataTable id="tbl" var="proj" value="#{projectBean.projects}"
 						 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
 						 paginator="true" rows="10" style="margin-bottom:20px" sortMode="multiple"
-						 selection="#{orderListView.selectedProject}" selectionMode="single" rowKey="#{proj}"
+						 selection="#{projectBean.selectedProject}" selectionMode="single" rowKey="#{proj}"
 						 editable="true" editMode="cell" >
+
+				<p:ajax event="cellEdit" listener="#{projectBean.onCellEdit}" update="@form" />
+
 
 				<f:facet name="header">
 					<h:outputText value="#{msg['headerConfirmProject']}"/>
@@ -76,6 +83,10 @@
 						<h:outputText value="#{orderListView.selectedProject.description}" />
 					</p:panelGrid>
 				</p:outputPanel>
+			</p:dialog>
+
+			<p:dialog resizable="false" header="#{msg['dateChanged']}" widgetVar="dlg" showEffect="fold">
+
 			</p:dialog>
 
 		</h:form>

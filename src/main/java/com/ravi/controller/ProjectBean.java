@@ -2,8 +2,10 @@ package com.ravi.controller;
 
 
 import com.ravi.enumaration.Status;
+import com.ravi.spring.model.Employee;
 import com.ravi.spring.model.Project;
 import com.ravi.spring.service.ProjectService;
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.*;
 import org.primefaces.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,12 +41,16 @@ public class ProjectBean implements Serializable {
 
     private ResourceBundle rb = ResourceBundle.getBundle("data_settings", Locale.ENGLISH);
 
+    private final int MAX_APPROVED_PROJECTS = 10;
+
 
     private List<Project> projects;
     private List<Project> approvedProjects;
 
     private Project project;
     private LazyDataModel<Project> lazyModel;
+
+    private Project selectedProject;
 
     private boolean checkDate;
     private boolean before;
@@ -62,18 +68,26 @@ public class ProjectBean implements Serializable {
 
 
     public Project getProject() {
-        System.out.println(project);
+        saveUpdates();
         return project;
     }
 
     public List<Project> getProjects() {
-
-        for(Project pr : projects){
-            System.out.println(pr.showDetails());
-        }
-        projectService.updateProjectS(projects);
-
+        checkCountApProj();
         return projects;
+    }
+
+    private void checkCountApProj(){
+        int countApprovedProjects = projectService.getApprovedProjects().size();
+        if (countApprovedProjects >= MAX_APPROVED_PROJECTS){
+            RequestContext requestContext = RequestContext.getCurrentInstance();
+
+            requestContext.update("form:display");
+            requestContext.execute("PF('dlg').show()");
+        }
+        else {
+            projectService.updateProjectS(projects);
+        }
     }
 
     public void setProjects(List<Project> projects) {
@@ -101,6 +115,14 @@ public class ProjectBean implements Serializable {
         this.approvedProjects = approvedProjects;
     }
 
+    public Project getSelectedProject() {
+        return selectedProject;
+    }
+
+    public void setSelectedProject(Project selectedProject) {
+        this.selectedProject = selectedProject;
+    }
+
     public boolean isCheckDate() {
         return checkDate;
     }
@@ -111,6 +133,9 @@ public class ProjectBean implements Serializable {
 
     public void addProject(Project project){
        project.setStatus(Status.NOT_APPROVED);
+        Employee emp = new Employee();
+        emp.setId(1);
+        project.setEmployee(emp);
        LOG.info(project.showDetails());
         projectService.addProject(project);
         projects = projectService.getProjects();
@@ -188,6 +213,7 @@ public class ProjectBean implements Serializable {
     }
 
     public void onCellEdit(CellEditEvent event) {
+        LOG.info("onCellEdit  work ");
         Object oldValue = event.getOldValue();
         Object newValue = event.getNewValue();
 
@@ -197,7 +223,7 @@ public class ProjectBean implements Serializable {
         }
     }
 
-    public void saveUpdates(ActionEvent actionEvent){
+    public void saveUpdates(){
         LOG.info("projects were updated");
         for (Project project : projects){
             System.out.println(project.getMeta());
