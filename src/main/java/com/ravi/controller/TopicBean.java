@@ -82,6 +82,14 @@ public class TopicBean implements Serializable {
         this.topicService = topicService;
     }
 
+    public Integer getSelectedSectionId() {
+        return selectedSectionId;
+    }
+
+    public void setSelectedSectionId(Integer selectedSectionId) {
+        this.selectedSectionId = selectedSectionId;
+    }
+
     public Topic getSelectedTopic() {
         return selectedTopic;
     }

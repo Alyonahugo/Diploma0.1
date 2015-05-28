@@ -1,0 +1,36 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/templates/template.xhtml">
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+
+
+		<h:form id="form">
+			<p:growl id="msgs" showDetail="true" />
+
+			<h:panelGrid columns="2" cellpadding="5">
+				<p:outputLabel for="german" value="German:" />
+				<p:calendar id="german" value="#{calendarView.date1}" locale="de" navigator="true" pattern="dd/MM/yyyy" readonlyInput="true"/>
+
+			</h:panelGrid>
+
+			<p:commandButton value="Submit" update="msgs" actionListener="#{calendarView.click}" icon="ui-icon-check" />
+
+			<p:dialog resizable="false" header="#{msg['dateChangedTo']}" widgetVar="dlg" showEffect="fold">
+
+					<h:outputText value="#{calendarView.date1}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+
+
+			</p:dialog>
+		</h:form>
+
+
+
+	</ui:define>
+</ui:composition>

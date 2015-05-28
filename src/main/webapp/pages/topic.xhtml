@@ -32,6 +32,13 @@
                 </p:column>
             </p:dataTable>
 
+            <h:outputLabel for="checked" value="#{msg['topicName']}" />
+            <p:inputText id="checked" value="#{commentBean.topicName}"   style=" padding: 10px; width:400px"/>
+
+            <h:outputLabel for="checked2" value="#{msg['commentName']}" />
+            <p:inputText id="checked2" value="#{commentBean.comment}"   style=" padding: 10px; width:400px"/>
+
+            <p:commandButton value="Ajax Submit" id="ajax"  action="#{commentBean.addTopic(topicBean.selectedSectionId)}" styleClass="ui-priority-primary" />
 
 
 

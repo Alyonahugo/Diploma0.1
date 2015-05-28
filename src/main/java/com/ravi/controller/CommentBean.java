@@ -45,6 +45,7 @@ public class CommentBean implements Serializable {
     private EmployeeService employeeService;
 
     private  String comment;
+    private String topicName;
 
     public String getComment() {
         return comment;
@@ -86,22 +87,52 @@ public class CommentBean implements Serializable {
         this.employeeService = employeeService;
     }
 
+    public String getTopicName() {
+        return topicName;
+    }
+
+    public void setTopicName(String topicName) {
+        this.topicName = topicName;
+    }
+
     public  void addComment( int topic){
 
         LOG.info("addComment method work");
 
-        Comment comment = new Comment();
 
         Employee employee = new Employee();
         employee.setName("test");
         employeeService.addEmployee(employee);
-        comment.setMessage(this.comment);
-        comment.setEmployee(employee);
+
         Topic t = new Topic();
         t.setId(topic);
-        comment.setTopic(t);
+        setCommentIntoDB(t, employee);
+        System.out.println("method add comment work" + comment);
+    }
+
+    public  void addTopic( int secId){
+
+        Employee employee = new Employee();
+        employee.setName("test");
+        employeeService.addEmployee(employee);
+
+        Section sec = new Section();
+        sec.setId(secId);
+
+        Topic t = new Topic();
+        t.setName(topicName);
+        t.setSection(sec);
+        topicService.addTopic(t);
+        setCommentIntoDB(t, employee);
+       LOG.info("method addTopic work" + topicName + " - " +  comment);
+    }
+
+    private void setCommentIntoDB(Topic topic, Employee employee){
+        Comment comment = new Comment();
+        comment.setMessage(this.comment);
+        comment.setEmployee(employee);
+        comment.setTopic(topic);
         comment.setEmployee(employee);
         commentService.addComment(comment);
-        System.out.println("method add comment work" + comment);
     }
 }
