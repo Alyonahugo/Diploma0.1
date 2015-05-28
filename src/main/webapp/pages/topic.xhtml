@@ -9,7 +9,10 @@
     <ui:define name="content">
 
         <h:form>
-
+            <p:breadCrumb>
+                <p:menuitem value="Home" url="/welcom.xhtml" />
+                <p:menuitem value="Section" url="/pages/forum.xhtml" />
+            </p:breadCrumb>
 
             <p:dataTable id="basicDT" var="car" value="#{topicBean.topics}">
                 <f:facet name="header">

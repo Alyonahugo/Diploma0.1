@@ -9,7 +9,17 @@
 	<ui:define name="content">
 
 		<h:form>
+
+			<p:breadCrumb>
+				<p:menuitem value="Home" url="/welcom.xhtml" />
+				<p:menuitem value="Section" url="/pages/forum.xhtml" />
+				<p:menuitem value="Topic" url="/pages/topic.xhtml" />
+			</p:breadCrumb>
+
 			<p:dataScroller value="#{forumView.comments}" var="com" chunkSize="5">
+
+
+
 				<f:facet name="header">
 					Scroll Down to Load More Cars
 				</f:facet>
