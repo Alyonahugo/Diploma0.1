@@ -1,6 +1,8 @@
 package com.ravi.controller;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.faces.application.FacesMessage;
@@ -19,11 +21,12 @@ import org.primefaces.event.SelectEvent;
 public class CalendarView {
 
     private Date date1;
+    private String showDate;
 
 
     public void onDateSelect(SelectEvent event) {
         FacesContext facesContext = FacesContext.getCurrentInstance();
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Date Selected", format.format(event.getObject())));
     }
 
@@ -42,5 +45,30 @@ public class CalendarView {
     public void setDate1(Date date1) {
         System.out.println("get date " + date1);
         this.date1 = date1;
+    }
+
+    public String getShowDate() {
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        showDate = dateFormat.format(date1);
+        return showDate;
+    }
+
+    public void setShowDate(String showDate) {
+        this.showDate = showDate;
+    }
+
+    @PostConstruct
+    public void init(){
+
+     /*   DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        //get current date time with Date()
+        Date date = new Date();
+        System.out.println(dateFormat.format(date));
+
+        this.date1 = dateFormat.format(date);*/
+        if (date1 == null){
+            date1 = new Date();
+
+        }
     }
 }
