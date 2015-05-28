@@ -4,6 +4,7 @@ import javax.faces.bean.ManagedBean;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import org.primefaces.context.RequestContext;
@@ -14,6 +15,7 @@ import org.primefaces.event.SelectEvent;
  */
 
 @ManagedBean
+@SessionScoped
 public class CalendarView {
 
     private Date date1;
@@ -33,10 +35,12 @@ public class CalendarView {
     }
 
     public Date getDate1() {
+        System.out.println("send date " + date1);
         return date1;
     }
 
     public void setDate1(Date date1) {
+        System.out.println("get date " + date1);
         this.date1 = date1;
     }
 }

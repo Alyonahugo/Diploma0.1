@@ -14,18 +14,13 @@
 
 			<h:panelGrid columns="2" cellpadding="5">
 				<p:outputLabel for="german" value="German:" />
-				<p:calendar id="german" value="#{calendarView.date1}" locale="de" navigator="true" pattern="dd/MM/yyyy" readonlyInput="true"/>
+				<p:calendar id="german" value="#{calendarView.date1}"  navigator="true" pattern="dd/MM/yyyy" readonlyInput="true"/>
 
 			</h:panelGrid>
 
 			<p:commandButton value="Submit" update="msgs" actionListener="#{calendarView.click}" icon="ui-icon-check" />
 
-			<p:dialog resizable="false" header="#{msg['dateChangedTo']}" widgetVar="dlg" showEffect="fold">
-
-					<h:outputText value="#{calendarView.date1}">
-						<f:convertDateTime pattern="dd/MM/yyyy" />
-					</h:outputText>
-
+			<p:dialog resizable="false" header="#{msg['dateChanged']}" widgetVar="dlg" showEffect="fold">
 
 			</p:dialog>
 		</h:form>
