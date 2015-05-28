@@ -52,7 +52,11 @@ public class CommentDAOImpl implements CommentDAO {
     }
 
     @Override
-    public List<Comment> getApprovedComments() {
-        return null;
+    public List<Comment> getCommentsByTopicId(Integer id) {
+        return getSessionFactory().getCurrentSession()
+                .createQuery("from Comment  where topic_id=?")
+                .setParameter(0, id).list();
     }
+
+
 }

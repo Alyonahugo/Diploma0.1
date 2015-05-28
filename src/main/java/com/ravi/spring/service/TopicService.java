@@ -17,6 +17,7 @@ public interface TopicService {
 
     public void updateTopics(List<Topic> topics);
 
-    public List<Topic> getApprovedTopics();
+    public List<Topic> getTopicsBySecId(int id);
+
 
 }

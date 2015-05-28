@@ -67,6 +67,10 @@ http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
     <bean id="project" class="com.ravi.spring.model.Project"/>
 
+    <bean id="selectedSection" class="com.ravi.spring.model.Section"/>
+
+
+
     <bean id="projectBean" class="com.ravi.controller.ProjectBean"/>
 
     <bean id="dashboardBacker" class="com.ravi.controller.DashboardBacker"/>

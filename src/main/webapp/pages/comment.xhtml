@@ -47,7 +47,7 @@
 			<h:outputLabel for="checked" value="#{msg['team']}" />
 			<p:inputText id="checked" value="#{commentBean.comment}"   style=" padding: 10px; width:400px"/>
 
-			<p:commandButton value="Ajax Submit" id="ajax" update="growl" actionListener="#{commentBean.addComment}" styleClass="ui-priority-primary" />
+			<p:commandButton value="Ajax Submit" id="ajax" update="growl" action="#{commentBean.addComment(forumView.selectedTopicId)}" styleClass="ui-priority-primary" />
 
 
 		</h:form>

@@ -5,12 +5,14 @@ import com.ravi.spring.service.CommentService;
 import com.ravi.spring.service.SectionService;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
+import org.primefaces.push.annotation.Singleton;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import java.io.IOException;
@@ -22,6 +24,7 @@ import java.util.List;
  */
 
 @ManagedBean(name="sectionBean")
+@SessionScoped
 public class SectionBean implements Serializable {
 
     private List<Section> sections;
@@ -90,12 +93,15 @@ public class SectionBean implements Serializable {
     }
 
     public void setSelectedSection(Section selectedSection) {
+    //    this.selectedSection.setId(selectedSection.getId());
         this.selectedSection = selectedSection;
+        System.out.println("selected" + this.selectedSection.getName());
 
 
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
         try {
-            ec.redirect(ec.getRequestContextPath() + "/pages/topic.xhtml");
+
+            ec.redirect(ec.getRequestContextPath() + "/pages/topic.xhtml" + "?sectionId=" + selectedSection.getId());
         } catch (IOException e) {
 
         }

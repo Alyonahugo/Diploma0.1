@@ -36,7 +36,8 @@ public class TopicDAOImpl implements TopicDAO {
 
     @Override
     public List<Topic> getTopics() {
-        return null;
+        return getSessionFactory().getCurrentSession()
+                .createQuery("from Topic").list();
     }
 
     @Override
@@ -49,8 +50,13 @@ public class TopicDAOImpl implements TopicDAO {
 
     }
 
+
     @Override
-    public List<Topic> getApprovedTopics() {
-        return null;
+    public List<Topic> getTopicsBySecId(int id) {
+        return getSessionFactory().getCurrentSession()
+                .createQuery("from Topic  where sec_id=?")
+                .setParameter(0, id).list();
     }
+
+
 }

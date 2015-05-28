@@ -9,45 +9,27 @@
     <ui:define name="content">
 
         <h:form>
-            <p:dataScroller value="#{forumView.comments}" var="com" chunkSize="5">
+
+
+            <p:dataTable id="basicDT" var="car" value="#{topicBean.topics}">
                 <f:facet name="header">
-                    Scroll Down to Load More Cars
+                    Basic
                 </f:facet>
+                <p:column headerText="Id">
+                    <h:outputText value="#{car.id}" />
+                </p:column>
+                <p:column headerText="Year">
+                    <h:outputText value="#{car.name}" />
+                </p:column>
 
-                <f:facet name="loader">
-                    <p:commandButton type="button" value="More" icon="ui-icon-circle-triangle-s"/>
-                </f:facet>
-
-                <h:panelGrid columns="1" style="width:100%" columnClasses="logo,detail">
-
-
-                    <p:outputPanel>
-                        <h:panelGrid columns="2" cellpadding="5">
-                            <h:outputText value="Id:" />
-                            <h:outputText value="#{com.id}" style="font-weight: bold"/>
-
-                            <h:outputText value="Year:" />
-                            <h:outputText value="#{com.message}" style="font-weight: bold"/>
-
-                            <h:outputText value="Color:" />
-                            <h:outputText value="#{com.employee}" style="font-weight: bold"/>
+                <p:column style="width:32px;text-align: center">
+                    <p:commandButton update="@form"  icon="ui-icon-search" title="View">
+                        <f:setPropertyActionListener value="#{car}" target="#{topicBean.selectedTopic}" />
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
 
 
-                        </h:panelGrid>
-                        <p:separator  />
-                    </p:outputPanel>
-
-
-
-                </h:panelGrid>
-            </p:dataScroller>
-
-            <p:growl id="growl" life="2000" />
-
-            <h:outputLabel for="checked" value="#{msg['team']}" />
-            <p:inputText id="checked" value="#{commentBean.comment}"   style=" padding: 10px; width:400px"/>
-
-            <p:commandButton value="Ajax Submit" id="ajax" update="growl" actionListener="#{commentBean.addComment}" styleClass="ui-priority-primary" />
 
 
         </h:form>

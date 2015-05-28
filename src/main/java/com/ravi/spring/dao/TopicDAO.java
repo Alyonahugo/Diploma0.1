@@ -19,7 +19,6 @@ public interface TopicDAO {
 
     public void updateTopics(List<Topic> topics);
 
-    public List<Topic> getApprovedTopics();
 
-
+    List<Topic> getTopicsBySecId(int id);
 }

@@ -39,7 +39,7 @@ public class TopicServiceImpl implements TopicService {
 
     @Override
     public List<Topic> getTopics() {
-        return null;
+        return topicDAO.getTopics();
     }
 
     @Override
@@ -53,7 +53,9 @@ public class TopicServiceImpl implements TopicService {
     }
 
     @Override
-    public List<Topic> getApprovedTopics() {
-        return null;
+    public List<Topic> getTopicsBySecId(int id) {
+        return topicDAO.getTopicsBySecId(id);
     }
+
+
 }

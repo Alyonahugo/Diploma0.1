@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import java.util.List;
 
@@ -21,7 +22,7 @@ import java.util.List;
 @Service("commentService")
 @Transactional
 @ManagedBean(name = "commentService")
-@ViewScoped
+@SessionScoped
 public class CommentServiceImpl implements CommentService {
 
     @Autowired
@@ -50,7 +51,8 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public List<Comment> getApprovedComments() {
-        return null;
+    public List<Comment> getCommentsByTopicId(Integer selectedTopicId) {
+        return commentDAO.getCommentsByTopicId(selectedTopicId);
     }
+
 }

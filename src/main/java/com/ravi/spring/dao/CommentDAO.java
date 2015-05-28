@@ -17,5 +17,7 @@ public interface CommentDAO {
 
     public void updateComments(List<Comment> comments);
 
-    public List<Comment> getApprovedComments();
+
+
+    List<Comment> getCommentsByTopicId(Integer selectedTopicId);
 }

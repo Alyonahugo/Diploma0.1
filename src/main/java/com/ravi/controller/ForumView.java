@@ -2,6 +2,7 @@ package com.ravi.controller;
 
 import com.ravi.spring.model.Car;
 import com.ravi.spring.model.Comment;
+import com.ravi.spring.model.Topic;
 import com.ravi.spring.service.CommentService;
 import com.ravi.spring.service.impl.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,19 +10,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Logger;
 
 /**
  * Created by User on 25.05.2015.
  */
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class ForumView implements Serializable {
 
+    private static Logger LOG = Logger.getLogger(ForumView.class.getName());
+
+
+
     private List<Comment> comments;
+    private Integer selectedTopicId;
 
     @Autowired
     @ManagedProperty(value="#{commentService}")
@@ -30,11 +40,20 @@ public class ForumView implements Serializable {
 
   //  @PostConstruct
     public void init() {
-        comments = commentService.getComments();
+
+        Map map = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        if (map.get("topicId") != null){
+            selectedTopicId = new Integer(map.get("topicId").toString());
+        }
+        LOG.info("chose section - " + selectedTopicId);
+
+
     }
 
     public List<Comment> getComments() {
         init();
+        LOG.info("GET TOPICS FOR topic with id - " + selectedTopicId);
+        comments = commentService.getCommentsByTopicId(selectedTopicId);
         return comments;
     }
 
@@ -48,5 +67,13 @@ public class ForumView implements Serializable {
 
     public void setCommentService(CommentService commentService) {
         this.commentService = commentService;
+    }
+
+    public Integer getSelectedTopicId() {
+        return selectedTopicId;
+    }
+
+    public void setSelectedTopicId(Integer selectedTopicId) {
+        this.selectedTopicId = selectedTopicId;
     }
 }
