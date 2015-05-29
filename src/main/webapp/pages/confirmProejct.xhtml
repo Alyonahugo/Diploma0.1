@@ -12,41 +12,41 @@
 		<h:form>
 
 
-			<p:dataTable id="basicDT" var="car" value="#{projectView.projects}">
+			<p:dataTable id="basicDT" var="car" value="#{projectView.projects}" style="width: 99%"
+						 >
 				<f:facet name="header">
 					Basic
 				</f:facet>
-				<p:column headerText="Id">
-					<h:outputText value="#{car.id}" />
+				<p:column headerText="#{msg['name']}" >
+					<h:outputText value="#{car.name}"  />
 				</p:column>
-				<p:column headerText="Year">
-					<h:outputText value="#{car.name}" />
+				<p:column headerText="#{msg['meta']}" >
+					<h:outputText value="#{car.meta}" />
+				</p:column>
+				<p:column headerText="#{msg['description']}"  >
+					<h:outputText value="#{car.description}" />
+				</p:column>
+				<p:column headerText="#{msg['sphere']}" >
+					<h:outputText value="#{car.sphere}"  />
+				</p:column>
+				<p:column headerText="#{msg['manager']}"  >
+					<h:outputText value="#{car.manager}" />
+				</p:column>
+				<p:column headerText="#{msg['team']}"  >
+					<h:outputText value="#{car.team}"/>
+				</p:column>
+				<p:column headerText="#{msg['author']}" >
+					<h:outputText value="#{car.author}" />
 				</p:column>
 
 
-				<p:column style="width:25%;text-align: center">
+
+				<p:column style="width:14%; text-align: center" headerText="#{msg['confimStatus']}">
 					<p:commandButton update="@form"  title="Approve"  value="#{car.status}" oncomplete="PF('carDialog').show()" >
 						<f:setPropertyActionListener value="#{car}" target="#{projectView.selectedProject}" />
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>
-
-
-			<p:dialog header="Car Info" widgetVar="carDialog" >
-				<p:outputPanel id="carDetail" style="text-align:center;">
-					<p:panelGrid  columns="2" rendered="#{not empty projectView.selectedProject}" columnClasses="label,value">
-
-
-						<h:outputText value="Id:" />
-						<h:outputText value="#{projectView.selectedProject.id}" />
-
-						<h:outputText value="Year" />
-						<h:outputText value="#{projectView.selectedProject.name}" />
-
-
-					</p:panelGrid>
-				</p:outputPanel>
-			</p:dialog>
 
 
 		</h:form>

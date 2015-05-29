@@ -48,7 +48,7 @@ public class ProjectView implements Serializable{
 
     @PostConstruct
     public void init(){
-        projects = projectService.getApprovedProjects();
+        projects = projectService.getProjects();
     }
 
     public List<Project> getProjects() {

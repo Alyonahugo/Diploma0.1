@@ -148,7 +148,7 @@ public class ProjectBean implements Serializable {
        project.setStatus(Status.NOT_APPROVED);
         Employee emp = new Employee();
         emp.setId(1);
-     //   project.setEmployee(emp);
+        project.setEmployee(emp);
        LOG.info(project.showDetails());
         projectService.addProject(project);
         projects = projectService.getProjects();
