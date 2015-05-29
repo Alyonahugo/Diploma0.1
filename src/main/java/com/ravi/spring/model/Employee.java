@@ -25,10 +25,10 @@ public class Employee {
 
    @OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
     private Set<Comment> commentRecords = new HashSet<Comment>(0);
-
+/*
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
     private Set<Project> projectSet = new LinkedHashSet<Project>(0);
-
+*/
 
     public int getId() {
         return id;
@@ -54,7 +54,7 @@ public class Employee {
         this.commentRecords = commentRecords;
     }
 
-
+/*
     public Set<Project> getProjectSet() {
         return projectSet;
     }
@@ -62,5 +62,5 @@ public class Employee {
     public void setProjectSet(Set<Project> projectSet) {
         this.projectSet = projectSet;
     }
-
+*/
 }

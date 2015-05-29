@@ -7,88 +7,51 @@
 	<ui:define name="metadata">
 	</ui:define>
 	<ui:define name="content">
-		<h:form id="form">
 
 
-			<p:growl id="msgs" showDetail="true" />
+		<h:form>
 
 
-			<p:contextMenu for="tbl">
-				<p:menuitem value="View" update="projectDetails" icon="ui-icon-search" oncomplete="PF('projectDetails').show()"/>
-			</p:contextMenu>
-			<p:dataTable id="tbl" var="proj" value="#{projectBean.projects}"
-						 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-						 paginator="true" rows="10" style="margin-bottom:20px" sortMode="multiple"
-						 selection="#{projectBean.selectedProject}" selectionMode="single" rowKey="#{proj}"
-						 editable="true" editMode="cell" >
-
-				<p:ajax event="cellEdit" listener="#{projectBean.onCellEdit}" update="@form" />
-
-
+			<p:dataTable id="basicDT" var="car" value="#{projectView.projects}">
 				<f:facet name="header">
-					<h:outputText value="#{msg['headerConfirmProject']}"/>
+					Basic
 				</f:facet>
-				<p:column sortBy="#{proj.id}">
-					<f:facet name="header">
-						<h:outputText value="Id" />
-					</f:facet>
-					<h:outputText value="#{proj.id}" />
+				<p:column headerText="Id">
+					<h:outputText value="#{car.id}" />
 				</p:column>
-
-				<p:column  sortBy="#{proj.name}">
-					<f:facet name="header">
-						<h:outputText value="#{msg['name']}"/>
-					</f:facet>
-					<h:outputText value="#{proj.name}" />
-				</p:column>
-
-				<p:column sortBy="#{proj.description}">
-					<f:facet name="header">
-						<h:outputText value="#{msg['description']}" />
-					</f:facet>
-					<h:outputText value="#{proj.description}" />
+				<p:column headerText="Year">
+					<h:outputText value="#{car.name}" />
 				</p:column>
 
 
-				<p:column headerText="#{msg['confimStatus']}">
-					<p:cellEditor>
-						<f:facet name="output"><h:outputText value="#{proj.status}" /></f:facet>
-						<f:facet name="input">
-							<h:selectOneMenu value="#{proj.status}" style="width:100%">
-
-								<f:selectItems value="#{enumValuesProvider.statuses}"
-											   var="status"
-											   itemValue="#{status}"
-											   itemLabel="#{status}"
-										/>
-							</h:selectOneMenu>
-						</f:facet>
-					</p:cellEditor>
+				<p:column style="width:25%;text-align: center">
+					<p:commandButton update="@form"  title="Approve"  value="#{car.status}" oncomplete="PF('carDialog').show()" >
+						<f:setPropertyActionListener value="#{car}" target="#{projectView.selectedProject}" />
+					</p:commandButton>
 				</p:column>
-
-
-
 			</p:dataTable>
-			<p:dialog header="project Details" widgetVar="projectDetails" showEffect="fade" hideEffect="fade" resizable="true">
-				<p:outputPanel id="projectDetails" style="text-align:center;">
-					<p:panelGrid  columns="2" rendered="#{not empty orderListView.selectedProject}" columnClasses="label,value">
+
+
+			<p:dialog header="Car Info" widgetVar="carDialog" >
+				<p:outputPanel id="carDetail" style="text-align:center;">
+					<p:panelGrid  columns="2" rendered="#{not empty projectView.selectedProject}" columnClasses="label,value">
+
 
 						<h:outputText value="Id:" />
-						<h:outputText value="#{orderListView.selectedProject.id}" />
+						<h:outputText value="#{projectView.selectedProject.id}" />
 
-						<h:outputText value="Name" />
-						<h:outputText value="#{orderListView.selectedProject.name}" />
+						<h:outputText value="Year" />
+						<h:outputText value="#{projectView.selectedProject.name}" />
 
-						<h:outputText value="description" />
-						<h:outputText value="#{orderListView.selectedProject.description}" />
+
 					</p:panelGrid>
 				</p:outputPanel>
 			</p:dialog>
 
-			<p:dialog resizable="false" header="#{msg['dateChanged']}" widgetVar="dlg" showEffect="fold">
-
-			</p:dialog>
 
 		</h:form>
+
+
+
 	</ui:define>
 </ui:composition>

@@ -15,6 +15,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
@@ -33,7 +34,7 @@ import java.util.logging.Logger;
  */
 
 @ManagedBean(name="projectBean")
-@RequestScoped
+@SessionScoped
 public class ProjectBean implements Serializable {
 
     private static Logger LOG = Logger.getLogger(ProjectBean.class.getName());
@@ -73,6 +74,8 @@ public class ProjectBean implements Serializable {
     }
 
     public List<Project> getProjects() {
+
+        LOG.info("method get projects work");
         checkCountApProj();
         return projects;
     }
@@ -91,6 +94,9 @@ public class ProjectBean implements Serializable {
     }
 
     public void setProjects(List<Project> projects) {
+
+
+        LOG.info("method setproject work");
         this.projects = projects;
     }
 
@@ -116,10 +122,17 @@ public class ProjectBean implements Serializable {
     }
 
     public Project getSelectedProject() {
+        if (selectedProject != null) {
+            LOG.info("method get selected project work" + selectedProject.getName());
+        }else
+        System.out.println("selected project is empty");
         return selectedProject;
     }
 
-    public void setSelectedProject(Project selectedProject) {
+    public void setSelectedProject(Project selectedProject)
+    {
+
+        LOG.info("method setSelected project work");
         this.selectedProject = selectedProject;
     }
 
@@ -135,7 +148,7 @@ public class ProjectBean implements Serializable {
        project.setStatus(Status.NOT_APPROVED);
         Employee emp = new Employee();
         emp.setId(1);
-        project.setEmployee(emp);
+     //   project.setEmployee(emp);
        LOG.info(project.showDetails());
         projectService.addProject(project);
         projects = projectService.getProjects();

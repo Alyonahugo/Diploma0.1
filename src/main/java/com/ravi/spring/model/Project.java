@@ -56,12 +56,12 @@ public class Project implements Serializable {
     private Set<Mark> markRecords = new HashSet<Mark>(0);
 
 
-
+/*
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "empp_id", nullable = false)
     private Employee employee;
 
-
+*/
     public Set<Mark> getMarkRecords() {
         return markRecords;
     }
@@ -163,14 +163,14 @@ public class Project implements Serializable {
     }
 
 
-    public Employee getEmployee() {
+  /*  public Employee getEmployee() {
         return employee;
     }
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
-
+*/
     @Override
     public String toString() {
         return name;
