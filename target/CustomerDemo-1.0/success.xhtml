@@ -1,0 +1,41 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Success Page</title>
+</h:head>
+<h:body>
+	<h:form>
+		<h:outputText value="Customers : "></h:outputText>
+		<p:dataTable id="customers" var="customer"
+			value="#{customerMB.customerList}" style="width: 10%">
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="ID" />
+				</f:facet>
+				<h:outputText value="#{customer.id}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="First Name" />
+				</f:facet>
+				<h:outputText value="#{customer.firstName}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Middle Name" />
+				</f:facet>
+				<h:outputText value="#{customer.middleName}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Last Name" />
+				</f:facet>
+				<h:outputText value="#{customer.lastName}" />
+			</p:column>
+		</p:dataTable>
+	</h:form>
+</h:body>
+
+</html>

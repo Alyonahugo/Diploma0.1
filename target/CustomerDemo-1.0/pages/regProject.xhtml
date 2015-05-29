@@ -1,0 +1,77 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/templates/template.xhtml">
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+
+		<h:form id="form">
+
+			<p:growl id="message" showDetail="true" />
+
+			<p:panel header="#{msg['createProject']}" id="panel">
+
+
+				<h:panelGrid columns="2" cellpadding="7" id = "panelGrd">
+					<h:outputLabel for="name" value="#{msg['name']}*" style="width:100px"/>
+					<p:inputText id="name" value="#{project.name}" label="#{msg['name']}"  style=" padding: 10px; width:400px"/>
+
+
+					<h:outputText value="&#160;" /><h:outputText value="&#160;" />
+
+					<h:outputLabel for="age" value="#{msg['meta']}*" />
+					<p:inputText id="age" value="#{project.meta}" label="#{msg['meta']}"  style=" padding: 10px; width:400px"/>
+
+
+					<h:outputText value="&#160;" /><h:outputText value="&#160;" />
+
+					<h:outputLabel for="amount" value="#{msg['description']}*" />
+
+					<p:inputTextarea rows="5" cols="30" id="amount" counter="display" maxlength="250" counterTemplate="{0} #{msg['charactersRemaining']}."  value="#{project.description}" label="#{msg['description']}"  autoResize="false"  style=" padding: 10px; width:400px " />
+
+
+					<h:outputText value="&#160;" /><h:outputText id="display" />
+					<h:outputText value="&#160;" /><h:outputText value="&#160;" />
+
+					<h:outputLabel for="amount2" value="#{msg['sphere']}" />
+
+
+
+					<p:selectOneMenu id="amount2"  value="#{project.sphere}" label="#{msg['sphere']}"  style="width:400px">
+
+						<f:selectItems value="#{enumValuesProvider.spheres}"
+									   var="sphere"
+									   itemValue="#{sphere}"
+									  itemLabel="#{sphere.name}"/>
+
+
+					</p:selectOneMenu>
+
+					<h:outputText value="&#160;" /><h:outputText value="&#160;" />
+
+					<h:outputLabel for="pattern" value="#{msg['manager']}*" />
+					<p:inputText id="pattern" value="#{project.manager}" label="#{msg['manager']}"  style=" padding: 10px; width:400px" />
+
+
+					<h:outputText value="&#160;" /><h:outputText value="&#160;" />
+
+					<h:outputLabel for="checked" value="#{msg['team']}" />
+					<p:inputText id="checked" value="#{project.team}"   style=" padding: 10px; width:400px"/>
+
+
+					<h:outputText value="&#160;" /><h:outputText value="&#160;" />
+					<h:outputText value="&#160;" />
+
+
+					<p:commandButton value="#{msg['save']}" ajax="false" icon="ui-icon-check" validateClient="true"
+									 action="#{projectBean.addProject(project)}" style="left: 312px;"  >
+					</p:commandButton>
+
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

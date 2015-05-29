@@ -1,0 +1,83 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/templates/template.xhtml">
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+		<h:form>
+
+			<p:contextMenu for="tbl">
+				<p:menuitem value="View" update="projectDetails" icon="ui-icon-search" oncomplete="PF('projectDetails').show()"/>
+			</p:contextMenu>
+			<p:dataTable id="tbl" var="proj" value="#{projectBean.projects}"
+						 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+						 paginator="true" rows="10" style="margin-bottom:20px; width: 99%" sortMode="multiple"
+						 selection="#{orderListView.selectedProject}" selectionMode="single" rowKey="#{proj}"
+						 editable="true" editMode="cell" >
+
+				<f:facet name="header">
+					<h:outputText value="#{msg['headerConfirmProject']}"/>
+				</f:facet>
+				<p:column sortBy="#{proj.id}">
+					<f:facet name="header">
+						<h:outputText value="Id" />
+					</f:facet>
+					<h:outputText value="#{proj.id}" />
+				</p:column>
+
+				<p:column  sortBy="#{proj.name}">
+					<f:facet name="header">
+						<h:outputText value="#{msg['name']}"/>
+					</f:facet>
+					<h:outputText value="#{proj.name}" />
+				</p:column>
+
+				<p:column sortBy="#{proj.description}">
+					<f:facet name="header">
+						<h:outputText value="#{msg['description']}" />
+					</f:facet>
+					<h:outputText value="#{proj.description}" />
+				</p:column>
+
+
+				<p:column headerText="#{msg['confimStatus']}" style="width: 15%">
+					<p:cellEditor>
+						<f:facet name="output"><h:outputText value="#{proj.status}" /></f:facet>
+						<f:facet name="input">
+							<h:selectOneMenu value="#{proj.status}" style="width:100%">
+
+								<f:selectItems value="#{enumValuesProvider.statuses}"
+											   var="status"
+											   itemValue="#{status}"
+											   itemLabel="#{status}"
+										/>
+							</h:selectOneMenu>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+
+
+			</p:dataTable>
+			<p:dialog header="project Details" widgetVar="projectDetails" showEffect="fade" hideEffect="fade" resizable="true">
+				<p:outputPanel id="projectDetails" style="text-align:center;">
+					<p:panelGrid  columns="2" rendered="#{not empty orderListView.selectedProject}" columnClasses="label,value">
+
+						<h:outputText value="Id:" />
+						<h:outputText value="#{orderListView.selectedProject.id}" />
+
+						<h:outputText value="Name" />
+						<h:outputText value="#{orderListView.selectedProject.name}" />
+
+						<h:outputText value="description" />
+						<h:outputText value="#{orderListView.selectedProject.description}" />
+					</p:panelGrid>
+				</p:outputPanel>
+			</p:dialog>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

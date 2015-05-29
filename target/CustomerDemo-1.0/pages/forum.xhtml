@@ -1,0 +1,45 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/templates/template.xhtml">
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+		<h:form>
+
+			<p:dataTable id="tbl" var="project" value="#{orderListView.forums}"
+						 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+						 paginator="true" rows="10" style="margin-bottom:20px" sortMode="multiple"
+						>
+
+				<f:facet name="header">
+					<h:outputText value="#{msg['sectionName']}"/>
+				</f:facet>
+				<p:column sortBy="#{project.sectionName}">
+					<f:facet name="header">
+						<h:outputText value="Id" />
+					</f:facet>
+					<h:outputText value="#{project.sectionName}" />
+				</p:column>
+
+				<p:column  sortBy="#{project.author}">
+					<f:facet name="header">
+						<h:outputText value="#{msg['author']}"/>
+					</f:facet>
+					<h:outputText value="#{project.author}" />
+				</p:column>
+
+				<p:column sortBy="#{project.count}">
+					<f:facet name="header">
+						<h:outputText value="#{msg['count']}" />
+					</f:facet>
+					<h:outputText value="#{project.count}" />
+				</p:column>
+
+			</p:dataTable>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
