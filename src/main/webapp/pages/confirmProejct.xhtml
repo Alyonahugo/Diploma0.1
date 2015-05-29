@@ -39,8 +39,6 @@
 					<h:outputText value="#{car.author}" />
 				</p:column>
 
-
-
 				<p:column style="width:14%; text-align: center" headerText="#{msg['confimStatus']}">
 					<p:commandButton update="@form"  title="Approve"  value="#{car.status}" oncomplete="PF('carDialog').show()" >
 						<f:setPropertyActionListener value="#{car}" target="#{projectView.selectedProject}" />
