@@ -10,7 +10,7 @@
 
 		<h:form id="form">
 
-			<p:growl id="message" showDetail="true" />
+
 
 		<!--	<p:outputLabel rendered="#{projectBean.before}" value="registration is not open yet"/>
 
@@ -19,55 +19,77 @@
 			<p:panel header="#{msg['createProject']}" id="panel" rendered="#{projectBean.checkDate}">-->
 			<p:panel header="#{msg['createProject']}" id="panel" >
 
-				<h:panelGrid columns="2" cellpadding="7" id = "panelGrd">
+				<h:panelGrid columns="3" cellpadding="7" id = "panelGrd">
 					<h:outputLabel for="name" value="#{msg['name']}*" style="width:100px"/>
 
-					<p:inputText id="name" value="#{project.name}" label="#{msg['name']}"  style=" padding: 10px; width:400px"/>
+					<p:inputText id="name" value="#{project.name}" label="#{msg['name']}"  style=" padding: 10px; width:400px"
+								 validatorMessage="Name - please input english letters, digits only" showDetail="false" showSummary="false"
+								 required="true">
+						<f:validateRegex pattern="^[a-zA-Z\s\d]+$" />
+				</p:inputText>
+					<p:message for="name" display="icon" />
 
 
-					<h:outputText value="&#160;" /><h:outputText value="&#160;" />
+					<h:outputText value="&#160;" /><h:outputText value="&#160;" /><h:outputText value="&#160;" />
 
-					<h:outputLabel for="age" value="#{msg['meta']}*" />
-					<p:inputText id="age" value="#{project.meta}" label="#{msg['meta']}"  style=" padding: 10px; width:400px"/>
-
-
-					<h:outputText value="&#160;" /><h:outputText value="&#160;" />
-
-					<h:outputLabel for="amount" value="#{msg['description']}*" />
-
-					<p:inputTextarea rows="5" cols="30" id="amount" counter="display" maxlength="250" counterTemplate="{0} #{msg['charactersRemaining']}."  value="#{project.description}" label="#{msg['description']}"  autoResize="false"  style=" padding: 10px; width:400px " />
+					<h:outputLabel for="meta" value="#{msg['meta']}*" />
+					<p:inputText id="meta" value="#{project.meta}" label="#{msg['meta']}"  style=" padding: 10px; width:400px"
+								 validatorMessage="Meta - please input english letters, digits only" showDetail="false" showSummary="false"
+								 required="true">
+					<f:validateRegex pattern="^[a-zA-Z\s\d]+$" />
+					</p:inputText>
+					<p:message for="meta" display="icon" />
 
 
-					<h:outputText value="&#160;" /><h:outputText id="display" />
-					<h:outputText value="&#160;" /><h:outputText value="&#160;" />
+					<h:outputText value="&#160;" /><h:outputText value="&#160;" /><h:outputText value="&#160;" />
+
+					<h:outputLabel for="des" value="#{msg['description']}*" />
+					<p:inputTextarea rows="5" cols="30" id="des" counter="display" maxlength="250"
+									 counterTemplate="{0} #{msg['charactersRemaining']}."  value="#{project.description}"
+									 label="#{msg['description']}"  autoResize="false"  style=" padding: 10px; width:400px "
+									 validatorMessage="Description - please input english letters, digits only" showDetail="false" showSummary="false"
+									 required="true">
+						<f:validateRegex pattern="^[a-zA-Z\s\d]+$" />
+					</p:inputTextarea>
+					<p:message for="des" display="icon" />
+
+
+
+					<h:outputText value="&#160;" /><h:outputText id="display" /><h:outputText value="&#160;" />
+					<h:outputText value="&#160;" /><h:outputText value="&#160;" /><h:outputText value="&#160;" />
 
 					<h:outputLabel for="amount2" value="#{msg['sphere']}" />
-
-
-
 					<p:selectOneMenu id="amount2"  value="#{project.sphere}" label="#{msg['sphere']}"  style="width:400px">
 
 						<f:selectItems value="#{enumValuesProvider.spheres}"
 									   var="sphere"
 									   itemValue="#{sphere}"
 									   itemLabel="#{sphere.name}"/>
-
-
 					</p:selectOneMenu>
+					<h:outputText value="&#160;" />
 
-					<h:outputText value="&#160;" /><h:outputText value="&#160;" />
+					<h:outputText value="&#160;" /><h:outputText value="&#160;" /><h:outputText value="&#160;" />
 
 					<h:outputLabel for="pattern" value="#{msg['manager']}*" />
-					<p:inputText id="pattern" value="#{project.manager}" label="#{msg['manager']}"  style=" padding: 10px; width:400px" />
+					<p:inputText id="pattern" value="#{project.manager}" label="#{msg['manager']}"  style=" padding: 10px; width:400px"
+								 validatorMessage="Manager - please input english letters, digits only" showDetail="false" showSummary="false"
+								 required="true">
+					<f:validateRegex pattern="^[a-zA-Z\s\d]+$" />
+					</p:inputText>
+					<p:message for="pattern" display="icon" />
 
 
-					<h:outputText value="&#160;" /><h:outputText value="&#160;" />
+					<h:outputText value="&#160;" /><h:outputText value="&#160;" /><h:outputText value="&#160;" />
 
 					<h:outputLabel for="checked" value="#{msg['team']}" />
-					<p:inputText id="checked" value="#{project.team}"   style=" padding: 10px; width:400px"/>
+					<p:inputText id="checked" value="#{project.team}"   style=" padding: 10px; width:400px"
+								 validatorMessage="Team - please input english letters, digits only" showDetail="false" showSummary="false">
+					<f:validateRegex pattern="^[a-zA-Z\s\d]+$" />
+					</p:inputText>
+					<p:message for="checked" display="icon" />
 
 
-					<h:outputText value="&#160;" /><h:outputText value="&#160;" />
+					<h:outputText value="&#160;" /><h:outputText value="&#160;" /><h:outputText value="&#160;" />
 					<h:outputText value="&#160;" />
 
 
