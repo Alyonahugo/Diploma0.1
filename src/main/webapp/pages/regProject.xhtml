@@ -12,7 +12,11 @@
 
 			<p:growl id="message" showDetail="true" />
 
-			<p:panel header="#{msg['createProject']}" id="panel">
+			<p:outputLabel rendered="#{projectBean.before}" value="registration is not open yet"/>
+
+			<p:outputLabel rendered="#{projectBean.after}" value="registration was closed"/>
+
+			<p:panel header="#{msg['createProject']}" id="panel" rendered="#{projectBean.checkDate}">
 
 
 				<h:panelGrid columns="2" cellpadding="7" id = "panelGrd">
