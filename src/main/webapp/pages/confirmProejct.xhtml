@@ -13,37 +13,71 @@
 				<p:menuitem value="View" update="projectDetails" icon="ui-icon-search" oncomplete="PF('projectDetails').show()"/>
 			</p:contextMenu>
 			<p:dataTable id="tbl" var="proj" value="#{projectBean.projects}"
-						 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-						 paginator="true" rows="10" style="margin-bottom:20px" sortMode="multiple"
+						 paginatorTemplate="{RowsPerPageDropdown} {CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+						 paginator="true" rows="10" style="margin-bottom:20px; width:100%" sortMode="multiple"
 						 selection="#{orderListView.selectedProject}" selectionMode="single" rowKey="#{proj}"
-						 editable="true" editMode="cell" >
+						 editable="true" editMode="cell" rowsPerPageTemplate="5,10,15" 	>
+
+
+
+
+
 
 				<f:facet name="header">
 					<h:outputText value="#{msg['headerConfirmProject']}"/>
 				</f:facet>
-				<p:column sortBy="#{proj.id}">
-					<f:facet name="header">
-						<h:outputText value="Id" />
-					</f:facet>
-					<h:outputText value="#{proj.id}" />
-				</p:column>
 
-				<p:column  sortBy="#{proj.name}">
+				<p:column  sortBy="#{proj.name}" style="width:12%">
 					<f:facet name="header">
 						<h:outputText value="#{msg['name']}"/>
 					</f:facet>
 					<h:outputText value="#{proj.name}" />
 				</p:column>
 
-				<p:column sortBy="#{proj.description}">
+				<p:column sortBy="#{proj.meta}"  style="width:12%">
+					<f:facet name="header">
+						<h:outputText value="#{msg['meta']}" />
+					</f:facet>
+					<h:outputText value="#{proj.meta}" />
+				</p:column>
+
+				<p:column sortBy="#{proj.description}" style="width:12%">
 					<f:facet name="header">
 						<h:outputText value="#{msg['description']}" />
 					</f:facet>
 					<h:outputText value="#{proj.description}" />
 				</p:column>
 
+				<p:column sortBy="#{proj.sphere}" style="width:12%">
+					<f:facet name="header">
+						<h:outputText value="#{msg['sphere']}" />
+					</f:facet>
+					<h:outputText value="#{proj.sphere}" />
+				</p:column>
 
-				<p:column headerText="#{msg['confimStatus']}">
+				<p:column sortBy="#{proj.manager}" style="width:12%">
+					<f:facet name="header">
+						<h:outputText value="#{msg['manager']}" />
+					</f:facet>
+					<h:outputText value="#{proj.manager}" />
+				</p:column>
+
+				<p:column sortBy="#{proj.team}" style="width:12%">
+					<f:facet name="header">
+						<h:outputText value="#{msg['team']}" />
+					</f:facet>
+					<h:outputText value="#{proj.team}" />
+				</p:column>
+
+				<p:column sortBy="#{proj.author}" style="width:12%">
+					<f:facet name="header">
+						<h:outputText value="#{msg['author']}" />
+					</f:facet>
+					<h:outputText value="#{proj.author}" />
+				</p:column>
+
+
+				<p:column headerText="#{msg['confimStatus']}"  style="width:15%">
 					<p:cellEditor>
 						<f:facet name="output"><h:outputText value="#{proj.status}" /></f:facet>
 						<f:facet name="input">
