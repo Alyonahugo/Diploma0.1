@@ -1,9 +1,9 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core"
-	template="/templates/template.xhtml">
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:f="http://java.sun.com/jsf/core"
+				template="/templates/template.xhtml">
 	<ui:define name="metadata">
 	</ui:define>
 	<ui:define name="content">
@@ -17,6 +17,7 @@
 
 				<h:panelGrid columns="2" cellpadding="7" id = "panelGrd">
 					<h:outputLabel for="name" value="#{msg['name']}*" style="width:100px"/>
+
 					<p:inputText id="name" value="#{project.name}" label="#{msg['name']}"  style=" padding: 10px; width:400px"/>
 
 
@@ -45,7 +46,7 @@
 						<f:selectItems value="#{enumValuesProvider.spheres}"
 									   var="sphere"
 									   itemValue="#{sphere}"
-									  itemLabel="#{sphere.name}"/>
+									   itemLabel="#{sphere.name}"/>
 
 
 					</p:selectOneMenu>
