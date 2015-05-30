@@ -1,0 +1,48 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/templates/template.xhtml">
+    <ui:define name="metadata">
+    </ui:define>
+    <ui:define name="content">
+
+        <h:form>
+            <p:breadCrumb>
+                <p:menuitem value="Home" url="/welcom.xhtml" />
+                <p:menuitem value="Section" url="/pages/forum1.xhtml" />
+            </p:breadCrumb>
+
+            <p:dataTable id="basicDT" var="car" value="#{topicBean.topics}">
+                <f:facet name="header">
+                    Basic
+                </f:facet>
+                <p:column headerText="Id">
+                    <h:outputText value="#{car.id}" />
+                </p:column>
+                <p:column headerText="Year">
+                    <h:outputText value="#{car.name}" />
+                </p:column>
+
+                <p:column style="width:32px;text-align: center">
+                    <p:commandButton update="@form"  icon="ui-icon-search" title="View">
+                        <f:setPropertyActionListener value="#{car}" target="#{topicBean.selectedTopic}" />
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+
+            <h:outputLabel for="checked" value="#{msg['topicName']}" />
+            <p:inputText id="checked" value="#{commentBean.topicName}"   style=" padding: 10px; width:400px"/>
+
+            <h:outputLabel for="checked2" value="#{msg['commentName']}" />
+            <p:inputText id="checked2" value="#{commentBean.comment}"   style=" padding: 10px; width:400px"/>
+
+            <p:commandButton value="Ajax Submit" id="ajax"  action="#{commentBean.addTopic(topicBean.selectedSectionId)}" styleClass="ui-priority-primary" />
+
+
+
+        </h:form>
+
+    </ui:define>
+</ui:composition>
