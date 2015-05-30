@@ -2,6 +2,7 @@ package com.ravi.controller;
 
 
 import com.ravi.enumaration.Status;
+import com.ravi.spring.model.Employee;
 import com.ravi.spring.model.Project;
 import com.ravi.spring.service.ProjectService;
 import org.primefaces.event.*;
@@ -111,6 +112,9 @@ public class ProjectBean implements Serializable {
 
     public void addProject(Project project){
         project.setStatus(Status.NOT_APPROVED);
+        Employee employee = new Employee();
+        employee.setId(1);
+        project.setEmployee(employee);
         LOG.info(project.showDetails());
         projectService.addProject(project);
         projects = projectService.getProjects();
