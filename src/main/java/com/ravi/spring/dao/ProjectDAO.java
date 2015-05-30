@@ -26,4 +26,6 @@ public interface ProjectDAO {
     public List<Project> getProjects();
 
     public List<Project> getProjectsByStatus(Status status);
+
+    Project getProjectByName(String name);
 }

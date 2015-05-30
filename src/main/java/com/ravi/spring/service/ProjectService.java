@@ -19,4 +19,5 @@ public interface ProjectService {
 
     public List<Project> getApprovedProjects();
 
+    public Project getProjectByName(String name);
 }

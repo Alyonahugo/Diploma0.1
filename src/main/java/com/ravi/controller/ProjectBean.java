@@ -128,21 +128,33 @@ public class ProjectBean implements Serializable {
     }
 
     public void addProject(Project project){
+
         if (checkOnlySpases(project)){
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Data is not comlated", "Please input text");
             RequestContext.getCurrentInstance().showMessageInDialog(message);
             LOG.info("only space was input");
         }
         else {
-            project.setStatus(Status.NOT_APPROVED);
-            Employee employee = new Employee();
-            employee.setId(1);
-            project.setEmployee(employee);
-            LOG.info(project.showDetails());
-            projectService.addProject(project);
-            projects = projectService.getProjects();
+            if (!checkExistName(project)){
+                project.setStatus(Status.NOT_APPROVED);
+                Employee employee = new Employee();
+                employee.setId(1);
+                project.setEmployee(employee);
+                LOG.info(project.showDetails());
+                projectService.addProject(project);
+                projects = projectService.getProjects();
+            }
         }
 
+    }
+
+    private boolean checkExistName(Project project) {
+
+        if(projectService.getProjectByName(project.getName()) == null){
+            return false;
+        }
+        LOG.info("this name has already exist");
+        return true;
     }
 
     private boolean checkOnlySpases(Project project) {

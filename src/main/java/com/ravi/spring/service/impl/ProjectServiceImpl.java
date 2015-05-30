@@ -55,4 +55,10 @@ public class ProjectServiceImpl implements ProjectService {
 
         return projectDAO.getProjectsByStatus(Status.APPROVED);
     }
+
+    @Override
+    public Project getProjectByName(String name) {
+        return projectDAO.getProjectByName(name);
+    }
+
 }

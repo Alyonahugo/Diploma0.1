@@ -61,4 +61,14 @@ public class ProjectDAOImpl implements ProjectDAO {
                 .setParameter(0, status).list();
         return list;
     }
+
+    @Override
+    public Project getProjectByName(String name) {
+        List<Project> list = getSessionFactory().getCurrentSession()
+                .createQuery("from Project  where name=?")
+                .setParameter(0, name).list();
+        return list.get(0);
+    }
+
+
 }

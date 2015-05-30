@@ -8,19 +8,19 @@
 	</ui:define>
 
 	<ui:define name="content">
-		<h:body>
-			<p:growl id="msgs1" showDetail="true" />
+<h:body>
+<p:growl id="msgs1" showDetail="true" />
 
-			<h:outputText value="#{msg['menu.decision']}" style="text-align: center"/>
-			<p:dashboard id="dynamic_dashboard" binding="#{dashboardBacker.dashboard}" style="padding: 0 33%"  >
-				<p:ajax event="reorder" listener="#{dashboardBacker.handleReorder}" update="msgs1" />
+<h:outputText value="#{msg['menu.decision']}" style="text-align: center"/>
+<p:dashboard id="dynamic_dashboard" binding="#{dashboardBacker.dashboard}" style="padding: 0 33%"  >
+	<p:ajax event="reorder" listener="#{dashboardBacker.handleReorder}" update="msgs1" />
 
-					</p:dashboard>
-			<p:commandButton value="#{msg['vote']}" id="nonAjax" actionListener="#{dashboardBacker.save}"  />
-
-
+</p:dashboard>
+<p:commandButton value="#{msg['vote']}" id="nonAjax" actionListener="#{dashboardBacker.save}"  />
 
 
-		</h:body>
-	</ui:define>
-</ui:composition>
+
+
+</h:body>
+		</ui:define>
+		</ui:composition>
