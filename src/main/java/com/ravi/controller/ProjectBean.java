@@ -5,6 +5,7 @@ import com.ravi.enumaration.Status;
 import com.ravi.spring.model.Employee;
 import com.ravi.spring.model.Project;
 import com.ravi.spring.service.ProjectService;
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.*;
 import org.primefaces.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,10 +70,14 @@ public class ProjectBean implements Serializable {
 
     public List<Project> getProjects() {
 
-        for(Project pr : projects){
-            System.out.println(pr.showDetails());
+        if (projectService.getApprovedProjects().size() >= 10){
+            LOG.info("exists 10 approved projects");
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Already exists 10 approved projects", "Please decline one for approving new");
+            RequestContext.getCurrentInstance().showMessageInDialog(message);
         }
-        projectService.updateProjectS(projects);
+        else {
+            projectService.updateProjectS(projects);
+        }
 
         return projects;
     }
