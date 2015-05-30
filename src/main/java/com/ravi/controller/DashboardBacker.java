@@ -8,6 +8,7 @@ import com.ravi.spring.service.ProjectService;
 import com.ravi.spring.service.VoteService;
 import org.primefaces.component.dashboard.Dashboard;
 import org.primefaces.component.panel.Panel;
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.CloseEvent;
 import org.primefaces.event.DashboardReorderEvent;
 import org.primefaces.event.ToggleEvent;
@@ -195,6 +196,9 @@ public void setColumnCount(int columnCount) {
 
 
         }
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "You voting is saved", "Thank you for you chose");
+
+        RequestContext.getCurrentInstance().showMessageInDialog(message);
     }
 }
 

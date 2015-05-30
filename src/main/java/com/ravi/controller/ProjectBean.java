@@ -70,7 +70,7 @@ public class ProjectBean implements Serializable {
 
     public List<Project> getProjects() {
 
-        if (projectService.getApprovedProjects().size() >= 10){
+       if (checkCountNewAppPro(projects) > 10){
 
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Already exists 10 approved projects", "Please decline one for approving new");
             RequestContext.getCurrentInstance().showMessageInDialog(message);
@@ -78,9 +78,20 @@ public class ProjectBean implements Serializable {
         }
         else {
             projectService.updateProjectS(projects);
-        }
 
-        return projects;
+        }
+        projects = projectService.getProjects();
+       return projects;
+    }
+
+    private int checkCountNewAppPro(List<Project> projects) {
+        int count = 0;
+        for(Project project : projects){
+            if (project.getStatus().equals(Status.APPROVED)){
+                count++;
+            }
+        }
+        return count;
     }
 
     public void setProjects(List<Project> projects) {
