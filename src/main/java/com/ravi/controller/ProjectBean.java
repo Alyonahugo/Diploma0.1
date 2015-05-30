@@ -71,9 +71,10 @@ public class ProjectBean implements Serializable {
     public List<Project> getProjects() {
 
         if (projectService.getApprovedProjects().size() >= 10){
-            LOG.info("exists 10 approved projects");
+
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Already exists 10 approved projects", "Please decline one for approving new");
             RequestContext.getCurrentInstance().showMessageInDialog(message);
+            LOG.info("exists 10 approved projects");
         }
         else {
             projectService.updateProjectS(projects);
@@ -116,14 +117,37 @@ public class ProjectBean implements Serializable {
     }
 
     public void addProject(Project project){
-        project.setStatus(Status.NOT_APPROVED);
-        Employee employee = new Employee();
-        employee.setId(1);
-        project.setEmployee(employee);
-        LOG.info(project.showDetails());
-        projectService.addProject(project);
-        projects = projectService.getProjects();
+        if (checkOnlySpases(project)){
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Data is not comlated", "Please input text");
+            RequestContext.getCurrentInstance().showMessageInDialog(message);
+            LOG.info("only space was input");
+        }
+        else {
+            project.setStatus(Status.NOT_APPROVED);
+            Employee employee = new Employee();
+            employee.setId(1);
+            project.setEmployee(employee);
+            LOG.info(project.showDetails());
+            projectService.addProject(project);
+            projects = projectService.getProjects();
+        }
 
+    }
+
+    private boolean checkOnlySpases(Project project) {
+        if (project.getName().trim().length() == 0){
+            return true;
+        }
+        if (project.getMeta().trim().length() == 0){
+            return true;
+        }
+        if (project.getDescription().trim().length() == 0){
+            return true;
+        }
+        if (project.getManager().trim().length() == 0){
+            return true;
+        }
+        return false;
     }
 
     @PostConstruct
