@@ -30,7 +30,11 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import java.io.IOException;
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.logging.Logger;
 
 /**
  * Created by User on 24.05.2015.
@@ -39,7 +43,13 @@ import java.util.*;
 @ViewScoped
 public  class DashboardBacker implements  Serializable{
 
-public static final int DEFAULT_COLUMN_COUNT = 1;
+
+    private static Logger LOG = Logger.getLogger(DashboardBacker.class.getName());
+    private ResourceBundle rb = ResourceBundle.getBundle("data_settings", Locale.ENGLISH);
+
+
+
+    public static final int DEFAULT_COLUMN_COUNT = 1;
 private int columnCount = DEFAULT_COLUMN_COUNT;
 
     private static Dashboard dashboard;
@@ -49,7 +59,11 @@ private int countOfPanels;
     private boolean employeeVote;
     private boolean isActualVoting;
     //TODO- GET EMP ID FROM SESSION
-    private int EMP_ID = 3;
+    private int EMP_ID = 4;
+
+    private boolean checkDateVote;
+    private boolean beforeVote;
+    private boolean afterVote;
 
 
     @ManagedProperty(value="#{ProjectService}")
@@ -64,6 +78,10 @@ private int countOfPanels;
     @ManagedProperty(value="#{VoteService}")
     @Autowired
     VoteService voteService;
+    @ManagedProperty(value="#{calendarView}")
+    @Autowired
+    CalendarView calendarView;
+
 
     private  Set<Project> approvedProj = new HashSet<Project>();
     private Map<String, Project> mapAppProj = new HashMap<String, Project>();
@@ -78,6 +96,56 @@ public DashboardBacker() {
         //TODO -get emp id from session
         int emp_id = EMP_ID;
         employeeVote = voteService.getVoteByEmpId(emp_id);
+        checkDate();
+    }
+
+    private void checkDate(){
+        LOG.info(" GET CURENT DATE " + calendarView.getDate1());
+        LOG.info("resource bundle " + rb.getString("startVotingDate"));
+
+        Date currentDate = calendarView.getDate1();
+
+        String startRegDateStr = rb.getString("startVotingDate");
+        DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        Date startRegDate = null;
+        try {
+            startRegDate = format.parse(startRegDateStr);
+        } catch (ParseException e) {
+
+        }
+
+        String endRegDateStr = rb.getString("endVotingDate");
+        Date endRegDate = null;
+        try {
+            endRegDate = format.parse(endRegDateStr);
+        } catch (ParseException e) {
+
+        }
+
+        if (currentDate.before(startRegDate)){
+            beforeVote = true;
+            afterVote = false;
+            checkDateVote  = false;
+
+        }
+
+        else {
+            if (currentDate.before(endRegDate) || currentDate.equals(endRegDate)){
+                beforeVote = false;
+                afterVote = false;
+                checkDateVote = true;
+
+
+            }
+            else{
+
+                afterVote = true;
+                checkDateVote = false;
+                beforeVote = false;
+            }
+        }
+        LOG.info("AFTERVote " + afterVote + " beforeVote " + beforeVote + " checkdateVote " + checkDateVote);
+
     }
 
 public synchronized Dashboard getDashboard() {
@@ -138,6 +206,31 @@ public void setColumnCount(int columnCount) {
 
     public void setEmployeeVote(boolean employeeVote) {
         this.employeeVote = employeeVote;
+    }
+
+    public boolean isBeforeVote() {
+        checkDate();
+        return beforeVote;
+    }
+
+    public void setBeforeVote(boolean beforeVote) {
+        this.beforeVote = beforeVote;
+    }
+
+    public boolean isCheckDateVote() {
+        return checkDateVote;
+    }
+
+    public void setCheckDateVote(boolean checkDateVote) {
+        this.checkDateVote = checkDateVote;
+    }
+
+    public boolean isAfterVote() {
+        return afterVote;
+    }
+
+    public void setAfterVote(boolean afterVote) {
+        this.afterVote = afterVote;
     }
 
     public void handleReorder(DashboardReorderEvent event) {

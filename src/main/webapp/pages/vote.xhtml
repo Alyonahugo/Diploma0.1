@@ -11,17 +11,20 @@
 		<h:body>
 				<p:growl id="msgs1" showDetail="true" />
 
+			<p:outputLabel rendered="#{dashboardBacker.beforeVote}" value="Voting is not open yet"/>
 
-			<p:outputLabel rendered="#{dashboardBacker.employeeVote}" value="You voting is saved. Thank you for you chose"/>
+			<p:outputLabel rendered="#{dashboardBacker.afterVote}" value="Voting was closed. "/>
+
+			<p:outputLabel rendered="#{dashboardBacker.employeeVote and !dashboardBacker.beforeVote}" value="You voting is saved. Thank you for you chose"/>
 
 
 
-				<h:outputText value="#{msg['menu.decision']}" style="text-align: center" rendered="#{!dashboardBacker.employeeVote}"/>
-				<p:dashboard id="dynamic_dashboard" binding="#{dashboardBacker.dashboard}" style="padding: 0 33%"   rendered="#{!dashboardBacker.employeeVote}">
+				<h:outputText value="#{msg['menu.decision']}" style="text-align: center" rendered="#{!dashboardBacker.employeeVote and dashboardBacker.checkDateVote}"/>
+				<p:dashboard id="dynamic_dashboard" binding="#{dashboardBacker.dashboard}" style="padding: 0 33%"   rendered="#{!dashboardBacker.employeeVote and dashboardBacker.checkDateVote}">
 					<p:ajax event="reorder" listener="#{dashboardBacker.handleReorder}" update="msgs1" />
 
 				</p:dashboard>
-				<p:commandButton value="#{msg['vote']}" id="nonAjax" actionListener="#{dashboardBacker.save}"  rendered="#{!dashboardBacker.employeeVote}" />
+				<p:commandButton value="#{msg['vote']}" id="nonAjax" actionListener="#{dashboardBacker.save}"  rendered="#{!dashboardBacker.employeeVote and dashboardBacker.checkDateVote}" />
 
 
 
