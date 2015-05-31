@@ -10,35 +10,47 @@
 	<ui:define name="content">
 
 	<h:form>
-		<div style = "width: 60%">
-		<h:outputText value="Implement your ideas in MyCompany
-Contest of the projects to be implemented by employees
-May, 2015
-Stages:
-Submit your proposals by May 17, 2015
-Pass review of Organisational Committee (Senior Managers in your locations+ HR Manager)
-Promote your project among colleagues (extended by May, 2015)
-Get your votes from colleagues
-You are the Winner! Start Implementing your Project!
-Boast the results
-Please note that your project budget should be not more then USD 1000 (exchange rate - 21). " style="color: black; font-size: medium"/>
-			<h:outputText value="Categories:
-			Criteria:
-			easy to implement by the end of 2014
-			based on EPAM values
-			should be within defined budget ($0-1000 per one project, exchange rate - 13.0)
-			should comply with EPAM policies and local legislation
-		"	/>
+		<div style = "width: 60% ; padding: 0px 20px">
+		<h2 style="text-align: center" >Implement your ideas in MyCompany</h2>
+<h3 style="text-align: center">Contest of the projects to be implemented by employees</h3>
+<h3 style="text-align: center">May, 2015</h3>
 
-			<h:outputText value="Categories:
-Office facilities
-Team work
-Company Values
-Eco-friendliness
-Social activity within Company
-Other (people oriented)"/>
+			<h:outputText value="Stages:: "/>
+			<ul >
+				<li>Submit your proposals by May 1, 2015</li>
+				<li>Pass review of Organisational Committee (Senior Managers in your locations+ HR Manager)</li>
+				<li>Promote your project among colleagues (extended by June 4, 2015)</li>
+				<li>Get your votes from colleagues</li>
+				<li>You are the Winner! Start Implementing your Project!</li>
+				<li>Boast the results</li>
+
+			</ul>
+
+
+			<h:outputText value="Criteria: "/>
+			<ul >
+				<li>easy to implement by the end of 2015</li>
+				<li>based on Company values</li>
+				<li>should be within defined budget ($0-1000 per one project, exchange rate - 21.0)</li>
+				<li>should comply with Company policies and local legislation</li>
+
+
+			</ul>
+
+
+			<h:outputText value="Categories: "/>
+			<ul >
+				<li>Office facilities</li>
+				<li>Team work</li>
+				<li>Company Values</li>
+				<li>Eco-friendliness</li>
+				<li>Social activity within Company</li>
+				<li>Other (people oriented</li>
+
+			</ul>
+
 		</div>
-		<div style="position: absolute; right: 0; top : 0;">
+		<div style="position: absolute; right: 20px; top :20px">
 
 		<p:dataGrid var="event" value="#{ringView.events}" columns="1" layout="grid" article="true" aside = "true">
 
