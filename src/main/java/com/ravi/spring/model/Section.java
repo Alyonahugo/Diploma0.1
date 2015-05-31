@@ -23,10 +23,10 @@ public class Section {
 
     private String name;
 
-/*
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "section")
     private Set<Topic> topicRecords = new HashSet<Topic>(0);
-*/
+
     public int getId() {
         return id;
     }
@@ -42,7 +42,7 @@ public class Section {
     public void setName(String name) {
         this.name = name;
     }
-/*
+
     public Set<Topic> getTopicRecords() {
         return topicRecords;
     }
@@ -50,5 +50,5 @@ public class Section {
     public void setTopicRecords(Set<Topic> topicRecords) {
         this.topicRecords = topicRecords;
     }
-    */
+
 }
