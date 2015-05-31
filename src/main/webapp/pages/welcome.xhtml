@@ -9,13 +9,62 @@
 
 	<ui:define name="content">
 
-		this is main page
-		registartion - 01/05/2015 - 15/05/2015
-		approving     - 16/05/2015-20/05/2015
-		voting -       21/05/2015-04-06/2015
-		result - 05/06/2015
+	<h:form>
+		<div style = "width: 60%">
+		<h:outputText value="Implement your ideas in MyCompany
+Contest of the projects to be implemented by employees
+May, 2015
+Stages:
+Submit your proposals by May 17, 2015
+Pass review of Organisational Committee (Senior Managers in your locations+ HR Manager)
+Promote your project among colleagues (extended by May, 2015)
+Get your votes from colleagues
+You are the Winner! Start Implementing your Project!
+Boast the results
+Please note that your project budget should be not more then USD 1000 (exchange rate - 21). " style="color: black; font-size: medium"/>
+			<h:outputText value="Categories:
+			Criteria:
+			easy to implement by the end of 2014
+			based on EPAM values
+			should be within defined budget ($0-1000 per one project, exchange rate - 13.0)
+			should comply with EPAM policies and local legislation
+		"	/>
+
+			<h:outputText value="Categories:
+Office facilities
+Team work
+Company Values
+Eco-friendliness
+Social activity within Company
+Other (people oriented)"/>
+		</div>
+		<div style="position: absolute; right: 0; top : 0;">
+
+		<p:dataGrid var="event" value="#{ringView.events}" columns="1" layout="grid" article="true" aside = "true">
+
+						<f:facet name="header">
+				Schedule
+			</f:facet>
+
+			<p:panel header="#{car.id}" style="text-align:center">
+				<h:panelGrid columns="1" style="width:30%" cellpadding="5" columnClasses="label,value">
+
+					<h:outputText value="#{event.name}" style="color: black; font-size: medium"/>
+
+					<h:outputText value="Start date - #{event.startDate}"  style="color: black; font-size: medium"/>
 
 
+					<h:outputText value="End date - #{event.enddate}"  style="color: black; font-size: medium"/>
+
+
+				</h:panelGrid>
+			</p:panel>
+
+		</p:dataGrid>
+
+</div>
+
+		</h:form>
 
 	</ui:define>
 </ui:composition>
