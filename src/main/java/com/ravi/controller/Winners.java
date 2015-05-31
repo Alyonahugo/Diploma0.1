@@ -54,13 +54,16 @@ private static Logger LOG = Logger.getLogger(OrderListView.class.getName());
     List<Project> listApprovedProjects;
 
 
-    @PostConstruct
+  //  @PostConstruct
     public void init() {
         calculator.getSchulze().addAllCandidates(CreateListOfCandidates());
         setResultOfVotes();
         winnersList = new ArrayList<Project>();
         winnersName.addAll(calculator.getSchulze().getWinners());
         LOG.info("winners from schulze " + winnersName);
+        check();
+        LOG.info("winners after updating " + winnersName);
+        projectService.updateProjectS(winnersList);
     }
 
     private void setResultOfVotes() {
@@ -92,28 +95,7 @@ private static Logger LOG = Logger.getLogger(OrderListView.class.getName());
     }
 
     private void check() {
-      /*  if (winnersName == null) {
-            winnersName = calculator.getSchulze().getWinners();
-        }
-        candidates =  calculator.getSchulze().getRegisterdCandidates();
-        Integer countCanddates = candidates.size();
-        if (countCanddates < 1){
-            status = StatusWinner.NO_CADIDATES;
-            LOG.info(status.toString());
-            return;
-        }
 
-        int count = 0;
-
-        if(!countCanddates.equals(winnersName.size()) || count == 10){
-            status = StatusWinner.EXISTS_SIMILAR_WINNERS;
-            System.out.println("befor " + winnersName.toString());
-            update();
-            System.out.println("after " + winnersName.toString());
-        }
-        System.out.println(status +  " ----------- status ");
-    //    LOG.info(status.toString());
-       */
         if (candidates.size() != winnersName.size()){
             LOG.warning("Exists similar winners. candidates.size -  " + candidates.size() + " and winnersName.size() " + winnersName.size());
             winnersName.addAll(candidates);
@@ -151,12 +133,14 @@ private static Logger LOG = Logger.getLogger(OrderListView.class.getName());
         listApprovedProjects = projectService.getApprovedProjects();
         winnersList = new ArrayList<Project>();
         LOG.info("winnars mnames at loadProjectByName() " + winnersName);
-
+        int place = 1;
         for (String candidate :  winnersName) {
             LOG.info("winnars mnames at loadProjectByName().get(&) " + candidate);
             for (Project project : listApprovedProjects){
                 if (project.getId() == new Integer(candidate)){
+                    project.setPlace(place);
                     winnersList.add(project);
+                    place++;
                 }
             }
         }
@@ -182,7 +166,7 @@ private static Logger LOG = Logger.getLogger(OrderListView.class.getName());
 
 
     public List<Project> getWinnersList() {
-        check();
+        init();
         return winnersList;
     }
 
