@@ -28,7 +28,7 @@ public class Winners {
 
 private static Logger LOG = Logger.getLogger(OrderListView.class.getName());
 
-    private Set<String> winnersName;
+    private Set<String> winnersName = new TreeSet<String>();
 
     private List<Project> winnersList;
     private List<String> candidates;
@@ -59,7 +59,7 @@ private static Logger LOG = Logger.getLogger(OrderListView.class.getName());
         calculator.getSchulze().addAllCandidates(CreateListOfCandidates());
         setResultOfVotes();
         winnersList = new ArrayList<Project>();
-        winnersName = calculator.getSchulze().getWinners();
+        winnersName.addAll(calculator.getSchulze().getWinners());
         LOG.info("winners from schulze " + winnersName);
     }
 
@@ -87,6 +87,7 @@ private static Logger LOG = Logger.getLogger(OrderListView.class.getName());
             listIdCandidates.add("" + project.getId());
         }
         LOG.info("candidates " + listIdCandidates);
+        candidates = listIdCandidates;
         return listIdCandidates;
     }
 
@@ -112,7 +113,14 @@ private static Logger LOG = Logger.getLogger(OrderListView.class.getName());
         }
         System.out.println(status +  " ----------- status ");
     //    LOG.info(status.toString());
-       */ loadProjectByName();
+       */
+        if (candidates.size() != winnersName.size()){
+            LOG.warning("Exists similar winners. candidates.size -  " + candidates.size() + " and winnersName.size() " + winnersName.size());
+            winnersName.addAll(candidates);
+            LOG.warning("After adding. candidates.size -  " + candidates.size() + " and winnersName.size() " + winnersName.size());
+
+        }
+        loadProjectByName();
     }
 
     private void update() {
