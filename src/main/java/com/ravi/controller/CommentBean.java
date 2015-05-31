@@ -12,7 +12,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.logging.Logger;
 
@@ -44,6 +47,8 @@ public class CommentBean implements Serializable {
 */
     private  String comment;
     private String topicName;
+    //TODO - get emp id from session
+    private int EMP_ID = 1;
 
     public String getComment() {
         return comment;
@@ -117,7 +122,7 @@ public class CommentBean implements Serializable {
         }else {
 
             Employee employee = new Employee();
-            employee.setName("test");
+            employee.setId(EMP_ID);
             //   employeeService.addEmployee(employee);
 
             Section sec = new Section();
@@ -129,6 +134,16 @@ public class CommentBean implements Serializable {
             topicService.addTopic(t);
             setCommentIntoDB(t, employee);
             LOG.info("method addTopic work" + topicName + " - " + comment);
+
+
+            ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+
+            try {
+                ec.redirect(ec.getRequestContextPath() + "/pages/topic.xhtml");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
     }
 

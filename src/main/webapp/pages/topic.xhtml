@@ -35,20 +35,19 @@
 
             <h:panelGrid columns="2" cellpadding="7" id = "panelGrd"  style=" padding: 10px; width:100%" >
 
-            <h:outputLabel for="checked" value="#{msg['topicName']}"  style=" padding: 10px; " />
+            <h:outputLabel for="checked" value="#{msg['topicName']}"  style=" padding: 10px;"/>
             <p:inputText id="checked" value="#{commentBean.topicName}"   style=" padding: 10px; width:100%"
-                         validatorMessage="Topic name - please input english letters, digits only" rendered="true"
-                    requiredMessage="Topic name - this field is required">
+                         validatorMessage="Topic name - please input english letters, digits only" >
             <f:validateRegex pattern="^[a-zA-Z\s\d]+$" />
             </p:inputText>
 
                 <h:outputText value="&#160;" />  <h:outputText value="&#160;" />
 
 
-            <h:outputLabel for="checked2" value="#{msg['commentName']}" style=" padding: 10px; "/>
+            <h:outputLabel for="checked2" value="#{msg['commentName']}" style=" padding: 10px;"/>
             <p:inputTextarea id="checked2" value="#{commentBean.comment}"   style=" padding: 10px;width:100%"
-                         validatorMessage="Comment name - please input english letters, digits only" required="true"
-                         requiredMessage="Comment name - this field is required">
+                         validatorMessage="Comment name - please input english letters, digits only"
+                         >
             <f:validateRegex pattern="^[a-zA-Z\s\d]+$" />
             </p:inputTextarea>
 
