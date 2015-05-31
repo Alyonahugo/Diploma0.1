@@ -8,6 +8,8 @@
 	</ui:define>
 	<ui:define name="content">
 
+		<p:outputLabel rendered="#{!winners.showResult}" value="Result is not open yet"/>
+
 		<p:accordionPanel value="#{winners.winnersList}" var="proj" rendered="#{winners.showResult}">
 			<p:tab title="#{msg['place']} - #{winners.winnersList.indexOf(proj)+1} -  #{proj.name}">
 				<h:panelGrid columns="2" cellpadding="6">
