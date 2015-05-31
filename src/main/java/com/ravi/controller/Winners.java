@@ -14,6 +14,10 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
@@ -24,16 +28,20 @@ import java.util.logging.Logger;
 
 @ManagedBean
 @SessionScoped
-public class Winners {
+public class Winners implements Serializable {
 
 private static Logger LOG = Logger.getLogger(OrderListView.class.getName());
 
+    private ResourceBundle rb = ResourceBundle.getBundle("data_settings", Locale.ENGLISH);
+
     private Set<String> winnersName = new TreeSet<String>();
+
 
     private List<Project> winnersList;
     private List<String> candidates;
 
     private StatusWinner status;
+    private boolean showResult;
 
     @Autowired
     @Qualifier("calculator")
@@ -50,6 +58,11 @@ private static Logger LOG = Logger.getLogger(OrderListView.class.getName());
     @ManagedProperty(value="#{VoteService}")
     @Autowired
     VoteService voteService;
+
+    @ManagedProperty(value="#{calendarView}")
+    @Autowired
+    CalendarView calendarView;
+
 
     List<Project> listApprovedProjects;
 
@@ -200,6 +213,48 @@ private static Logger LOG = Logger.getLogger(OrderListView.class.getName());
         this.voteService = voteService;
     }
 
+    public boolean isShowResult() {
+        checkDate();
+        return showResult;
+    }
 
+    private void checkDate() {
+        LOG.info(" GET CURENT DATE " + calendarView.getDate1());
+        LOG.info("resource bundle " + rb.getString("startResultDate"));
+
+        Date currentDate = calendarView.getDate1();
+
+        String startRegDateStr = rb.getString("startResultDate");
+        DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        Date startResShowDate = null;
+        try {
+            startResShowDate = format.parse(startRegDateStr);
+        } catch (ParseException e) {
+
+        }
+
+
+        if (currentDate.before(startResShowDate)){
+            showResult = false;
+        }
+        else{
+            showResult = true;
+        }
+
+        LOG.info("showResult " + showResult);
+
+    }
+
+    public void setShowResult(boolean showResult) {
+        this.showResult = showResult;
+    }
+
+    public CalendarView getCalendarView() {
+        return calendarView;
+    }
+
+    public void setCalendarView(CalendarView calendarView) {
+        this.calendarView = calendarView;
+    }
 }
 

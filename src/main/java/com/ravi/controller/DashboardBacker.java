@@ -78,6 +78,7 @@ private int countOfPanels;
     @ManagedProperty(value="#{VoteService}")
     @Autowired
     VoteService voteService;
+
     @ManagedProperty(value="#{calendarView}")
     @Autowired
     CalendarView calendarView;

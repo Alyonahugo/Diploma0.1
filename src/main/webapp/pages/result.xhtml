@@ -7,12 +7,10 @@
 	<ui:define name="metadata">
 	</ui:define>
 	<ui:define name="content">
-		<h3>DataModel</h3>
-
-
-		<p:accordionPanel value="#{winners.winnersList}" var="proj">
+		
+		<p:accordionPanel value="#{winners.winnersList}" var="proj" rendered="#{winners.showResult}">
 			<p:tab title="#{msg['place']} - #{winners.winnersList.indexOf(proj)+1} -  #{proj.name}">
-				<h:panelGrid columns="2" cellpadding="5">
+				<h:panelGrid columns="2" cellpadding="6">
 
 					<h:outputText value="#{msg['meta']}:" style="font-weight: bold" />
 					<h:outputText value="#{proj.meta}" />
