@@ -49,7 +49,7 @@ private int countOfPanels;
     private boolean employeeVote;
     private boolean isActualVoting;
     //TODO- GET EMP ID FROM SESSION
-    private int EMP_ID = 1;
+    private int EMP_ID = 3;
 
 
     @ManagedProperty(value="#{ProjectService}")

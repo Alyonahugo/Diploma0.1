@@ -53,6 +53,10 @@ public class ProjectBean implements Serializable {
     private boolean before;
     private boolean after;
 
+    private boolean checkDateApp;
+    private boolean beforeApp;
+    private boolean afterApp;
+
 
     @ManagedProperty(value="#{ProjectService}")
     @Autowired
@@ -128,6 +132,31 @@ public class ProjectBean implements Serializable {
         this.checkDate = checkDate;
     }
 
+    public boolean isBeforeApp() {
+        checkAppDates();
+        return beforeApp;
+    }
+
+    public void setBeforeApp(boolean beforeApp) {
+        this.beforeApp = beforeApp;
+    }
+
+    public boolean isCheckDateApp() {
+        return checkDateApp;
+    }
+
+    public void setCheckDateApp(boolean checkDateApp) {
+        this.checkDateApp = checkDateApp;
+    }
+
+    public boolean isAfterApp() {
+        return afterApp;
+    }
+
+    public void setAfterApp(boolean afterApp) {
+        this.afterApp = afterApp;
+    }
+
     public void addProjectTest() {
 
         //   if (checkOnlySpases(project)){
@@ -190,6 +219,7 @@ public class ProjectBean implements Serializable {
         projects = projectService.getProjects();
         approvedProjects = projectService.getApprovedProjects();
         checkDate();
+        checkAppDates();
         System.out.println("finish");
     }
 
@@ -238,8 +268,53 @@ public class ProjectBean implements Serializable {
                 before = false;
             }
         }
-        LOG.info("AFTER " + after + " befor " + before + " checkdate " + checkDate );
+        LOG.info("AFTER " + after + " befor " + before + " checkdate " + checkDate);
 
+    }
+
+    private void checkAppDates() {
+        Date currentDate = calendarView.getDate1();
+        String startRegDateStr = rb.getString("startApprovedDate");
+        DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        Date startRegDate = null;
+        try {
+            startRegDate = format.parse(startRegDateStr);
+        } catch (ParseException e) {
+
+        }
+
+        String endRegDateStr = rb.getString("endApprovedDate");
+        Date endRegDate = null;
+        try {
+            endRegDate = format.parse(endRegDateStr);
+        } catch (ParseException e) {
+
+        }
+
+        if (currentDate.before(startRegDate)){
+            beforeApp = true;
+            afterApp = false;
+            checkDateApp  = false;
+
+        }
+
+        else {
+            if (currentDate.before(endRegDate) || currentDate.equals(endRegDate)){
+                beforeApp = false;
+                afterApp = false;
+                checkDateApp = true;
+
+
+            }
+            else{
+
+                afterApp = true;
+                checkDateApp = false;
+                beforeApp = false;
+            }
+        }
+
+        LOG.info("AFTERApp  " + afterApp + " beforeApp " + beforeApp + " checkdateApp " + checkDateApp);
     }
 
 
