@@ -16,21 +16,21 @@ public interface CustomerDAO  {
      *
      * @param   customer   customer
      */
-    public void addCustomer(Customer customer);
+    void addCustomer(Customer customer);
  
     /**
      * Delete customer
      *
      * @param   customer  customer
      */
-    public void deleteCustomer(Customer customer);
+    void deleteCustomer(Customer customer);
  
     /**
      * Update customer
      *
      * @param  customer customer 
      */
-    public void updateCustomer(Customer customer);
+    void updateCustomer(Customer customer);
  
     /**
      * Get customer
@@ -38,15 +38,15 @@ public interface CustomerDAO  {
      * @param  id int  
      * @return customer
      */
-   
-	public Customer getCustomerById(int id);
+
+    Customer getCustomerById(int id);
  
     /**
      * Get customer List
      *
      * @return List - customer list
      */
-   
-	public List<Customer> getCustomers();
+
+    List<Customer> getCustomers();
  
 }

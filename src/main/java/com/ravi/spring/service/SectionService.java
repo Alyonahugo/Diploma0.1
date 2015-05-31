@@ -9,14 +9,14 @@ import java.util.List;
  * Created by User on 27.05.2015.
  */
 public interface SectionService {
-    public void addSection(Section section);
+    void addSection(Section section);
 
-    public List<Section> getSections();
+    List<Section> getSections();
 
-    public void updateSection(Section section);
+    void updateSection(Section section);
 
-    public void updateSections(List<Section> sections);
+    void updateSections(List<Section> sections);
 
-    public List<Section> getApprovedSections();
+    List<Section> getApprovedSections();
 
 }

@@ -26,7 +26,7 @@ public class Schulze<T> {
 	 * Represents internal phase of voting
 	 */
 	private enum Phase {
-		REGISTERING_CANDIDATES, VOTING, VOTING_CLOSED;
+		REGISTERING_CANDIDATES, VOTING, VOTING_CLOSED
 	}
 
 	/**

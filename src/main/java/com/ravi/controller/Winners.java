@@ -234,12 +234,7 @@ private static Logger LOG = Logger.getLogger(OrderListView.class.getName());
         }
 
 
-        if (currentDate.before(startResShowDate)){
-            showResult = false;
-        }
-        else{
-            showResult = true;
-        }
+        showResult = !currentDate.before(startResShowDate);
 
         LOG.info("showResult " + showResult);
 

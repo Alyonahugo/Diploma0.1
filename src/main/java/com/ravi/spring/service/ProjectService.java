@@ -9,19 +9,19 @@ import java.util.List;
  */
 public interface ProjectService {
 
-    public void addProject(Project project);
+    void addProject(Project project);
 
-    public List<Project> getProjects();
+    List<Project> getProjects();
 
-    public void updateProject(Project project);
+    void updateProject(Project project);
 
-    public void updateProjectS(List<Project> projects);
+    void updateProjectS(List<Project> projects);
 
-    public List<Project> getApprovedProjects();
+    List<Project> getApprovedProjects();
 
-    public  List<Project> getProjectByName(String name);
+    List<Project> getProjectByName(String name);
 
-    public void delete(Project project);
+    void delete(Project project);
 
     List<Project> getProjectByEmpId(int emp_id);
 }

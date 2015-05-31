@@ -165,7 +165,7 @@ public synchronized Dashboard getDashboard() {
 
 
     public void setDashboard(Dashboard dashboard) {
-        this.dashboard = dashboard;
+        DashboardBacker.dashboard = dashboard;
         }
 
 public int getColumnCount() {

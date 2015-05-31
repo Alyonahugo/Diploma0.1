@@ -11,19 +11,19 @@ import java.util.List;
  */
 public interface VoteDAO {
 
-    public void addVote(Vote vote);
+    void addVote(Vote vote);
 
 
-    public void deleteVote(Vote vote);
+    void deleteVote(Vote vote);
 
 
-    public void updateVote(Vote vote);
+    void updateVote(Vote vote);
 
 
-    public Vote getVoteById(int id);
+    Vote getVoteById(int id);
 
 
-    public List<Vote> getVotes();
+    List<Vote> getVotes();
 
 
     boolean getVoteByEmpId(int emp_id);

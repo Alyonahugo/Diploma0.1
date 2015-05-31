@@ -214,10 +214,7 @@ public class ProjectBean implements Serializable {
         if (project.getDescription().trim().length() == 0){
             return true;
         }
-        if (project.getManager().trim().length() == 0){
-            return true;
-        }
-        return false;
+        return project.getManager().trim().length() == 0;
     }
 
     @PostConstruct
@@ -480,13 +477,7 @@ public class ProjectBean implements Serializable {
 
         }
 
-        if ((currentDate.after(startRegDate) && currentDate.before(endRegDate)) || currentDate.equals(startRegDate) || currentDate.equals(endRegDate)){
-            canEditMyProject = true;
-
-        }
-        else{
-            canEditMyProject = false;
-        }
+        canEditMyProject = (currentDate.after(startRegDate) && currentDate.before(endRegDate)) || currentDate.equals(startRegDate) || currentDate.equals(endRegDate);
         LOG.info("canEditMyProject " + canEditMyProject);
 
     }

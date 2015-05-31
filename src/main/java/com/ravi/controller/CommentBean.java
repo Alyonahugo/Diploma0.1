@@ -151,10 +151,7 @@ public class CommentBean implements Serializable {
         if (comment.trim().length() == 0){
             return true;
         }
-        if (topicName.trim().length() == 0){
-            return true;
-        }
-        return false;
+        return topicName.trim().length() == 0;
     }
 
 

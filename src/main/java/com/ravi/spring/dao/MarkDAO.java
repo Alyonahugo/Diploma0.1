@@ -9,13 +9,13 @@ import java.util.List;
  */
 public interface MarkDAO {
 
-    public void addMark(Mark mark);
+    void addMark(Mark mark);
 
-    public List<Mark> getMarks();
+    List<Mark> getMarks();
 
-    public void updateMark(Mark mark);
+    void updateMark(Mark mark);
 
-    public void updateMarks(List<Mark> Marks);
+    void updateMarks(List<Mark> Marks);
 
-    public List<Mark> getApprovedMarks();
+    List<Mark> getApprovedMarks();
 }

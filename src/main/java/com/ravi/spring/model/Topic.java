@@ -22,10 +22,10 @@ public class Topic {
     @Column(name = "name")
 
     private String name;
-/*
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "topic")
     private Set<Comment> commentRecords = new HashSet<Comment>(0);
-*/
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sec_id", nullable = false)
     private Section section;
@@ -46,14 +46,14 @@ public class Topic {
     public void setName(String name) {
         this.name = name;
     }
-/*
+
     public Set<Comment> getCommentRecords() {
         return commentRecords;
     }
 
     public void setCommentRecords(Set<Comment> commentRecords) {
         this.commentRecords = commentRecords;
-    }*/
+    }
 
     public Section getSection() {
         return section;

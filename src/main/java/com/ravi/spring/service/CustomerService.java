@@ -18,21 +18,21 @@ public interface CustomerService {
      *
      * @param  customer Customer
      */
-    public void addCustomer(Customer customer);
+    void addCustomer(Customer customer);
  
     /**
      * Delete Customer
      *
      * @param   customer  Customer
      */
-    public void deleteCustomer(Customer customer);
+    void deleteCustomer(Customer customer);
  
     /**
      * Update Customer
      *
      * @param customer  Customer
      */
-    public void updateCustomer(Customer customer);
+    void updateCustomer(Customer customer);
  
     /**
      * Get Customer
@@ -40,26 +40,26 @@ public interface CustomerService {
      * @param  id int Customer Id
      */
 
-    public Customer getCustomerById(int id);
+    Customer getCustomerById(int id);
  
     /**
      * Get Customer List
      *
      */
 
-    public List<Customer> getCustomers();
+    List<Customer> getCustomers();
  
     /**
      * Get Customer DAO
      *
      * @return customerDAO - Customer DAO
      */
-    public CustomerDAO getCustomerDAO();
+    CustomerDAO getCustomerDAO();
  
     /**
      * Set Customer DAO
      *
      * @param  customerDAO - CustomerDAO
      */
-    public void setCustomerDAO(CustomerDAO customerDAO);
+    void setCustomerDAO(CustomerDAO customerDAO);
 }

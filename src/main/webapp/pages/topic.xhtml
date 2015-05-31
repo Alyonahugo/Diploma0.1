@@ -11,10 +11,10 @@
         <h:form>
             <p:breadCrumb>
                 <p:menuitem value="Home" url="/welcom.xhtml" />
-                <p:menuitem value="Section" url="/pages/forum1.xhtml" />
+                <p:menuitem value="Section" url="/pages/section.xhtml" />
             </p:breadCrumb>
 
-            <p:dataTable id="basicDT" var="car" value="#{topicBean.topics}">
+            <p:dataTable id="basicDT" var="car" value="#{topicBean.topics}" style=" width: 100%">
                 <f:facet name="header">
                     "#{msg['topics']}"
                 </f:facet>

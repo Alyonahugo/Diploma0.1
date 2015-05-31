@@ -22,7 +22,7 @@ import schulze.config.AdvancedConfiguration;
 class BallotProcessor<T> {
 
 	private enum BallotOperation {
-		ADD, REMOVE;
+		ADD, REMOVE
 	}
 
 	private final AdvancedConfiguration configuration;

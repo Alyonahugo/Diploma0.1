@@ -11,13 +11,13 @@ import java.util.List;
 public interface TopicDAO {
 
 
-    public void addTopic(Topic topic);
+    void addTopic(Topic topic);
 
-    public List<Topic> getTopics();
+    List<Topic> getTopics();
 
-    public void updateTopic(Topic topic);
+    void updateTopic(Topic topic);
 
-    public void updateTopics(List<Topic> topics);
+    void updateTopics(List<Topic> topics);
 
 
     List<Topic> getTopicsBySecId(int id);

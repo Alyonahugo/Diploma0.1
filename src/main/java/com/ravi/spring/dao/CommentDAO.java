@@ -9,13 +9,13 @@ import java.util.List;
  */
 public interface CommentDAO {
 
-    public void addComment(Comment comment);
+    void addComment(Comment comment);
 
-    public List<Comment> getComments();
+    List<Comment> getComments();
 
-    public void updateComment(Comment comment);
+    void updateComment(Comment comment);
 
-    public void updateComments(List<Comment> comments);
+    void updateComments(List<Comment> comments);
 
 
 

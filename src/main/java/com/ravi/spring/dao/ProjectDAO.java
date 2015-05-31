@@ -11,21 +11,21 @@ import java.util.List;
  */
 public interface ProjectDAO {
 
-    public void addProject(Project project);
+    void addProject(Project project);
 
 
-    public void deleteProject(Project project);
+    void deleteProject(Project project);
 
 
-    public void updateProject(Project project);
+    void updateProject(Project project);
 
 
-    public Project getProjectById(int id);
+    Project getProjectById(int id);
 
 
-    public List<Project> getProjects();
+    List<Project> getProjects();
 
-    public List<Project> getProjectsByStatus(Status status);
+    List<Project> getProjectsByStatus(Status status);
 
     List<Project> getProjectByName(String name);
 

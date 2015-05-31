@@ -74,7 +74,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 		List<Customer> list = getSessionFactory().getCurrentSession()
 				.createQuery("from Customer  where id=?")
 				.setParameter(0, id).list();
-		return (Customer)list.get(0);
+		return list.get(0);
 	}
 
 	/**
