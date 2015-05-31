@@ -59,7 +59,7 @@ private int countOfPanels;
     private boolean employeeVote;
     private boolean isActualVoting;
     //TODO- GET EMP ID FROM SESSION
-    private int EMP_ID = 4;
+    private int EMP_ID = 5;
 
     private boolean checkDateVote;
     private boolean beforeVote;
@@ -299,7 +299,19 @@ public void setColumnCount(int columnCount) {
             DashboardColumn column = model.getColumn(0);
             column.addWidget(panel.getId());
             HtmlOutputText text = new HtmlOutputText();
-            text.setValue("Meta - " +project.getMeta() + "\n Description - " + project.getDescription());
+
+            StringBuilder builder =new StringBuilder();
+
+            builder.append("Meta - " +  project.getMeta()  + "</br>");
+            builder.append("Description - " + project.getDescription() + "</br>");
+            builder.append("Sphere - " + project.getSphere()  + "</br>");
+            builder.append("Manager - " +  project.getManager()  + "</br>");
+            builder.append("Team - " + project.getTeam()  + "</br>");
+            builder.append("Author - " +  project.getAuthor()  + "</br>");
+
+
+            text.setEscape(false);
+            text.setValue(builder.toString());
             countOfPanels++;
             panel.getChildren().add(text);
         }

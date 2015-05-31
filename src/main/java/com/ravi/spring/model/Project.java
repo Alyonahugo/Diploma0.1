@@ -43,7 +43,12 @@ public class Project implements Serializable {
     @Column(name = "manager")
     private String manager;
 
+    @Basic(optional = false)
+    @Column(name = "team")
     private String team;
+
+    @Basic(optional = false)
+    @Column(name = "autnor")
     private String author;
 
     @Basic(optional = false)
