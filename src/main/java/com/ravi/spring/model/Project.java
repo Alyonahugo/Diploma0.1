@@ -57,12 +57,12 @@ public class Project implements Serializable {
 
     private Integer place;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "project")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "project", cascade= {CascadeType.PERSIST, CascadeType.REMOVE})
     private Set<Mark> markRecords = new HashSet<Mark>(0);
 
 
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade= {CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinColumn(name = "empp_id", nullable = false)
     private Employee employee;
 

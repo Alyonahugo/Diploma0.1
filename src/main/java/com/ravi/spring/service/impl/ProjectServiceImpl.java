@@ -61,4 +61,15 @@ public class ProjectServiceImpl implements ProjectService {
         return projectDAO.getProjectByName(name);
     }
 
+    @Override
+    public void delete(Project project) {
+        projectDAO.deleteProject(project);
+    }
+
+    @Override
+    public List<Project> getProjectByEmpId(int emp_id) {
+        return projectDAO.getProjectByEmpId(emp_id) ;
+    }
+
+
 }

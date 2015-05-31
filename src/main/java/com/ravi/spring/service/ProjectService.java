@@ -20,4 +20,8 @@ public interface ProjectService {
     public List<Project> getApprovedProjects();
 
     public  List<Project> getProjectByName(String name);
+
+    public void delete(Project project);
+
+    List<Project> getProjectByEmpId(int emp_id);
 }

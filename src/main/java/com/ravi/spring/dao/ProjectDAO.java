@@ -28,4 +28,6 @@ public interface ProjectDAO {
     public List<Project> getProjectsByStatus(Status status);
 
     List<Project> getProjectByName(String name);
+
+    List<Project> getProjectByEmpId(int emp_id);
 }

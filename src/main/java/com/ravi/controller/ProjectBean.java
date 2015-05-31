@@ -17,8 +17,10 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import java.io.IOException;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -41,10 +43,13 @@ public class ProjectBean implements Serializable {
 
 
     private ResourceBundle rb = ResourceBundle.getBundle("data_settings", Locale.ENGLISH);
+    //TODO  get emp id from session
+    private  int EMP_ID = 1;
 
 
     private List<Project> projects;
     private List<Project> approvedProjects;
+    private List<Project> projectsForCurrentEmp;
 
     private Project project;
     private LazyDataModel<Project> lazyModel;
@@ -217,6 +222,7 @@ public class ProjectBean implements Serializable {
     public void init() {
         System.out.println("start");
         projects = projectService.getProjects();
+        projectsForCurrentEmp = projectService.getProjectByEmpId(EMP_ID);
         approvedProjects = projectService.getApprovedProjects();
         checkDate();
         checkAppDates();
@@ -322,16 +328,29 @@ public class ProjectBean implements Serializable {
         FacesMessage msg = new FacesMessage("Car Edited", new Integer(((Project) event.getObject()).getId()).toString());
 
         FacesContext.getCurrentInstance().addMessage(null, msg);
+        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+        try {
+            ec.redirect(ec.getRequestContextPath() + "/pages/myProjects.xhtml");
+        } catch (IOException e) {
+            LOG.warning("Can not redirect at on row edit");
+        }
     }
 
     public void onRowCancel(RowEditEvent event) {
         FacesMessage msg = new FacesMessage("Edit Cancelled", new Integer(((Project) event.getObject()).getId()).toString());
         FacesContext.getCurrentInstance().addMessage(null, msg);
+        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+        try {
+            ec.redirect(ec.getRequestContextPath() + "/pages/myProjects.xhtml");
+        } catch (IOException e) {
+            LOG.warning("cant redirect after on row Cancel");
+        }
     }
 
     public void onCellEdit(CellEditEvent event) {
         Object oldValue = event.getOldValue();
         Object newValue = event.getNewValue();
+        projectService.updateProjectS( projectsForCurrentEmp);
 
         if(newValue != null && !newValue.equals(oldValue)) {
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed", "Old: " + oldValue + ", New:" + newValue);
@@ -411,5 +430,22 @@ public class ProjectBean implements Serializable {
 
     public void setCalendarView(CalendarView calendarView) {
         this.calendarView = calendarView;
+    }
+
+    public void delete(Project project){
+        LOG.info("Project " + project + " was deleted");
+        projectService.delete(project);
+    }
+
+    public List<Project> getProjectsForCurrentEmp() {
+        if (projectsForCurrentEmp != null) {
+            projectService.updateProjectS(projectsForCurrentEmp);
+        }
+        projectsForCurrentEmp = projectService.getProjectByEmpId(EMP_ID);
+        return projectsForCurrentEmp;
+    }
+
+    public void setProjectsForCurrentEmp(List<Project> projectsForCurrentEmp) {
+        this.projectsForCurrentEmp = projectsForCurrentEmp;
     }
 }

@@ -36,7 +36,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 
     @Override
     public void deleteProject(Project project) {
-
+        sessionFactory.getCurrentSession().delete(project);
     }
 
     @Override
@@ -67,6 +67,14 @@ public class ProjectDAOImpl implements ProjectDAO {
         List<Project> list = getSessionFactory().getCurrentSession()
                 .createQuery("from Project  where name=?")
                 .setParameter(0, name).list();
+        return list;
+    }
+
+    @Override
+    public List<Project> getProjectByEmpId(int emp_id) {
+        List<Project> list = getSessionFactory().getCurrentSession()
+                .createQuery("from Project  where empp_id=?")
+                .setParameter(0, emp_id).list();
         return list;
     }
 

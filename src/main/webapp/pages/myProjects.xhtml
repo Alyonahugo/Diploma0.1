@@ -1,0 +1,62 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/templates/template.xhtml">
+    <ui:define name="metadata">
+    </ui:define>
+
+    <ui:define name="content">
+
+
+        <h:form id="form">
+            <p:growl id="msgs" showDetail="true"/>
+
+
+            <p:dataTable id="cars1" var="proj" value="#{projectBean.projects}" editable="true" style="margin-bottom:20px">
+                <f:facet name="header">
+                    Row Editing
+                </f:facet>
+
+                <p:ajax event="rowEdit" listener="#{projectBean.onRowEdit}" update="@form" />
+                <p:ajax event="rowEditCancel" listener="#{projectBean.onRowCancel}" update="@form" />
+
+                <p:column headerText="Year">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{proj.name}" /></f:facet>
+                        <f:facet name="input"><p:inputText value="#{proj.name}" style="width:100%" label="Year"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column headerText="Year">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{proj.meta}" /></f:facet>
+                        <f:facet name="input"><p:inputText value="#{proj.meta}" style="width:100%" label="Year"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column headerText="Year">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{proj.description}" /></f:facet>
+                        <f:facet name="input"><p:inputText value="#{proj.description}" style="width:100%" label="Year"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column headerText="Year">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{proj.sphere}" /></f:facet>
+                        <f:facet name="input"><p:inputText value="#{proj.sphere}" style="width:100%" label="Year"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+
+                <p:column style="width:32px">
+                    <p:rowEditor />
+                </p:column>
+            </p:dataTable>
+
+</h:form>
+
+    </ui:define>
+</ui:composition>
