@@ -11,12 +11,17 @@
 		<h:body>
 				<p:growl id="msgs1" showDetail="true" />
 
-				<h:outputText value="#{msg['menu.decision']}" style="text-align: center"/>
-				<p:dashboard id="dynamic_dashboard" binding="#{dashboardBacker.dashboard}" style="padding: 0 33%"  >
+
+			<p:outputLabel rendered="#{dashboardBacker.employeeVote}" value="You voting is saved. Thank you for you chose"/>
+
+
+
+				<h:outputText value="#{msg['menu.decision']}" style="text-align: center" rendered="#{!dashboardBacker.employeeVote}"/>
+				<p:dashboard id="dynamic_dashboard" binding="#{dashboardBacker.dashboard}" style="padding: 0 33%"   rendered="#{!dashboardBacker.employeeVote}">
 					<p:ajax event="reorder" listener="#{dashboardBacker.handleReorder}" update="msgs1" />
 
 				</p:dashboard>
-				<p:commandButton value="#{msg['vote']}" id="nonAjax" actionListener="#{dashboardBacker.save}"  />
+				<p:commandButton value="#{msg['vote']}" id="nonAjax" actionListener="#{dashboardBacker.save}"  rendered="#{!dashboardBacker.employeeVote}" />
 
 
 

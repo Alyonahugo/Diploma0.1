@@ -25,7 +25,9 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.*;
 import javax.faces.component.UIComponent;
 import javax.faces.component.html.HtmlOutputText;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.*;
 
@@ -43,6 +45,8 @@ private int columnCount = DEFAULT_COLUMN_COUNT;
     private  Application application;
     private  static DashboardModel model;
 private int countOfPanels;
+    private boolean employeeVote = false;
+    private boolean isActualVoting;
 
 
     @ManagedProperty(value="#{ProjectService}")
@@ -66,6 +70,10 @@ private int countOfPanels;
 public DashboardBacker() {
         }
 
+    @PostConstruct
+    public void init(){
+        employeeVote = false;
+    }
 
 public synchronized Dashboard getDashboard() {
         if(dashboard == null) {
@@ -111,6 +119,21 @@ public void setColumnCount(int columnCount) {
         this.voteService = voteService;
     }
 
+    public boolean isActualVoting() {
+        return isActualVoting;
+    }
+
+    public void setIsActualVoting(boolean isActualVoting) {
+        this.isActualVoting = isActualVoting;
+    }
+
+    public boolean isEmployeeVote() {
+        return employeeVote;
+    }
+
+    public void setEmployeeVote(boolean employeeVote) {
+        this.employeeVote = employeeVote;
+    }
 
     public void handleReorder(DashboardReorderEvent event) {
         FacesMessage message = new FacesMessage();
@@ -134,6 +157,7 @@ public void setColumnCount(int columnCount) {
 
     private synchronized void initDashBoard(){
 
+
         fc = FacesContext.getCurrentInstance();
         application = fc.getApplication();
      //   approvedProjects = projectService.getApprovedProjects();
@@ -155,7 +179,7 @@ public void setColumnCount(int columnCount) {
 
     private void createMapAppProj(){
         for (Project project : approvedProj){
-            mapAppProj.put("project_" + project.getName(), project);
+            mapAppProj.put("project_" +  createName(project.getName()), project);
         }
     }
 
@@ -201,9 +225,16 @@ public void setColumnCount(int columnCount) {
 
 
         }
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "You voting is saved", "Thank you for you chose");
 
-        RequestContext.getCurrentInstance().showMessageInDialog(message);
+        employeeVote = true;
+
+        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+        try {
+            ec.redirect(ec.getRequestContextPath() + "/pages/vote.xhtml");
+        } catch (IOException e) {
+
+        }
+
     }
 }
 
