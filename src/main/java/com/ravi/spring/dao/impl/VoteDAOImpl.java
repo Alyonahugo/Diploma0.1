@@ -53,4 +53,12 @@ public class VoteDAOImpl implements VoteDAO{
                 .createQuery("from Vote").list();
         return list;
     }
+
+    @Override
+    public boolean getVoteByEmpId(int emp_id) {
+        List<Vote> list = getSessionFactory().getCurrentSession()
+                .createQuery("from Vote where empp_id = ?").setParameter(0, emp_id).list();
+       return list.size() == 1 ? true : false;
+
+    }
 }

@@ -24,4 +24,5 @@ public interface VoteService {
 
     public List<Vote> getVotes();
 
+    boolean getVoteByEmpId(int emp_id);
 }

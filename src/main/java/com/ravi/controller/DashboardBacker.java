@@ -1,5 +1,6 @@
 package com.ravi.controller;
 
+import com.ravi.spring.model.Employee;
 import com.ravi.spring.model.Mark;
 import com.ravi.spring.model.Project;
 import com.ravi.spring.model.Vote;
@@ -45,8 +46,10 @@ private int columnCount = DEFAULT_COLUMN_COUNT;
     private  Application application;
     private  static DashboardModel model;
 private int countOfPanels;
-    private boolean employeeVote = false;
+    private boolean employeeVote;
     private boolean isActualVoting;
+    //TODO- GET EMP ID FROM SESSION
+    private int EMP_ID = 1;
 
 
     @ManagedProperty(value="#{ProjectService}")
@@ -72,7 +75,9 @@ public DashboardBacker() {
 
     @PostConstruct
     public void init(){
-        employeeVote = false;
+        //TODO -get emp id from session
+        int emp_id = EMP_ID;
+        employeeVote = voteService.getVoteByEmpId(emp_id);
     }
 
 public synchronized Dashboard getDashboard() {
@@ -217,6 +222,10 @@ public void setColumnCount(int columnCount) {
         createMapAppProj();
         System.out.println("i am working");
         Vote vote = new Vote();
+        Employee employee = new Employee();
+        //TODO - get employee from sesion
+        employee.setId(EMP_ID);
+        vote.setEmployee(employee);
         voteService.addVote(vote);
         for( int i = 0; i < items; i++ ) {
             Mark mark = new Mark(mapAppProj.get(model.getColumn(0).getWidgets().get(i)), i+1, vote);

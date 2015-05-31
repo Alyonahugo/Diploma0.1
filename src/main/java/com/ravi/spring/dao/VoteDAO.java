@@ -26,4 +26,5 @@ public interface VoteDAO {
     public List<Vote> getVotes();
 
 
+    boolean getVoteByEmpId(int emp_id);
 }

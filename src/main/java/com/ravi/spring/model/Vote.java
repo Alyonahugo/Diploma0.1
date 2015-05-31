@@ -23,6 +23,11 @@ public class Vote implements Serializable {
     private Set<Mark> marksRecords = new LinkedHashSet<Mark>(0);
 
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "empp_id", nullable = false)
+    private Employee employee;
+
+
     public int getId() {
         return id;
     }
@@ -40,4 +45,11 @@ public class Vote implements Serializable {
         this.marksRecords = marksRecords;
     }
 
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
 }

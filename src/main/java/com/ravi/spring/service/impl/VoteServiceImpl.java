@@ -60,4 +60,11 @@ public class VoteServiceImpl implements VoteService {
     public List<Vote> getVotes() {
         return voteDAO.getVotes();
     }
+
+    @Override
+    public boolean getVoteByEmpId(int emp_id) {
+        return voteDAO.getVoteByEmpId(emp_id);
+    }
+
+
 }

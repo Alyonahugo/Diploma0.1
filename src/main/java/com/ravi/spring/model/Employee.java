@@ -29,6 +29,9 @@ public class Employee {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
     private Set<Project> projectSet = new LinkedHashSet<Project>(0);
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
+    private Set<Vote> voteSet = new LinkedHashSet<Vote>(0);
+
     public int getId() {
         return id;
     }
