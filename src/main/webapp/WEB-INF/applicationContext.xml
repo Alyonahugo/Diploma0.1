@@ -36,6 +36,7 @@ http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
                 <value>com.ravi.spring.model.Mark</value>
                 <value>com.ravi.spring.model.Vote</value>
                 <value>com.ravi.spring.model.Employee</value>
+                <value>com.ravi.spring.model.Section</value>
             </list>
         </property>
 		<property name="hibernateProperties">
