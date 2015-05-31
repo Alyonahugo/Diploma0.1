@@ -1,14 +1,13 @@
 package com.ravi.controller;
 
-import com.ravi.spring.model.Comment;
-import com.ravi.spring.model.Employee;
-import com.ravi.spring.model.Section;
-import com.ravi.spring.model.Topic;
+import com.ravi.spring.model.*;
 import com.ravi.spring.service.CommentService;
 import com.ravi.spring.service.SectionService;
 import com.ravi.spring.service.TopicService;
+import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
@@ -111,20 +110,38 @@ public class CommentBean implements Serializable {
 
     public  void addTopic( int secId){
 
-        Employee employee = new Employee();
-        employee.setName("test");
-     //   employeeService.addEmployee(employee);
+        if (checkOnlySpases()){
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Data is not comlated", "Please input text");
+            RequestContext.getCurrentInstance().showMessageInDialog(message);
+            LOG.info("only space was input into comment");
+        }else {
 
-        Section sec = new Section();
-        sec.setId(secId);
+            Employee employee = new Employee();
+            employee.setName("test");
+            //   employeeService.addEmployee(employee);
 
-        Topic t = new Topic();
-        t.setName(topicName);
-        t.setSection(sec);
-        topicService.addTopic(t);
-        setCommentIntoDB(t, employee);
-        LOG.info("method addTopic work" + topicName + " - " +  comment);
+            Section sec = new Section();
+            sec.setId(secId);
+
+            Topic t = new Topic();
+            t.setName(topicName);
+            t.setSection(sec);
+            topicService.addTopic(t);
+            setCommentIntoDB(t, employee);
+            LOG.info("method addTopic work" + topicName + " - " + comment);
+        }
     }
+
+    private boolean checkOnlySpases() {
+        if (comment.trim().length() == 0){
+            return true;
+        }
+        if (topicName.trim().length() == 0){
+            return true;
+        }
+        return false;
+    }
+
 
     private void setCommentIntoDB(Topic topic, Employee employee){
         Comment comment = new Comment();

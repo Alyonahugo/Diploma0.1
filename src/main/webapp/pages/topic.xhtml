@@ -16,7 +16,7 @@
 
             <p:dataTable id="basicDT" var="car" value="#{topicBean.topics}">
                 <f:facet name="header">
-                    Basic
+                    "#{msg['topics']}"
                 </f:facet>
                 <p:column headerText="Id">
                     <h:outputText value="#{car.id}" />
@@ -32,16 +32,33 @@
                 </p:column>
             </p:dataTable>
 
-            <h:outputLabel for="checked" value="#{msg['topicName']}" />
-            <p:inputText id="checked" value="#{commentBean.topicName}"   style=" padding: 10px; width:400px"/>
 
-            <h:outputLabel for="checked2" value="#{msg['commentName']}" />
-            <p:inputText id="checked2" value="#{commentBean.comment}"   style=" padding: 10px; width:400px"/>
+            <h:panelGrid columns="2" cellpadding="7" id = "panelGrd"  style=" padding: 10px; width:100%" >
 
-            <p:commandButton value="Ajax Submit" id="ajax"  action="#{commentBean.addTopic(topicBean.selectedSectionId)}" styleClass="ui-priority-primary" />
+            <h:outputLabel for="checked" value="#{msg['topicName']}"  style=" padding: 10px; " />
+            <p:inputText id="checked" value="#{commentBean.topicName}"   style=" padding: 10px; width:100%"
+                         validatorMessage="Topic name - please input english letters, digits only" rendered="true"
+                    requiredMessage="Topic name - this field is required">
+            <f:validateRegex pattern="^[a-zA-Z\s\d]+$" />
+            </p:inputText>
+
+                <h:outputText value="&#160;" />  <h:outputText value="&#160;" />
 
 
+            <h:outputLabel for="checked2" value="#{msg['commentName']}" style=" padding: 10px; "/>
+            <p:inputTextarea id="checked2" value="#{commentBean.comment}"   style=" padding: 10px;width:100%"
+                         validatorMessage="Comment name - please input english letters, digits only" required="true"
+                         requiredMessage="Comment name - this field is required">
+            <f:validateRegex pattern="^[a-zA-Z\s\d]+$" />
+            </p:inputTextarea>
 
+                <h:outputText value="&#160;" />  <h:outputText value="&#160;" />
+
+                <h:outputText value="&#160;" />
+            <p:commandButton value="#{msg['save']}" id="ajax"  action="#{commentBean.addTopic(topicBean.selectedSectionId)}" styleClass="ui-priority-primary" validateClient="true"/>
+
+
+</h:panelGrid>
         </h:form>
 
     </ui:define>
