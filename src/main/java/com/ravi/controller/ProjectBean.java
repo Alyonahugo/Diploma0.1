@@ -62,6 +62,8 @@ public class ProjectBean implements Serializable {
     private boolean beforeApp;
     private boolean afterApp;
 
+    private boolean canEditMyProject;
+
 
     @ManagedProperty(value="#{ProjectService}")
     @Autowired
@@ -350,7 +352,7 @@ public class ProjectBean implements Serializable {
     public void onCellEdit(CellEditEvent event) {
         Object oldValue = event.getOldValue();
         Object newValue = event.getNewValue();
-        projectService.updateProjectS( projectsForCurrentEmp);
+        projectService.updateProjectS(projectsForCurrentEmp);
 
         if(newValue != null && !newValue.equals(oldValue)) {
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed", "Old: " + oldValue + ", New:" + newValue);
@@ -447,5 +449,49 @@ public class ProjectBean implements Serializable {
 
     public void setProjectsForCurrentEmp(List<Project> projectsForCurrentEmp) {
         this.projectsForCurrentEmp = projectsForCurrentEmp;
+    }
+
+    public boolean isCanEditMyProject() {
+        checkCanEdit();
+        return canEditMyProject;
+    }
+
+    private void checkCanEdit() {
+
+        LOG.info(" GET CURENT DATE " + calendarView.getDate1());
+        LOG.info("resource bundle " + rb.getString("startRegDate"));
+
+        Date currentDate = calendarView.getDate1();
+
+        String startRegDateStr = rb.getString("startRegDate");
+        DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        Date startRegDate = null;
+        try {
+            startRegDate = format.parse(startRegDateStr);
+        } catch (ParseException e) {
+
+        }
+
+        String endRegDateStr = rb.getString("endRegDate");
+        Date endRegDate = null;
+        try {
+            endRegDate = format.parse(endRegDateStr);
+        } catch (ParseException e) {
+
+        }
+
+        if ((currentDate.after(startRegDate) && currentDate.before(endRegDate)) || currentDate.equals(startRegDate) || currentDate.equals(endRegDate)){
+            canEditMyProject = true;
+
+        }
+        else{
+            canEditMyProject = false;
+        }
+        LOG.info("canEditMyProject " + canEditMyProject);
+
+    }
+
+    public void setCanEditMyProject(boolean canEditMyProject) {
+        this.canEditMyProject = canEditMyProject;
     }
 }
