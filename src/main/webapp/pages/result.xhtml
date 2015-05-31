@@ -7,7 +7,7 @@
 	<ui:define name="metadata">
 	</ui:define>
 	<ui:define name="content">
-		
+
 		<p:accordionPanel value="#{winners.winnersList}" var="proj" rendered="#{winners.showResult}">
 			<p:tab title="#{msg['place']} - #{winners.winnersList.indexOf(proj)+1} -  #{proj.name}">
 				<h:panelGrid columns="2" cellpadding="6">
