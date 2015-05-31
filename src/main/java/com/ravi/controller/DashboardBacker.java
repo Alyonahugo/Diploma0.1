@@ -169,7 +169,7 @@ public void setColumnCount(int columnCount) {
         List<UIComponent> newPanel = new ArrayList<UIComponent>();
         for(Project project :  approvedProj ) {
             Panel panel = (Panel) application.createComponent(fc, "org.primefaces.component.Panel", "org.primefaces.component.PanelRenderer");
-            panel.setId("project_" + project.getName());
+            panel.setId("project_" + createName(project.getName()));
             panel.setHeader(project.getName());
             panel.setToggleable(true);
 
@@ -177,10 +177,15 @@ public void setColumnCount(int columnCount) {
             DashboardColumn column = model.getColumn(0);
             column.addWidget(panel.getId());
             HtmlOutputText text = new HtmlOutputText();
-            text.setValue(project.getDescription());
+            text.setValue("Meta - " +project.getMeta() + "\n Description - " + project.getDescription());
             countOfPanels++;
             panel.getChildren().add(text);
         }
+    }
+
+    private String createName(String name) {
+        String replaced = name.replace(' ', '_');
+        return replaced;
     }
 
     public void save(){

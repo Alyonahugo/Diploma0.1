@@ -15,6 +15,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
@@ -33,7 +34,7 @@ import java.util.logging.Logger;
  */
 
 @ManagedBean(name="projectBean")
-@RequestScoped
+@ViewScoped
 public class ProjectBean implements Serializable {
 
     private static Logger LOG = Logger.getLogger(ProjectBean.class.getName());
@@ -127,6 +128,14 @@ public class ProjectBean implements Serializable {
         this.checkDate = checkDate;
     }
 
+    public void addProjectTest() {
+
+        //   if (checkOnlySpases(project)){
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Data is not comlated", "Please input text");
+        RequestContext.getCurrentInstance().showMessageInDialog(message);
+        LOG.info("only space was input");
+    }
+
     public void addProject(Project project){
 
         if (checkOnlySpases(project)){
@@ -150,9 +159,11 @@ public class ProjectBean implements Serializable {
 
     private boolean checkExistName(Project project) {
 
-        if(projectService.getProjectByName(project.getName()) == null){
+        if(projectService.getProjectByName(project.getName()).size() < 1){
             return false;
         }
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "This name has already exist", "Please input another name");
+        RequestContext.getCurrentInstance().showMessageInDialog(message);
         LOG.info("this name has already exist");
         return true;
     }

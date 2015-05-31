@@ -10,7 +10,6 @@
 		<h:body>
 		<h:form id="form">
 
-			<p:growl id="msgs1" showDetail="true" 	visible="true"/>
 
 
 
@@ -92,14 +91,17 @@
 
 
 					<h:outputText value="&#160;" /><h:outputText value="&#160;" /><h:outputText value="&#160;" />
-					<h:outputText value="&#160;" />
 
 
-					<p:commandButton value="#{msg['save']}" ajax="false" icon="ui-icon-check" validateClient="true"
-									 action="#{projectBean.addProject(project)}" style="left: 312px;" >
+					<p:growl id="msgs2" showDetail="true" />
+
+					<p:commandButton value="#{msg['save']}"  icon="ui-icon-check" validateClient="true"
+									 actionListener="#{projectBean.addProject(project)}" style="left: 312px;" >
 					</p:commandButton>
 
+
 				</h:panelGrid>
+
 			</p:panel>
 		</h:form>
 		</h:body>

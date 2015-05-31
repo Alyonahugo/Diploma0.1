@@ -27,5 +27,5 @@ public interface ProjectDAO {
 
     public List<Project> getProjectsByStatus(Status status);
 
-    Project getProjectByName(String name);
+    List<Project> getProjectByName(String name);
 }

@@ -63,11 +63,11 @@ public class ProjectDAOImpl implements ProjectDAO {
     }
 
     @Override
-    public Project getProjectByName(String name) {
+    public  List<Project> getProjectByName(String name) {
         List<Project> list = getSessionFactory().getCurrentSession()
                 .createQuery("from Project  where name=?")
                 .setParameter(0, name).list();
-        return list.get(0);
+        return list;
     }
 
 
