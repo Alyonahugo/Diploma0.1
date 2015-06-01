@@ -22,6 +22,10 @@ public class Employee {
     @Basic(optional = false)
     @Column(name = "name")
     private String name;
+
+    @Basic(optional = false)
+    @Column(name = "password")
+    private String pass;
 /*
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
     private Set<Comment> commentRecords = new HashSet<Comment>(0);

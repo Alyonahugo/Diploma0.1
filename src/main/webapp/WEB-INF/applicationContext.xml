@@ -80,6 +80,12 @@ http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
     <bean id="commentService" class="com.ravi.spring.service.impl.CommentServiceImpl"/>
 
+    <bean id="authFilter" class="com.ravi.Utils.AuthFilter"/>
+
+    <bean id="loginBean" class="com.ravi.controller.LoginBean"/>
+
+
+
 
 
     <bean

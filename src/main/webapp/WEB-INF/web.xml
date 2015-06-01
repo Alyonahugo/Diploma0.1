@@ -32,7 +32,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 
     <!-- Welcome page -->
     <welcome-file-list>
-        <welcome-file>faces/welcome.xhtml</welcome-file>
+        <welcome-file>faces/login.xhtml</welcome-file>
     </welcome-file-list>
 
     <!-- JSF mapping -->
@@ -72,8 +72,14 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
     </context-param>
 
     <welcome-file-list>
-        <welcome-file>index.jsf</welcome-file>
+        <welcome-file>login.xhtml</welcome-file>
     </welcome-file-list>
+
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
 
     <!-- Prior to Servlet 3.0 define either an error-code or an exception-type but not both -->
     <error-page>
@@ -92,5 +98,16 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
     <error-page>
         <location>/error.xhtml</location>
     </error-page>
+
+    <filter>
+        <filter-name>authFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>authFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
 </web-app>
 

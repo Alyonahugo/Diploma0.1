@@ -65,7 +65,7 @@ public class SectionBean implements Serializable {
             try {
                 ec.redirect(ec.getRequestContextPath() + "/pages/section.xhtml");
             } catch (IOException e) {
-                e.printStackTrace();
+
             }
         }
 
