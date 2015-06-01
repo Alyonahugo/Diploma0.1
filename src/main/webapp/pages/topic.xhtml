@@ -30,7 +30,7 @@
             </p:dataTable>
 
 
-            <h:panelGrid columns="2" cellpadding="7" id = "panelGrd"  style=" padding: 10px; width:100%" >
+            <h:panelGrid columns="1" cellpadding="7" id = "panelGrd"  style=" padding: 10px; width:100%" >
 
             <h:outputLabel for="checked" value="#{msg['topicName']}*"  style=" padding: 10px;"/>
             <p:inputText id="checked" value="#{commentBean.topicName}"   style=" padding: 10px; width:100%"
@@ -38,7 +38,7 @@
             <f:validateRegex pattern="^[a-zA-Z\s\d]+$" />
             </p:inputText>
 
-                <h:outputText value="&#160;" />  <h:outputText value="&#160;" />
+                <h:outputText value="&#160;" />
 
 
             <h:outputLabel for="checked2" value="#{msg['commentName']}*" style=" padding: 10px;"/>
@@ -48,7 +48,7 @@
             <f:validateRegex pattern="^[a-zA-Z\s\d]+$" />
             </p:inputTextarea>
 
-                <h:outputText value="&#160;" />  <h:outputText value="&#160;" />
+
 
                 <h:outputText value="&#160;" />
             <p:commandButton value="#{msg['save']}" id="ajax"  action="#{commentBean.addTopic(topicBean.selectedSectionId)}" styleClass="ui-priority-primary" validateClient="true"/>

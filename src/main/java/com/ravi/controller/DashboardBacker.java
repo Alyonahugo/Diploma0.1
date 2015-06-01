@@ -58,8 +58,7 @@ private int columnCount = DEFAULT_COLUMN_COUNT;
 private int countOfPanels;
     private boolean employeeVote;
     private boolean isActualVoting;
-    //TODO- GET EMP ID FROM SESSION
-    private int EMP_ID = 5;
+
 
     private boolean checkDateVote;
     private boolean beforeVote;
@@ -203,7 +202,7 @@ public void setColumnCount(int columnCount) {
     }
 
     public boolean isEmployeeVote() {
-        EMP_ID =  loginBean.getEmployee().getId();
+        int EMP_ID =  loginBean.getEmployee().getId();
         employeeVote = voteService.getVoteByEmpId(EMP_ID);
         return employeeVote;
     }
@@ -331,10 +330,7 @@ public void setColumnCount(int columnCount) {
         createMapAppProj();
         System.out.println("i am working");
         Vote vote = new Vote();
-        Employee employee = new Employee();
-        //TODO - get employee from sesion
-        employee.setId(EMP_ID);
-        vote.setEmployee(employee);
+        vote.setEmployee(loginBean.getEmployee());
         voteService.addVote(vote);
         for( int i = 0; i < items; i++ ) {
             Mark mark = new Mark(mapAppProj.get(model.getColumn(0).getWidgets().get(i)), i+1, vote);
@@ -353,6 +349,14 @@ public void setColumnCount(int columnCount) {
 
         }
 
+    }
+
+    public LoginBean getLoginBean() {
+        return loginBean;
+    }
+
+    public void setLoginBean(LoginBean loginBean) {
+        this.loginBean = loginBean;
     }
 }
 

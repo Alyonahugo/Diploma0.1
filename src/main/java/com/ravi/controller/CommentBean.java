@@ -8,10 +8,7 @@ import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.*;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
@@ -23,7 +20,7 @@ import java.util.logging.Logger;
  * Created by User on 27.05.2015.
  */
 @ManagedBean(name="commentBean")
-
+@ViewScoped
 public class CommentBean implements Serializable {
 
     private static Logger LOG = Logger.getLogger(CommentBean.class.getName());
@@ -40,15 +37,14 @@ public class CommentBean implements Serializable {
     @Autowired
     @ManagedProperty(value="#{topicService}")
     private TopicService topicService;
-/*
+
     @Autowired
-    @ManagedProperty(value="#{employeeService}")
-    private EmployeeService employeeService;
-*/
+    @ManagedProperty(value="#{loginBean}")
+    LoginBean loginBean;
+
     private  String comment;
     private String topicName;
-    //TODO - get emp id from session
-    private int EMP_ID = 1;
+
 
     public String getComment() {
         return comment;
@@ -81,21 +77,21 @@ public class CommentBean implements Serializable {
     public void setTopicService(TopicService topicService) {
         this.topicService = topicService;
     }
-/*
-    public EmployeeService getEmployeeService() {
-        return employeeService;
-    }
 
-    public void setEmployeeService(EmployeeService employeeService) {
-        this.employeeService = employeeService;
-    }
-*/
     public String getTopicName() {
         return topicName;
     }
 
     public void setTopicName(String topicName) {
         this.topicName = topicName;
+    }
+
+    public LoginBean getLoginBean() {
+        return loginBean;
+    }
+
+    public void setLoginBean(LoginBean loginBean) {
+        this.loginBean = loginBean;
     }
 
     public  void addComment( int topic){
@@ -110,11 +106,10 @@ public class CommentBean implements Serializable {
             LOG.info("addComment method work");
 
 
-            Employee employee = new Employee();
-            employee.setId(EMP_ID);
+
             Topic t = new Topic();
             t.setId(topic);
-            setCommentIntoDB(t, employee);
+            setCommentIntoDB(t, loginBean.getEmployee());
             System.out.println("method add comment work" + comment);
 
             ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
@@ -140,9 +135,6 @@ public class CommentBean implements Serializable {
             LOG.info("only space was input into comment");
         }else {
 
-            Employee employee = new Employee();
-            employee.setId(EMP_ID);
-            //   employeeService.addEmployee(employee);
 
             Section sec = new Section();
             sec.setId(secId);
@@ -151,7 +143,7 @@ public class CommentBean implements Serializable {
             t.setName(topicName);
             t.setSection(sec);
             topicService.addTopic(t);
-            setCommentIntoDB(t, employee);
+            setCommentIntoDB(t, loginBean.getEmployee());
             LOG.info("method addTopic work" + topicName + " - " + comment);
 
 
@@ -182,4 +174,5 @@ public class CommentBean implements Serializable {
         comment.setEmployee(employee);
         commentService.addComment(comment);
     }
+
 }
