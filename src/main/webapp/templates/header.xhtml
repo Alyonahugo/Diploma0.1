@@ -30,12 +30,19 @@
   font-size: 18px;
   line-height: 20px; " />
 
-				<a href="/pages/section.xhtml" style="  position: absolute;
+				<h:outputText value="#{loginBean.uname}" style="  position: absolute;
+  right: 7%;
+  padding: 15px 15px;
+  font-size: 18px;
+  color: white;
+  font-weight: bold;" />
+
+				<h:commandLink value="#{msg['menu.logOut']}" action="#{loginBean.logout}" style="  position: absolute;
   right: 0;
   padding: 15px 15px;
   font-size: 18px;
   color: white;
-  font-weight: bold;">#{msg['menu.logOut']}</a>
+  font-weight: bold;"/>
 			</div>
 			<div style="background: #1f73a3;" class="tabs  navbar-inverse">
 

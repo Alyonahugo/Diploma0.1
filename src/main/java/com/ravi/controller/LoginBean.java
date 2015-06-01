@@ -40,6 +40,7 @@ public class LoginBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private String password;
     private String message, uname;
+    private Employee employee;
 
     public String getMessage() {
         return message;
@@ -68,8 +69,8 @@ public class LoginBean implements Serializable {
     public void loginProject(ActionEvent event) {
         boolean result;
         LOG.info("try logind with login " + uname  + " and password " + password);
-        Employee emp = employeeService.getEmployeeByLoginPassword(uname, password);
-                if ( emp == null){
+        employee = employeeService.getEmployeeByLoginPassword(uname, password);
+                if ( employee == null){
                     result = false;}
         else{
             result = true;
@@ -79,7 +80,7 @@ public class LoginBean implements Serializable {
             // get Http Session and store username
             HttpSession session = Util.getSession();
             session.setAttribute("username", uname);
-            session.setAttribute("empId",  emp.getId());
+            session.setAttribute("empId",  employee.getId());
 
             ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
             try {
@@ -107,6 +108,20 @@ public class LoginBean implements Serializable {
     public String logout() {
         HttpSession session = Util.getSession();
         session.invalidate();
+        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+        try {
+            ec.redirect(ec.getRequestContextPath() + "/login.xhtml");
+        } catch (IOException e) {
+
+        }
         return "login";
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 }

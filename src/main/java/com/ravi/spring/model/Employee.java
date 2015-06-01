@@ -69,4 +69,8 @@ public class Employee {
         this.projectSet = projectSet;
     }
 
+    @Override
+    public String toString() {
+        return  name ;
+    }
 }

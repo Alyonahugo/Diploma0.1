@@ -47,9 +47,6 @@ public class Project implements Serializable {
     @Column(name = "team")
     private String team;
 
-    @Basic(optional = false)
-    @Column(name = "autnor")
-    private String author;
 
     @Basic(optional = false)
     @Column(name = "status")
@@ -116,13 +113,6 @@ public class Project implements Serializable {
         this.team = team;
     }
 
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
 
     public Status getStatus() {
         return status;
@@ -190,7 +180,6 @@ public class Project implements Serializable {
                 ", sphere=" + sphere +
                 ", manager='" + manager + '\'' +
                 ", team='" + team + '\'' +
-                ", author='" + author + '\'' +
                 ", status=" + status +
                 ", place=" + place +
                 '}';
@@ -210,7 +199,6 @@ public class Project implements Serializable {
         if (sphere != project.sphere) return false;
         if (manager != null ? !manager.equals(project.manager) : project.manager != null) return false;
         if (team != null ? !team.equals(project.team) : project.team != null) return false;
-        if (author != null ? !author.equals(project.author) : project.author != null) return false;
         if (status != project.status) return false;
         return !(place != null ? !place.equals(project.place) : project.place != null);
 
@@ -225,7 +213,6 @@ public class Project implements Serializable {
         result = 31 * result + (sphere != null ? sphere.hashCode() : 0);
         result = 31 * result + (manager != null ? manager.hashCode() : 0);
         result = 31 * result + (team != null ? team.hashCode() : 0);
-        result = 31 * result + (author != null ? author.hashCode() : 0);
         result = 31 * result + (status != null ? status.hashCode() : 0);
         result = 31 * result + (place != null ? place.hashCode() : 0);
         return result;

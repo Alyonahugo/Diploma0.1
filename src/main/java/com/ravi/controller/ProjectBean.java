@@ -43,8 +43,8 @@ public class ProjectBean implements Serializable {
 
 
     private ResourceBundle rb = ResourceBundle.getBundle("data_settings", Locale.ENGLISH);
-    //TODO  get emp id from session
-    private  int EMP_ID = 1;
+
+    private  int EMP_ID = -1;
 
 
     private List<Project> projects;
@@ -72,6 +72,9 @@ public class ProjectBean implements Serializable {
     @ManagedProperty(value="#{calendarView}")
     @Autowired
     CalendarView calendarView;
+
+    @Autowired
+    LoginBean loginBean;
 
 
 
@@ -182,9 +185,7 @@ public class ProjectBean implements Serializable {
         else {
             if (!checkExistName(project)){
                 project.setStatus(Status.NOT_APPROVED);
-                Employee employee = new Employee();
-                employee.setId(1);
-                project.setEmployee(employee);
+                project.setEmployee(loginBean.getEmployee());
                 LOG.info(project.showDetails());
                 projectService.addProject(project);
                 projects = projectService.getProjects();
@@ -221,8 +222,7 @@ public class ProjectBean implements Serializable {
     public void init() {
         System.out.println("start");
         projects = projectService.getProjects();
-        projectsForCurrentEmp = projectService.getProjectByEmpId(EMP_ID);
-        approvedProjects = projectService.getApprovedProjects();
+         approvedProjects = projectService.getApprovedProjects();
         checkDate();
         checkAppDates();
         System.out.println("finish");
@@ -437,7 +437,9 @@ public class ProjectBean implements Serializable {
     }
 
     public List<Project> getProjectsForCurrentEmp() {
-        if (projectsForCurrentEmp != null) {
+        EMP_ID = loginBean.getEmployee().getId();
+       if (projectsForCurrentEmp != null) {
+
             projectService.updateProjectS(projectsForCurrentEmp);
         }
         projectsForCurrentEmp = projectService.getProjectByEmpId(EMP_ID);
@@ -484,5 +486,13 @@ public class ProjectBean implements Serializable {
 
     public void setCanEditMyProject(boolean canEditMyProject) {
         this.canEditMyProject = canEditMyProject;
+    }
+
+    public LoginBean getLoginBean() {
+        return loginBean;
+    }
+
+    public void setLoginBean(LoginBean loginBean) {
+        this.loginBean = loginBean;
     }
 }

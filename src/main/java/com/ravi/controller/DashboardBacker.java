@@ -83,6 +83,9 @@ private int countOfPanels;
     @Autowired
     CalendarView calendarView;
 
+    @Autowired
+    LoginBean loginBean;
+
 
     private  Set<Project> approvedProj = new HashSet<Project>();
     private Map<String, Project> mapAppProj = new HashMap<String, Project>();
@@ -95,9 +98,7 @@ public DashboardBacker() {
     @PostConstruct
     public void init(){
         //TODO -get emp id from session
-        int emp_id = EMP_ID;
-        employeeVote = voteService.getVoteByEmpId(emp_id);
-        checkDate();
+
     }
 
     private void checkDate(){
@@ -202,6 +203,8 @@ public void setColumnCount(int columnCount) {
     }
 
     public boolean isEmployeeVote() {
+        EMP_ID =  loginBean.getEmployee().getId();
+        employeeVote = voteService.getVoteByEmpId(EMP_ID);
         return employeeVote;
     }
 
@@ -308,7 +311,7 @@ public void setColumnCount(int columnCount) {
             builder.append("Sphere - " + project.getSphere()  + "</br>");
             builder.append("Manager - " +  project.getManager()  + "</br>");
             builder.append("Team - " + project.getTeam()  + "</br>");
-            builder.append("Author - " +  project.getAuthor()  + "</br>");
+            builder.append("Author - " +  project.getEmployee()  + "</br>");
 
 
             text.setEscape(false);
