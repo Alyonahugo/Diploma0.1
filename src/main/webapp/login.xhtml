@@ -10,41 +10,46 @@
         <h:body>
             <h:form id="form">
 
-                <p:panel header="#{msg['createProject']}" id="panel" >
 
-                    <h:panelGrid columns="3" cellpadding="7" id = "panelGrd">
+
+                <p:graphicImage name="/images/login.png" style="position: absolute; left: 0;  width: 70%; height: 100%;   top: 0;" />
+
+              <h2>  <h:outputText value="#{msg['MyCompany']}" style="text-align: center; position: absolute; right: 0; top : 20% ;  width: 30%;   font-weight: bold; color: #1f73a3;"/>
+</h2>
+                <p:panel id="panel" style="position: absolute; right: 0; top : 30% ;  width: 30%;" >
+
+
+                    <h:panelGrid columns="2" cellpadding="7" id = "panelGrd">
                         <h:outputLabel for="name" value="#{msg['name']}*" style="width:100px"/>
 
-                        <p:inputText id="name" value="#{loginBean.uname}" label="#{msg['name']}"  style=" padding: 10px; width:400px"
-                                     validatorMessage="Name - please input english letters, digits only"
-                                     required="true">
-                            <f:validateRegex pattern="^[a-zA-Z\s\d]+$" />
+                        <p:inputText id="name" value="#{loginBean.uname}" label="#{msg['name']}"  style=" padding: 10px; width:250px"
+                                 >
                         </p:inputText>
-                        <p:message for="name" display="icon" />
 
 
-                        <h:outputText value="&#160;" /><h:outputText value="&#160;" /><h:outputText value="&#160;" />
+                        <h:outputText value="&#160;" /><h:outputText value="&#160;" />
 
                         <h:outputLabel for="meta" value="#{msg['meta']}*" />
-                        <p:inputText id="meta" value="#{loginBean.password}" label="#{msg['meta']}"  style=" padding: 10px; width:400px"
-                                     validatorMessage="Meta - please input english letters, digits only"
-                                     required="true">
-                            <f:validateRegex pattern="^[a-zA-Z\s\d]+$" />
-                        </p:inputText>
-                        <p:message for="meta" display="icon" />
+                        <p:inputText id="meta" value="#{loginBean.password}" label="#{msg['meta']}"  style=" padding: 10px; width:250px"
+                                     >
 
-                        <h:outputText value="&#160;" /><h:outputText value="&#160;" /><h:outputText value="&#160;" />
+                        </p:inputText>
+
+                        <h:outputText value="&#160;" /><h:outputText value="&#160;" />
+
 
                         <p:growl id="msgs2" showDetail="true" />
 
                         <p:commandButton value="#{msg['login']}"  icon="ui-icon-check" validateClient="true"
-                                         actionListener="#{loginBean.loginProject}" style="left: 312px;" >
+                                         actionListener="#{loginBean.loginProject}"  >
                         </p:commandButton>
 
 
                     </h:panelGrid>
+                       </p:panel>
+                <h:outputText value="#{msg['foggotPass']}" style="text-align: left; position: absolute; right: 0; top: 70% ; width: 30%;   padding-left: 35px;"/>
 
-                </p:panel>
+
             </h:form>
         </h:body>
     </ui:define>
