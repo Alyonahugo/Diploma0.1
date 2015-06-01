@@ -16,7 +16,7 @@
 
             <p:dataTable id="basicDT" var="car" value="#{topicBean.topics}" style=" width: 100%">
                 <f:facet name="header">
-                    "#{msg['topics']}"
+                    #{msg['topics']}
                 </f:facet>
                 <p:column headerText="Id">
                     <h:outputText value="#{car.id}" />
