@@ -100,17 +100,36 @@ public class CommentBean implements Serializable {
 
     public  void addComment( int topic){
 
-        LOG.info("addComment method work");
+
+        if (comment.trim().length() == 0){
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Data is not comlated", "Please input text");
+            RequestContext.getCurrentInstance().showMessageInDialog(message);
+            LOG.info("only space was input into comment");
+        }else {
+
+            LOG.info("addComment method work");
 
 
-        Employee employee = new Employee();
-        employee.setName("test");
-     //   employeeService.addEmployee(employee);
+            Employee employee = new Employee();
+            employee.setId(EMP_ID);
+            Topic t = new Topic();
+            t.setId(topic);
+            setCommentIntoDB(t, employee);
+            System.out.println("method add comment work" + comment);
 
-        Topic t = new Topic();
-        t.setId(topic);
-        setCommentIntoDB(t, employee);
-        System.out.println("method add comment work" + comment);
+            ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+
+            try {
+                ec.redirect(ec.getRequestContextPath() + "/pages/comment.xhtml");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+
+
+
     }
 
     public  void addTopic( int secId){

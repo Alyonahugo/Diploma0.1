@@ -50,11 +50,13 @@ public class TopicBean implements Serializable {
     @ManagedProperty(value="#{sectionService}")
     private SectionService sectionService;
 
-    @PostConstruct
+   // @PostConstruct
     public  void init(){
 
         Map map = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-        selectedSectionId = new Integer(map.get("sectionId").toString());
+        if (map.get("sectionId") != null) {
+            selectedSectionId = new Integer(map.get("sectionId").toString());
+        }
         LOG.info("chose section - " + selectedSectionId);
 
 
@@ -70,6 +72,7 @@ public class TopicBean implements Serializable {
 
 
     public List<Topic> getTopics() {
+        init();
         LOG.info("GET TOPICS FOR SECTION " + selectedSectionId);
         topics = topicService.getTopicsBySecId(selectedSectionId);
         return topics;

@@ -63,7 +63,10 @@
             <p:growl id="growl" life="2000" />
 
             <h:outputLabel for="checked" value="#{msg['commentName']}" style=" padding: 10px;font-weight: bold" />
-            <p:inputText id="checked" value="#{commentBean.comment}"   style=" padding: 10px; width:1200px; font-weight: normal"/>
+            <p:inputText id="checked" value="#{commentBean.comment}"   style=" padding: 10px; width:1200px; font-weight: normal"
+                    required="true" requiredMessage="Massage can not be empty" validatorMessage="Please input english letters, digits only">
+                <f:validateRegex pattern="^[a-zA-Z\s\d]+$" />
+            </p:inputText>
 
             <p:commandButton value="#{msg['save']}" id="ajax" update="growl" action="#{commentBean.addComment(forumView.selectedTopicId)}" styleClass="ui-priority-primary" style=" padding: 10px;" />
 
