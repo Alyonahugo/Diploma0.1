@@ -49,6 +49,7 @@ public class Calculator {
                 ballot.vote(temp, rank++);
                 System.out.println(temp);
             }
+            System.out.println(ballot);
             schulze.registerBallot(ballot);
         }
     }

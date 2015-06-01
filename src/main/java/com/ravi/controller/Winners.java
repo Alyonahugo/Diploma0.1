@@ -34,7 +34,7 @@ private static Logger LOG = Logger.getLogger(OrderListView.class.getName());
 
     private ResourceBundle rb = ResourceBundle.getBundle("data_settings", Locale.ENGLISH);
 
-    private Set<String> winnersName = new TreeSet<String>();
+    private Set<String> winnersName = new LinkedHashSet<String>();
 
 
     private List<Project> winnersList;
