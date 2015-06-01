@@ -63,6 +63,7 @@ public class ProjectBean implements Serializable {
     private boolean afterApp;
 
     private boolean canEditMyProject;
+    private boolean empCanRegProj;
 
 
     @ManagedProperty(value="#{ProjectService}")
@@ -191,6 +192,14 @@ public class ProjectBean implements Serializable {
                 projects = projectService.getProjects();
             }
         }
+
+        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+        try {
+            ec.redirect(ec.getRequestContextPath() + "/pages/regProject.xhtml");
+        } catch (IOException e) {
+            LOG.warning("Can not redirect at on regProject.xhtml");
+        }
+
 
     }
 
@@ -494,5 +503,21 @@ public class ProjectBean implements Serializable {
 
     public void setLoginBean(LoginBean loginBean) {
         this.loginBean = loginBean;
+    }
+
+    public boolean isEmpCanRegProj() {
+        int emp_is = loginBean.getEmployee().getId();
+        if (projectService.getProjectByEmpId(emp_is).size() > 4){
+            empCanRegProj = false;
+        }
+        else{
+            empCanRegProj = true;
+        }
+
+        return empCanRegProj;
+    }
+
+    public void setEmpCanRegProj(boolean empCanRegProj) {
+        this.empCanRegProj = empCanRegProj;
     }
 }

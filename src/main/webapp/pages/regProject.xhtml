@@ -13,11 +13,13 @@
 
 
 
-			<p:outputLabel rendered="#{projectBean.before}" value="registration is not open yet"/>
+			<p:outputLabel rendered="#{projectBean.before}" value="Registration is not open yet"/>
 
-			<p:outputLabel rendered="#{projectBean.after}" value="registration was closed"/>
+			<p:outputLabel rendered="#{projectBean.after}" value="Registration was closed"/>
 
-			<p:panel header="#{msg['createProject']}" id="panel" rendered="#{projectBean.checkDate}">
+			<p:outputLabel rendered="#{projectBean.checkDate and !projectBean.empCanRegProj}" value="You have already registrated 5 projects."/>
+
+			<p:panel header="#{msg['createProject']}" id="panel" rendered="#{projectBean.checkDate and projectBean.empCanRegProj}">
 
 
 				<h:panelGrid columns="3" cellpadding="7" id = "panelGrd">
