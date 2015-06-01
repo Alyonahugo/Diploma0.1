@@ -2,6 +2,7 @@ package com.ravi.controller;
 
 import com.ravi.spring.model.Section;
 import com.ravi.spring.service.SectionService;
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import javax.faces.context.FacesContext;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Created by User on 27.05.2015.
@@ -25,8 +27,12 @@ import java.util.List;
 @SessionScoped
 public class SectionBean implements Serializable {
 
+    private static Logger LOG = Logger.getLogger(SectionBean.class.getName());
+
+
     private List<Section> sections;
     private String secName;
+
 
     @Autowired
     private Section selectedSection;
@@ -44,14 +50,25 @@ public class SectionBean implements Serializable {
         sections = sectionService.getSections();
     }
 
-    public void addSection() throws IOException {
-        Section section = new Section();
-        section.setName(secName);
-        sectionService.addSection(section);
-        System.out.println("method addsection work");
-        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-        ec.redirect(ec.getRequestContextPath() + "/pages/vote.xhtml");
-        //    return "vote.xhtml";
+    public void addSection()  {
+        if (secName.trim().length() == 0){
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Data is not comlated", "Please input text");
+            RequestContext.getCurrentInstance().showMessageInDialog(message);
+            LOG.info("only space was input into comment");
+        }else {
+
+            Section section = new Section();
+            section.setName(secName);
+            sectionService.addSection(section);
+            System.out.println("method addsection work");
+            ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+            try {
+                ec.redirect(ec.getRequestContextPath() + "/pages/section.xhtml");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
     public List<Section> getSections() {
         init();
