@@ -12,14 +12,12 @@ import java.io.Serializable;
 public enum Sphere implements Serializable {
 
 
-    EDUCATION("EDUCATION"),
-    SPORT("SPORT"),
-
-    DANCE("DANCE"),SMART
-
-    ("SMART"),
-
-    REST("REST");
+    Office_facilities("Office facilities"),
+    Team_work("Team work"),
+    Company_Values("Company Values"),
+    Social_activity_within_Company("Social activity within Company"),
+    Eco_friendliness("Eco-friendliness"),
+    Other("Other");
 
     private String name;
 
