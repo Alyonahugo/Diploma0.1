@@ -18,4 +18,6 @@ public interface SectionDAO {
     void updateSections(List<Section> sections);
 
     List<Section> getApprovedSections();
+
+    Section getSectionById(Integer selectedSectionId);
 }

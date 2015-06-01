@@ -57,5 +57,10 @@ public class TopicServiceImpl implements TopicService {
         return topicDAO.getTopicsBySecId(id);
     }
 
+    @Override
+    public Topic getTopicsByTopId(Integer selectedTopicId) {
+        return topicDAO. getTopicsByTopId(selectedTopicId);
+    }
+
 
 }

@@ -4,6 +4,7 @@ package com.ravi.controller;
 import com.ravi.spring.model.Comment;
 import com.ravi.spring.model.Topic;
 import com.ravi.spring.service.CommentService;
+import com.ravi.spring.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
@@ -32,10 +33,35 @@ public class ForumView implements Serializable {
 
     private List<Comment> comments;
     private Integer selectedTopicId;
+    private Topic selectedTopic;
 
     @Autowired
     @ManagedProperty(value="#{commentService}")
     private CommentService commentService;
+
+    @ManagedProperty(value="#{topicService}")
+    @Autowired
+    private TopicService topicService;
+
+
+    public TopicService getTopicService() {
+        return topicService;
+    }
+
+    public void setTopicService(TopicService topicService) {
+        this.topicService = topicService;
+    }
+
+    public Topic getSelectedTopic() {
+        selectedTopic = topicService.getTopicsByTopId(selectedTopicId);
+        return selectedTopic;
+    }
+
+    public void setSelectedTopic(Topic selectedTopic) {
+        this.selectedTopic = selectedTopic;
+    }
+
+
 
 
     //  @PostConstruct
@@ -76,4 +102,6 @@ public class ForumView implements Serializable {
     public void setSelectedTopicId(Integer selectedTopicId) {
         this.selectedTopicId = selectedTopicId;
     }
+
+
 }

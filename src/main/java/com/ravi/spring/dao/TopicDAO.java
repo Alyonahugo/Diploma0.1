@@ -21,4 +21,6 @@ public interface TopicDAO {
 
 
     List<Topic> getTopicsBySecId(int id);
+
+    Topic getTopicsByTopId(Integer selectedTopicId);
 }

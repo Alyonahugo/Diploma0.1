@@ -2,6 +2,7 @@ package com.ravi.controller;
 
 import com.ravi.spring.model.Section;
 import com.ravi.spring.model.Topic;
+import com.ravi.spring.service.SectionService;
 import com.ravi.spring.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -35,6 +36,8 @@ public class TopicBean implements Serializable {
 
 
     private Integer selectedSectionId;
+    private Section selectedSection;
+
     @Autowired
     private Topic selectedTopic;
 
@@ -42,6 +45,10 @@ public class TopicBean implements Serializable {
     @ManagedProperty(value="#{topicService}")
     @Autowired
     private TopicService topicService;
+
+    @Autowired
+    @ManagedProperty(value="#{sectionService}")
+    private SectionService sectionService;
 
     @PostConstruct
     public  void init(){
@@ -107,5 +114,22 @@ public class TopicBean implements Serializable {
 
         }
 
+    }
+
+    public Section getSelectedSection() {
+        selectedSection = sectionService.getSectionById(selectedSectionId);
+        return selectedSection;
+    }
+
+    public void setSelectedSection(Section selectedSection) {
+        this.selectedSection = selectedSection;
+    }
+
+    public SectionService getSectionService() {
+        return sectionService;
+    }
+
+    public void setSectionService(SectionService sectionService) {
+        this.sectionService = sectionService;
     }
 }

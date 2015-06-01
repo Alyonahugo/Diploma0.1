@@ -20,4 +20,5 @@ public interface TopicService {
     List<Topic> getTopicsBySecId(int id);
 
 
+    Topic getTopicsByTopId(Integer selectedTopicId);
 }

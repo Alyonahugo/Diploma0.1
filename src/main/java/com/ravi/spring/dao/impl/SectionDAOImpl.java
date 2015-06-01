@@ -54,4 +54,13 @@ public class SectionDAOImpl implements SectionDAO {
     public List<Section> getApprovedSections() {
         return null;
     }
+
+    @Override
+    public Section getSectionById(Integer selectedSectionId) {
+        List<Section> list = sessionFactory.getCurrentSession().createQuery("from Section where sec_id = ?").setParameter(0, selectedSectionId).list();
+        if (list != null) {
+            return list.get(0);
+        }
+        return null;
+    }
 }

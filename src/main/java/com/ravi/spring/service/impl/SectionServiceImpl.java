@@ -57,4 +57,9 @@ public class SectionServiceImpl implements SectionService {
     public List<Section> getApprovedSections() {
         return null;
     }
+
+    @Override
+    public Section getSectionById(Integer selectedSectionId) {
+        return sectionDAO.getSectionById(selectedSectionId);
+    }
 }

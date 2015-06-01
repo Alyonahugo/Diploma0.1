@@ -19,4 +19,5 @@ public interface SectionService {
 
     List<Section> getApprovedSections();
 
+    Section getSectionById(Integer selectedSectionId);
 }

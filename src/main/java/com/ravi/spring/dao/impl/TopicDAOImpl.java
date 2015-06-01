@@ -58,5 +58,16 @@ public class TopicDAOImpl implements TopicDAO {
                 .setParameter(0, id).list();
     }
 
+    @Override
+    public Topic getTopicsByTopId(Integer selectedTopicId) {
+        List<Topic> list = getSessionFactory().getCurrentSession()
+                .createQuery("from Topic  where topic_id=?")
+                .setParameter(0, selectedTopicId).list();
+        if (list != null){
+            return list.get(0);
+        }
+        return null;
+    }
+
 
 }
