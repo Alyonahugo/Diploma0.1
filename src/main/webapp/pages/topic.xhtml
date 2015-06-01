@@ -35,7 +35,7 @@
             <h:outputLabel for="checked" value="#{msg['topicName']}*"  style=" padding: 10px;"/>
             <p:inputText id="checked" value="#{commentBean.topicName}"   style=" padding: 10px; width:100%"
                          validatorMessage="Topic name - please input english letters, digits only" >
-            <f:validateRegex pattern="^[a-zA-Z\s\d]+$" />
+            <f:validateRegex pattern="^([a-zA-Z\s\d,\.-\?\!;:\%\@])+$" />
             </p:inputText>
 
                 <h:outputText value="&#160;" />
@@ -45,7 +45,7 @@
             <p:inputTextarea id="checked2" value="#{commentBean.comment}"   style=" padding: 10px;width:100%"
                          validatorMessage="Comment name - please input english letters, digits only"
                          >
-            <f:validateRegex pattern="^[a-zA-Z\s\d]+$" />
+            <f:validateRegex pattern="^([a-zA-Z\s\d,\.-\?\!;:\%\@])+$" />
             </p:inputTextarea>
 
 

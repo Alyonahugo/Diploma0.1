@@ -13,17 +13,17 @@
 				<p:menuitem value="View" update="projectDetails" icon="ui-icon-search" oncomplete="PF('projectDetails').show()"/>
 			</p:contextMenu>
 
-<!--
+
 				<p:outputLabel rendered="#{projectBean.beforeApp}" value="Approving is not open yet"/>
 
                 <p:outputLabel rendered="#{projectBean.afterApp}" value="Approving was closed"/>
-                add rendered="#{projectBean.checkDateApp}" to dataTable
--->
+			<!--             add rendered="#{projectBean.checkDateApp}" to dataTable
+            -->
 			<p:dataTable id="tbl" var="proj" value="#{projectBean.projects}"
 						 paginatorTemplate="{RowsPerPageDropdown} {CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
 						 paginator="true" rows="10" style="margin-bottom:20px; width:100%" sortMode="multiple"
 						 selection="#{orderListView.selectedProject}" selectionMode="single" rowKey="#{proj}"
-						 editable="true" editMode="cell" rowsPerPageTemplate="5,10,15" 	>
+						 editable="true" editMode="cell" rowsPerPageTemplate="5,10,15" 	rendered="#{projectBean.checkDateApp}">
 
 
 
