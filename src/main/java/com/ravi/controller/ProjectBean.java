@@ -193,12 +193,6 @@ public class ProjectBean implements Serializable {
             }
         }
 
-        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-        try {
-            ec.redirect(ec.getRequestContextPath() + "/pages/regProject.xhtml");
-        } catch (IOException e) {
-            LOG.warning("Can not redirect at on regProject.xhtml");
-        }
 
 
     }
