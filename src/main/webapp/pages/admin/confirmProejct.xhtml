@@ -7,7 +7,10 @@
 	<ui:define name="metadata">
 	</ui:define>
 	<ui:define name="content">
-		<h:form>
+
+		<p:outputLabel value="Access Denied. You don't have permissions" rendered="#{loginBean.employee.role != 'ROLE_ADMIN'}"/>
+
+		<h:form rendered="#{loginBean.employee.role == 'ROLE_ADMIN'}">
 
 			<p:contextMenu for="tbl">
 				<p:menuitem value="View" update="projectDetails" icon="ui-icon-search" oncomplete="PF('projectDetails').show()"/>

@@ -26,6 +26,10 @@ public class Employee {
     @Basic(optional = false)
     @Column(name = "password")
     private String pass;
+
+    @Basic(optional = false)
+    @Column(name = "role")
+    private String role;
 /*
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
     private Set<Comment> commentRecords = new HashSet<Comment>(0);
@@ -72,5 +76,13 @@ public class Employee {
     @Override
     public String toString() {
         return  name ;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

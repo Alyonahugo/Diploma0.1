@@ -41,6 +41,8 @@ public class LoginBean implements Serializable {
     private String password;
     private String message, uname;
     private Employee employee;
+    private boolean show = false;
+
 
     public String getMessage() {
         return message;
@@ -64,6 +66,14 @@ public class LoginBean implements Serializable {
 
     public void setUname(String uname) {
         this.uname = uname;
+    }
+
+    public boolean isShow() {
+        return show;
+    }
+
+    public void setShow(boolean show) {
+        this.show = show;
     }
 
     public void loginProject(ActionEvent event) {

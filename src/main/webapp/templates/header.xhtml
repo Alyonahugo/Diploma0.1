@@ -62,7 +62,7 @@
 
 					<ul class="nav navbar-nav">
 						<li><a href="/pages/regProject.xhtml">#{msg['menu.regProject']}</a></li>
-						<li><a href="/pages/confirmProejct.xhtml">#{msg['menu.confirmProejct']}</a></li>
+						<li><h:outputLink rendered="#{loginBean.employee.role == 'ROLE_ADMIN'}"  value="/pages/admin/confirmProejct.xhtml">#{msg['menu.confirmProejct']}</h:outputLink></li>
 						<li><a href="/pages/vote.xhtml">#{msg['menu.vote']}</a></li>
 						<li><a href="/pages/result.xhtml">#{msg['menu.result']}</a></li>
 						<li><a href="/pages/section.xhtml">#{msg['menu.forum']}</a></li>
