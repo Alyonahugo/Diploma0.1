@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.ravi.controller.CommentBean</OriginalElement>
+  <nodes>
+    <node x="0.0" y="0.0">javax.faces.bean.ManagedBean</node>
+    <node x="279.0" y="22.0">javax.faces.bean.ViewScoped</node>
+    <node x="54.0" y="124.0">com.ravi.controller.CommentBean</node>
+    <node x="167.0" y="22.0">java.io.Serializable</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.ravi.controller.CommentBean" target="javax.faces.bean.ViewScoped">
+      <point x="106.0" y="-137.0" />
+      <point x="319.0" y="99.0" />
+      <point x="328.0" y="99.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="com.ravi.controller.CommentBean" target="javax.faces.bean.ManagedBean">
+      <point x="-106.0" y="-137.0" />
+      <point x="107.0" y="99.0" />
+      <point x="73.5" y="99.0" />
+      <point x="0.0" y="37.0" />
+    </edge>
+    <edge source="com.ravi.controller.CommentBean" target="java.io.Serializable">
+      <point x="0.0" y="-137.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="170.5" y="135.0" />
+  <SelectedNodes>
+    <node>com.ravi.controller.CommentBean</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

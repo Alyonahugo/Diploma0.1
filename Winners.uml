@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.ravi.controller.Winners</OriginalElement>
+  <nodes>
+    <node x="0.0" y="124.0">com.ravi.controller.Winners</node>
+    <node x="195.5" y="0.0">javax.faces.bean.ManagedBean</node>
+    <node x="362.5" y="22.0">java.io.Serializable</node>
+    <node x="63.5" y="22.0">javax.faces.bean.SessionScoped</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.ravi.controller.Winners" target="javax.faces.bean.ManagedBean">
+      <point x="0.0" y="-258.0" />
+      <point x="0.0" y="37.0" />
+    </edge>
+    <edge source="com.ravi.controller.Winners" target="java.io.Serializable">
+      <point x="179.33333333333337" y="-258.0" />
+      <point x="448.33333333333337" y="99.0" />
+      <point x="408.5" y="99.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="com.ravi.controller.Winners" target="javax.faces.bean.SessionScoped">
+      <point x="-179.33333333333337" y="-258.0" />
+      <point x="89.66666666666663" y="99.0" />
+      <point x="119.5" y="99.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="177.0" y="55.0" />
+  <SelectedNodes>
+    <node>com.ravi.controller.Winners</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
