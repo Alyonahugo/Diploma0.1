@@ -190,7 +190,11 @@ public class ProjectBean implements Serializable {
                 LOG.info(project.showDetails());
                 projectService.addProject(project);
                 projects = projectService.getProjects();
+                FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Your project was saved", "");
+                RequestContext.getCurrentInstance().showMessageInDialog(message);
             }
+
+
         }
 
 
