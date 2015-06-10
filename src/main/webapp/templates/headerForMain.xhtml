@@ -1,0 +1,83 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <f:facet name="middle">
+        <h:outputStylesheet name="bootstrap/css/bootstrap.css" />
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"  type="text/javascript"/>
+
+        <h:outputScript name="bootstrap/js/bootstrap.js" />
+    </f:facet>
+
+
+    <h:form>
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="main-header">
+                <a class="navbar-brand" style="font-weight: bold; font-size: 25px; color:#ffffff " href="/pages/welcome.xhtml">#{msg['header.title1']}</a>
+                <h:outputText value=" | " style="font-size: 20px; color:#8BA7B7;   float: left;
+  height: 50px;
+  padding: 15px 15px;
+  font-size: 18px;
+  line-height: 20px; " />
+                <h:outputText value="#{msg['header.title2']}" style="font-weight: bold; font-size: 20px; color:#8BA7B7;   float: left;
+  height: 50px;
+  padding: 15px 15px;
+  font-size: 18px;
+  line-height: 20px; " />
+
+                <h:outputText value="#{loginBean.uname}" style="  position: absolute;
+  right: 7%;
+  padding: 15px 15px;
+  font-size: 18px;
+  color: white;
+  font-weight: bold;" />
+
+                <h:commandLink value="#{msg['menu.logOut']}" action="#{loginBean.logout}" style="  position: absolute;
+  right: 0;
+  padding: 15px 15px;
+  font-size: 18px;
+  color: white;
+  font-weight: bold;"/>
+            </div>
+            <div style="background: #1f73a3;" class="tabs  navbar-inverse">
+
+                <div class="navbar-header">
+
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span> <span
+                            class="icon-bar"></span> <span class="icon-bar"></span> <span
+                            class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" style="font-weight: bold;" href="/pages/welcome.xhtml">#{msg['home']}</a>
+                </div>
+                <div class="collapse navbar-collapse" style="margin-right: auto;
+  margin-left: auto;  font-weight: bold; ">
+
+
+                    <ul class="nav navbar-nav">
+                        <li><a href="/pages/regProject.xhtml">#{msg['menu.regProject']}</a></li>
+                        <li><h:outputLink rendered="#{loginBean.employee.role == 'ROLE_ADMIN'}"  value="/pages/admin/confirmProejct.xhtml">#{msg['menu.confirmProejct']}</h:outputLink></li>
+                        <li><a href="/pages/vote.xhtml">#{msg['menu.vote']}</a></li>
+                        <li><a href="/pages/result.xhtml">#{msg['menu.result']}</a></li>
+                        <li><a href="/pages/section.xhtml">#{msg['menu.forum']}</a></li>
+                        <li style = "position: absolute; right: 7%;"><a href="/pages/myProjects.xhtml">#{msg['menu.my_projects']}</a></li>
+                        <li style = "position: absolute; right: 0;"><a href="/pages/admin.xhtml">#{calendarView.showDate}</a></li>
+                        <li>
+
+                        </li>
+                    </ul>
+                </div>
+                <!--/.nav-collapse -->
+
+            </div>
+        </div>
+    </h:form>
+
+
+</ui:composition>

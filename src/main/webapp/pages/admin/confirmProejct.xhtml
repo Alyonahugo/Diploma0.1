@@ -24,7 +24,7 @@
             -->
 			<p:dataTable id="tbl" var="proj" value="#{projectBean.projects}"
 						 paginatorTemplate="{RowsPerPageDropdown} {CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-						 paginator="true" rows="10" style="margin-bottom:20px; width:100%" sortMode="multiple"
+						 paginator="true" rows="10" style="margin-bottom:20px; width:100%" 
 						 selection="#{orderListView.selectedProject}" selectionMode="single" rowKey="#{proj}"
 						 editable="true" editMode="cell" rowsPerPageTemplate="5,10,15" 	rendered="#{projectBean.checkDateApp}">
 
@@ -84,7 +84,7 @@
 				</p:column>
 
 
-				<p:column headerText="#{msg['confimStatus']}"  style="width:15%; color: #000000; "  sortBy="#{proj.sphere}">
+				<p:column headerText="#{msg['confimStatus']} ++++++"  style="width:15%; color: #000000; "  >
 					<p:cellEditor>
 						<f:facet name="output"><h:outputText value="#{proj.status}" /></f:facet>
 						<f:facet name="input">

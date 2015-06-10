@@ -196,8 +196,19 @@ public class ProjectBean implements Serializable {
 
 
         }
+        if (projectService.getProjectByEmpId(loginBean.getEmployee().getId()).size() < 5 ) {
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Thank you for registration", "Project is saved");
+            RequestContext.getCurrentInstance().showMessageInDialog(message);
+        }
+        else{
+            ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+            try {
+                ec.redirect(ec.getRequestContextPath() + "/pages/regProject.xhtml");
+            } catch (IOException e) {
 
+            }
 
+        }
 
     }
 
@@ -507,7 +518,7 @@ public class ProjectBean implements Serializable {
         int emp_is = loginBean.getEmployee().getId();
         if (projectService.getProjectByEmpId(emp_is).size() > 4){
             empCanRegProj = false;
-        }
+                  }
         else{
             empCanRegProj = true;
         }

@@ -89,6 +89,7 @@ private int countOfPanels;
     private  Set<Project> approvedProj = new HashSet<Project>();
     private Map<String, Project> mapAppProj = new HashMap<String, Project>();
     private Set<Project> tempApprovedProjects = new HashSet<Project>();
+    private List<String> vote = new ArrayList<String>();
     FacesContext fc;
 
 public DashboardBacker() {
@@ -163,6 +164,22 @@ public synchronized Dashboard getDashboard() {
 
     }
 
+    public List<String> getVote() {
+        vote = new ArrayList<String>();
+        int items = approvedProj.size();
+        createMapAppProj();
+
+        for( int i = 0; i < items; i++ ) {
+            String str = "" + mapAppProj.get(model.getColumn(0).getWidgets().get(i));
+            vote.add(str);
+        }
+
+        return vote;
+    }
+
+    public void setVote(List<String> vote) {
+        this.vote = vote;
+    }
 
     public void setDashboard(Dashboard dashboard) {
         DashboardBacker.dashboard = dashboard;
@@ -336,8 +353,6 @@ public void setColumnCount(int columnCount) {
             Mark mark = new Mark(mapAppProj.get(model.getColumn(0).getWidgets().get(i)), i+1, vote);
             System.out.println(" dashboard " + mark);
             markService.addMark(mark);
-
-
         }
 
         employeeVote = true;

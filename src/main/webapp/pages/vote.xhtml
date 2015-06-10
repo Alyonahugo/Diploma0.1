@@ -1,9 +1,8 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core"
-	template="/templates/template.xhtml">
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:p="http://primefaces.org/ui"
+				template="/templates/template.xhtml">
 	<ui:define name="metadata">
 	</ui:define>
 
@@ -24,8 +23,29 @@
 					<p:ajax event="reorder" listener="#{dashboardBacker.handleReorder}" update="msgs1" />
 
 				</p:dashboard>
-				<p:commandButton value="#{msg['vote']}" id="nonAjax" actionListener="#{dashboardBacker.save}"  rendered="#{!dashboardBacker.employeeVote and dashboardBacker.checkDateVote}" />
 
+
+			<p:commandButton value="Submit" update="displayThemes" oncomplete="PF('themesDialog').show()"
+							 style="margin-top:5px"/>
+
+
+			<p:growl id="message" showDetail="true"/>
+			<p:growl id="growl" life="2000"/>
+
+			<p:dialog global="true" hideEffect="explode" widgetVar="themesDialog" header="#{msg['menu.confirmVote']}" >
+				<p:dataList id="displayThemes" value="#{dashboardBacker.vote}" var="vote" type="ordered">
+					<h:outputText value="#{vote}" />
+
+				</p:dataList>
+				<h:outputText value="#{msg['menu.confirm']}"/>
+				<h:outputText value="&lt;br/&gt;" escape="false"/>
+				<p:commandButton value="#{msg['yes']}" id="ajax" update="growl" styleClass="ui-confirmdialog-yes"
+								 icon="ui-icon-check" actionListener="#{dashboardBacker.save}"
+								 onclick="themesDialog.hide()"/>
+
+				<p:commandButton value="#{msg['cancel']}" type="button" styleClass="ui-confirmdialog-no"
+								 icon="ui-icon-close" onclick="themesDialog.hide()"/>
+			</p:dialog>
 
 
 
