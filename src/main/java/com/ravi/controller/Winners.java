@@ -68,7 +68,7 @@ private static Logger LOG = Logger.getLogger(OrderListView.class.getName());
 
 
   //  @PostConstruct
-    public void init() {
+    public void loadWinners() {
         calculator.getSchulze().addAllCandidates(CreateListOfCandidates());
         setResultOfVotes();
         winnersList = new ArrayList<Project>();
@@ -179,7 +179,7 @@ private static Logger LOG = Logger.getLogger(OrderListView.class.getName());
 
 
     public List<Project> getWinnersList() {
-        init();
+        loadWinners();
         return winnersList;
     }
 

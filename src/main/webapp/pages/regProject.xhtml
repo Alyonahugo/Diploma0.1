@@ -28,7 +28,7 @@
 					<p:inputText id="name" value="#{project.name}" label="#{msg['name']}"  style=" padding: 10px; width:400px"
 								 validatorMessage="Name - please input english letters, digits only"
 								 required="true">
-						<f:validateRegex pattern="^([a-zA-Z\s\d,\.-\?\!;:\%\@])+$" />
+						<f:validateRegex pattern="^([a-zA-Z\s\d,\.-\?\!;:\%\@\\\/])+$" />
 				</p:inputText>
 					<p:message for="name" display="icon" />
 
@@ -39,7 +39,7 @@
 					<p:inputText id="meta" value="#{project.meta}" label="#{msg['meta']}"  style=" padding: 10px; width:400px"
 								 validatorMessage="Meta - please input english letters, digits only"
 								 required="true">
-					<f:validateRegex pattern="^([a-zA-Z\s\d,\.-\?\!;:\%\@])+$" />
+					<f:validateRegex pattern="^([a-zA-Z\s\d,\.-\?\!;:\%\@\\\/])+$" />
 					</p:inputText>
 					<p:message for="meta" display="icon" />
 
@@ -52,7 +52,7 @@
 									 label="#{msg['description']}"  autoResize="false"  style=" padding: 10px; width:400px "
 									 validatorMessage="Description - please input english letters, digits only"
 									 required="true">
-						<f:validateRegex pattern="^([a-zA-Z\s\d,\.-\?\!;:\%\@])+$" />
+						<f:validateRegex pattern="^([a-zA-Z\s\d,\.-\?\!;:\%\@\\\/])+$" />
 					</p:inputTextarea>
 					<p:message for="des" display="icon" />
 
@@ -77,7 +77,7 @@
 					<p:inputText id="pattern" value="#{project.manager}" label="#{msg['manager']}"  style=" padding: 10px; width:400px"
 								 validatorMessage="Manager - please input english letters, digits only"
 								 required="true">
-					<f:validateRegex pattern="^([a-zA-Z\s\d,\.-\?\!;:\%\@])+$" />
+					<f:validateRegex pattern="^([a-zA-Z\s\d,\.-\?\!;:\%\@\\\/])+$" />
 					</p:inputText>
 					<p:message for="pattern" display="icon" />
 
@@ -87,7 +87,7 @@
 					<h:outputLabel for="checked" value="#{msg['team']}" />
 					<p:inputText id="checked" value="#{project.team}"   style=" padding: 10px; width:400px"
 								 validatorMessage="Team - please input english letters, digits only" >
-					<f:validateRegex pattern="^([a-zA-Z\s\d,\.-\?\!;:\%\@])+$" />
+					<f:validateRegex pattern="^([a-zA-Z\s\d,\.-\?\!;:\%\@\\\/])+$" />
 					</p:inputText>
 					<p:message for="checked" display="icon" />
 
