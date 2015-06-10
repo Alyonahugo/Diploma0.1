@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d8092b1-2daf-452a-8c68-42528bc76e7b" name="Default" comment="change size of confirm datatable">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/CustomerDemo-1.0/WEB-INF/lib/primefaces-5.2.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/MANIFEST.MF" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="7aaf1b96-380c-48c6-b252-fd1f466ecd08" name="New changelist" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/CustomerDemo-1.0/WEB-INF/lib/primefaces-5.2.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/MANIFEST.MF" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/deployment.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterPath="" />
@@ -759,11 +759,17 @@
       <option name="project" value="LOCAL" />
       <updated>1432914985128</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="change size of confirm datatable">
+      <created>1433930236457</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1433930236457</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4035000" />
+    <option name="totallyTimeSpent" value="4156000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="41" y="24" width="1879" height="952" extended-state="6" />
