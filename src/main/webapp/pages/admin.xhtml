@@ -18,7 +18,8 @@
 
             </h:panelGrid>
 
-            <p:commandButton value="Submit" update="msgs" actionListener="#{calendarView.click}" icon="ui-icon-check" />
+            <p:commandButton value="Submit" update="msgs" actionListener="#{calendarView.click}" icon="ui-icon-check"
+                             styleClass="ui-priority-primary"/>
 
             <p:dialog resizable="false" header="#{msg['dateChanged']}" widgetVar="dlg" showEffect="fold">
 
