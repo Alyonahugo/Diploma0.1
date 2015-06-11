@@ -313,6 +313,7 @@ private static Logger LOG = Logger.getLogger(OrderListView.class.getName());
 
     private void createCandObj(){
         int j = -1;
+        Map<String, Statistic> map = new HashMap<String, Statistic>();
         for (Project project : statMap.values()){
             j ++;
             for (int i = 0; i < winnersList.size(); i++){
@@ -321,9 +322,22 @@ private static Logger LOG = Logger.getLogger(OrderListView.class.getName());
                 DecimalFormat dt = new DecimalFormat("#.##");
                 st.setPersent(dt.format(perArray[j][i]));
                 st.setPlace(i + 1);
-                statistic.add(st);
+                if (!map.containsKey(project.getSphere() + "_" + (i + 1))) {
+                    map.put(project.getSphere() + "_" + (i + 1), st);
+                }
+                else{
+                    Double per =  new Double(map.get(project.getSphere() + "_" + (i + 1)).getPersent());
+                    st.setPersent(dt.format(per + perArray[j][i]));
+                    map.put(project.getSphere() + "_" + (i + 1), st);
+                    System.out.println(project.getSphere() + "_" + (i + 1));
+                }
+
             }
         }
+        for (Map.Entry<String, Statistic> entry : map.entrySet()){
+            statistic.add(entry.getValue());
+        }
+
         showStatList();
     }
 
