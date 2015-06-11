@@ -35,5 +35,43 @@
 				</h:panelGrid>
 			</p:tab>
 		</p:accordionPanel>
+
+		<p:dataTable id="tbl" var="st" value="#{winners.statistic}"
+					 paginatorTemplate="{RowsPerPageDropdown} {CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+					 paginator="true" rows="6" style="margin-bottom:20px; width:100%"
+					 editable="true" editMode="cell" rowsPerPageTemplate="5,6,7,8,9,10,15" 	rendered="#{winners.showResult}"
+					 sortMode="multiple">
+
+
+
+			<f:facet name="header">
+				<h:outputText value="#{msg['headerConfirmProject']}"/>
+			</f:facet>
+
+			<p:column   style="width:12%" sortBy="#{st.sphere}">
+				<f:facet name="header">
+					<h:outputText value="#{msg['sphere']}"/>
+				</f:facet>
+				<h:outputText value="#{st.sphere}" />
+			</p:column>
+
+			<p:column   style="width:12%" sortBy="#{st.persent}">
+				<f:facet name="header">
+					<h:outputText value="#{msg['persent']},%" />
+			</f:facet>
+				<h:outputText value="#{st.persent}" />
+			</p:column>
+
+			<p:column style="width:12%" sortBy="#{st.place}">
+				<f:facet name="header">
+					<h:outputText value="#{msg['place']}" />
+				</f:facet>
+				<h:outputText value="#{st.place}" />
+			</p:column>
+
+
+
+
+		</p:dataTable>
 	</ui:define>
 </ui:composition>

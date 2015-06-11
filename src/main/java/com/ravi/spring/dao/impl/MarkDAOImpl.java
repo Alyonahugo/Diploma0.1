@@ -53,4 +53,10 @@ public class MarkDAOImpl implements MarkDAO {
     public List<Mark> getApprovedMarks() {
         return null;
     }
+
+    @Override
+    public List<Integer> getMarksByProjectId(Integer progId) {
+        return sessionFactory.getCurrentSession().createQuery("select mark from Mark  where proj_id=?")
+                .setParameter(0, progId).list();
+    }
 }

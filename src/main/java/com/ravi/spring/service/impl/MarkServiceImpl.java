@@ -49,4 +49,9 @@ public class MarkServiceImpl implements MarkService {
     public List<Mark> getApprovedMarks() {
         return null;
     }
+
+    @Override
+    public List<Integer> getMarksByProjectId(Integer progId) {
+        return markDAO.getMarksByProjectId(progId);
+    }
 }

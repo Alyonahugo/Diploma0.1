@@ -18,4 +18,6 @@ public interface MarkService {
     void updateMarks(List<Mark> Marks);
 
     List<Mark> getApprovedMarks();
+
+    List<Integer> getMarksByProjectId(Integer progId);
 }
