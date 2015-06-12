@@ -11,7 +11,7 @@ import schulze.config.Configuration;
  * Voting system which uses Schulze algorithm. Check details of it at <a
  * href="http://en.wikipedia.org/wiki/Schulze_method">Wikipedia</a>
  * 
- * @author Yurii_Shylov
+ * @author
  * 
  * @param <T>
  *          class of candidates to vote for
