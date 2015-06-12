@@ -9,7 +9,7 @@ package schulze;
  * candidate. The least used one is removing the candidate and thus deleting the
  * column and row.
  * 
- * @author 
+ * @author
  * 
  */
 class Matrix {

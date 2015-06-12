@@ -6,8 +6,7 @@ import schulze.storage.MemoryBallotStorage;
 /**
  * Stores common configurable values.
  * 
- * @author Yurii_Shylov
- * 
+ * @author
  */
 public class Configuration {
 	private BallotStorage storage = new MemoryBallotStorage();

@@ -5,7 +5,7 @@ package schulze.config;
  * properties may lead to exception or incorrect calculations. Use at your own
  * risks.
  * 
- * @author Yurii_Shylov
+ * @author 
  * 
  */
 public class AdvancedConfiguration extends Configuration {
