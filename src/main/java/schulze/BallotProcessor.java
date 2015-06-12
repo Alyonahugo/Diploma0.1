@@ -14,7 +14,7 @@ import schulze.config.AdvancedConfiguration;
  * Performs ballot registering, storing, processing etc according to
  * configuration
  * 
- * @author Yurii_Shylov
+ * @author 
  * 
  * @param <T>
  *          class of candidates to vote for
