@@ -359,7 +359,7 @@ public void setColumnCount(int columnCount) {
 
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
         try {
-            ec.redirect(ec.getRequestContextPath() + "/pages/vote.xhtml");
+            ec.redirect(ec.getRequestContextPath() + "/diplom/pages/vote.xhtml");
         } catch (IOException e) {
 
         }

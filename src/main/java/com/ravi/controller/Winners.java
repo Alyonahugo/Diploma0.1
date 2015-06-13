@@ -322,7 +322,8 @@ private static Logger LOG = Logger.getLogger(OrderListView.class.getName());
                 DecimalFormat dt = new DecimalFormat("#.##");
                 st.setPersent(dt.format(perArray[j][i]));
                 st.setPlace(i + 1);
-                if (!map.containsKey(project.getSphere() + "_" + (i + 1))) {
+                statistic.add(st);
+             /*   if (!map.containsKey(project.getSphere() + "_" + (i + 1))) {
                     map.put(project.getSphere() + "_" + (i + 1), st);
                 }
                 else{
@@ -330,14 +331,14 @@ private static Logger LOG = Logger.getLogger(OrderListView.class.getName());
                     st.setPersent(dt.format(per + perArray[j][i]));
                     map.put(project.getSphere() + "_" + (i + 1), st);
                     System.out.println(project.getSphere() + "_" + (i + 1));
-                }
+                }*/
 
             }
         }
-        for (Map.Entry<String, Statistic> entry : map.entrySet()){
+       /* for (Map.Entry<String, Statistic> entry : map.entrySet()){
             statistic.add(entry.getValue());
         }
-
+*/
         showStatList();
     }
 

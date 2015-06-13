@@ -65,7 +65,7 @@ public class TopicBean implements Serializable {
     public void addSection() throws IOException {
 
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-        ec.redirect(ec.getRequestContextPath() + "/pages/vote.xhtml");
+        ec.redirect(ec.getRequestContextPath() + "/diplom/pages/vote.xhtml");
         //    return "vote.xhtml";
     }
 

@@ -203,7 +203,7 @@ public class ProjectBean implements Serializable {
         else{
             ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
             try {
-                ec.redirect(ec.getRequestContextPath() + "/pages/regProject.xhtml");
+                ec.redirect(ec.getRequestContextPath() + "/diplom/pages/regProject.xhtml");
             } catch (IOException e) {
 
             }
@@ -347,7 +347,7 @@ public class ProjectBean implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, msg);
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
         try {
-            ec.redirect(ec.getRequestContextPath() + "/pages/myProjects.xhtml");
+            ec.redirect(ec.getRequestContextPath() + "/diplom/pages/myProjects.xhtml");
         } catch (IOException e) {
             LOG.warning("Can not redirect at on row edit");
         }
@@ -358,7 +358,7 @@ public class ProjectBean implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, msg);
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
         try {
-            ec.redirect(ec.getRequestContextPath() + "/pages/myProjects.xhtml");
+            ec.redirect(ec.getRequestContextPath() + "/diplom/pages/myProjects.xhtml");
         } catch (IOException e) {
             LOG.warning("cant redirect after on row Cancel");
         }
